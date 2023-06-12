@@ -1,0 +1,19 @@
+6月１２日
+進捗状況
+午前
+・外部設計書の完成版提出
+・ファイル構成一覧表の完成版提出
+・プログラミングのスケジュールを決めた。
+午後
+プログラミング
+jsp
+・Schedule.jsp　６４％						
+・Calendar.jsp　	３０％				
+・GoalRegist.jsp	８０％					
+・Achieve.jsp	７０％						
+DAO
+・IdpwDao.java　９０％
+・DaysDao.java　１０％					
+						
+
+
