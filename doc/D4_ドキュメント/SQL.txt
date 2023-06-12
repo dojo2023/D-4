@@ -1,0 +1,80 @@
+【ドライバ】
+org.h2.Driver
+
+【JDBC URL】
+jdbc:h2:file:C:/pleiades/workspace/data/amateur
+
+
+【ユーザー名】	【パスワード】
+sa		（なし）
+
+【IDPWテーブルを作成するSQL文】
+CREATE TABLE IDPW (
+　NUMBER INT auto_increment,
+  NAME VARCHAR(20) NOT NULL,
+  PW VARCHAR(20) NOT NULL,
+  PRIMARY KEY(NUMBER)
+);
+
+【IDPWテーブルにサンプルデータを登録するSQL文】
+INSERT INTO IDPW (NUMBER,NAME, PW) VALUES (1000,'DOJO', 'password');
+
+
+【DAYSテーブルを作成するSQL文】
+CREATE TABLE DAYS (
+  LOGIN int auto_increment,
+  NUMBER VARCHAR(10) NOT NULL,
+  LOGINDAY DATETIME NOT NULL,
+  PRIMARY KEY(LOGIN)
+
+);
+
+【LGOALテーブルを作成するSQL文】
+CREATE TABLE LGOAL (
+  LGID int auto_increment,
+  NUMBER INT(10) NOT NULL,
+  MANTH DATE NOT NULL,
+  LG VARCHAR(100) NOT NULL,
+  PRIMARY KEY(LGID)
+
+);
+
+【SGOALテーブルを作成するSQL文】
+CREATE TABLE SGOAL (
+  SGID int auto_increment,
+  LGID int(10) NOT NULL,
+  DAY_S DATE NOT NULL,
+  DAY_E DATE NOT NULL,
+  SG VARCHAR(100) NOT NULL,
+  PRIMARY KEY(SGID)
+
+);
+
+【TODOTBテーブルを作成するSQL文】
+CREATE TABLE TODOTB (
+  TODOID int auto_increment,
+  SGID int(10),
+  TODO VARCHAR(100) NOT NULL,
+  ACHIEVE int(3) default 0,
+  PRIMARY KEY(TODOID)
+
+);
+
+【TASKTBテーブルを作成するSQL文】
+CREATE TABLE TASKTB (
+  NUMBER int NOT NULL,
+  HOUR_S DATETIME NOT NULL,
+  HOUR_E DATETIME NOT NULL,
+  TASK VARCHAR(100) NOT NULL,
+  PRIMARY KEY(NUMBER,HOUR_S)
+);
+
+【MEMOTBテーブルを作成するSQL文】
+CREATE TABLE MEMOTB (
+  NUMBER int  NOT NULL,
+  DAY date NOT NULL,
+  MEMO VARCHAR(300) NOT NULL,
+  PRIMARY KEY(NUMBER,DAY)
+
+);
+
