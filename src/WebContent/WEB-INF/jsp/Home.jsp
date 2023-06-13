@@ -4,50 +4,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>使い方説明</title> ​
-<link rel="stylesheet" href="explanation.css">
+<title>ホームページ</title> ​
+<!-- リンクスペース -->
+​
 </head>
 <body>
-	<h1 class="logo">
-		<img src="" alt="【ロゴ】">アプリ名
+	<h1>
+		<img src="" alt="ロゴ画像">スケジュール管理アプリ
 	</h1>
 	<!-- ロゴ画像とアプリ名 -->
+	<nav>
+		<!-- アプリ名の横にボタン配置 -->
+		<ul>
+			<button onclick="/amateur/LoginServlet">ログイン</button>
+			<button onclick="/amateur/AccountServlet">新規登録</button>
+		</ul>
+	</nav>
+	<!-- 宣伝のＰＲ部分 -->
+	<h2>日々の業務を一括管理</h2>
+	<p>ToDoとタスク、目標設定も一度に把握</p>
+	<!-- 画像3枚予定、宣伝の横に配置 -->
+	<img src="" alt="内容画像"> ​
+	<h3>仕様説明</h3>
+	<h4>スケジュールページ</h4>
+	<p>一日のスケジュールを把握</p>
+	<h4>カレンダーページ</h4>
+	<p>月単位で予定を把握</p>
+	<h4>目標設定</h4>
+	<p>目標を設定できる</p>
+	<h4>ToDoやタスク設定</h4>
+	<p>ToDoとタスクを分けて管理</p>
 	​
-	<div class=wrapper>
-		<!-- ヘッダー -->
-		<header class=header>
-
-			<nav class="nav">
-				<ul>
-					<li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
-					<li><a href="/amateur/CalendarServlet">カレンダー</a></li>
-					<li id=add>追加</li>
-					<li><a href="/amateur/AchieveServlet">達成度</a></li>
-					<li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
-					<li id="logout"><a href="/amateur/LogoutServlet">ログアウト</a></li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<div class="container">
-				<h2>アプリの使い方</h2>
-
-				<button id="myButton1" onclick="changeButton1()">▷</button>
-				タイトル１
-				<p id="description1" style="display: none;">説明1</p>
-				<br> ​
-				<button id="myButton2" onclick="changeButton2()">▷</button>
-				タイトル２
-				<p id="description2" style="display: none;">説明２</p>
-				<br> ​
-				<button id="myButton3" onclick="changeButton3()">▷</button>
-				タイトル３
-				<p id="description3" style="display: none;">説明３</p>
-				<br>
-			</div>
-		</main>
+	<h3>動画</h3>
+	​ ​
+	<button onclick="/amateur/AccountServlet">新規登録</button>
 </body>
-<footer class="footer">
-	<p>&copy; Amateur-Programmers</p>
-</footer>
 </html>
