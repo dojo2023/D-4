@@ -6,7 +6,7 @@
 <html lang = "ja">
 <head>
 <meta charset="UTF-8">
-<title>ログイン</title>
+<title>達成度入力・表示</title>
 </head>
 <body>
 <div class = wrapper>
@@ -27,36 +27,26 @@
 </header>
 <!-- ヘッダーここまで -->
 <!-- メインここから -->
-<!-- <img src = ""> ロゴ画像-->
-<form method="POST" action="/amateur/LoginServlet" id = "formLogin">
-    <table>
-        <tr>
-            <td>
-            <label>ID<br>
-            <input type="text" name="NUMBER">
-            </label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <label>パスワード<br>
-            <input type="password" name="PW" id="password">
-            </label>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-            <input type="submit" name="LOGIN" value="ログイン">
-            <input type="reset" name="reset" value="リセット">
-            </td>
-        </tr>
-    </table>
-</form>
+<p><button id = "month_l" type = "button" onclick="location.href='/amateur/AchieveServlet'">先月</button>
+6月
+<button id = "month_n" type = "button" onclick="location.href='/amateur/AchieveServlet'">翌月</button></p>
+    <form method="POST" action="/amateur/AchieveServlet" id = "formAchieve" >
+    <p id = "lg_a">長期目標：${e.}
+    <!-- 長期目標達成ゲージを追加するためのdiv -->
+    <div id = "lg_gage"></div></p>
+    <!--<c:forEach var="e" items="${月の目標が入った配列名}" >-->
+    <p id = "sg_a">短期目標：${e.}
+    <!-- 短期目標達成ゲージを追加するためのdiv -->
+    <div id = "sg_gage"></div></p>
+    <p id = "todo_a">Todo：${e.}<input type="text" name="ACHIEVE" value = "${e.}">％</p>
+    <!--</c:forEach>-->
+    <input type="submit" name="REGIST_A" value="確定">
+    </form>
 <!-- メインここまで -->
 <!-- フッターここから -->
 <!-- フッターここまで -->
 </div>
 <!--JavaScriptの記入欄-->
-<script src = "login.js"></script>
+<script src = "achieve.js"></script>
 </body>
 </html>

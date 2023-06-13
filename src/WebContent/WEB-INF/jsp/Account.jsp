@@ -28,7 +28,7 @@
 <!-- ヘッダーここまで -->
 <!-- メインここから -->
 <!-- <img src = ""> ロゴ画像-->
-<form method="POST" action="/amateur/LoginServlet" id = "formLogin">
+<form method="POST" action="/amateur/LoginServlet" id = "formAccount">
     <table>
         <tr>
             <td>
@@ -45,8 +45,15 @@
             </td>
         </tr>
         <tr>
+            <td>
+            <label>パスワード確認用<br>
+            <input type="password" name="PW" id="password_con">
+            </label>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2">
-            <input type="submit" name="LOGIN" value="ログイン">
+            <input type="submit" name="LOGIN" value="新規登録">
             <input type="reset" name="reset" value="リセット">
             </td>
         </tr>
@@ -57,6 +64,11 @@
 <!-- フッターここまで -->
 </div>
 <!--JavaScriptの記入欄-->
-<script src = "login.js"></script>
+<script src = >
+    document.getElementById('formAccount').onsubmit = function(event) {
+    //「新規登録ボタン」を押した後、ポップアップが表示される機能
+    window.open('あなたのIDは${e.}です');
+};
+</script>
 </body>
 </html>
