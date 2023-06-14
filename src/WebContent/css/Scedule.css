@@ -1,0 +1,113 @@
+@charset "UTF-8";
+.wrapper {
+
+}
+nav ul{
+    display: table;
+    margin: 0 auto;
+    padding: 0 ;
+    width: 80%;
+    text-align: center;
+    }
+    nav li{
+    display: table-cell;
+    min-width: 50px;
+    }
+    nav a{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #555;
+    padding-bottom: 5px;
+    }
+    nav li.current{
+    border-bottom: 3px solid #12A778;
+    }
+    nav li:hover{
+    color: #1192C1;
+    border-bottom: 3px solid #1192C1;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      nav li {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      nav li a {
+        text-decoration: none;
+        color: #333;
+        padding: 5px;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #F9F9F9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .dropdown-content a {
+        color: #333;
+        padding: 8px 12px;
+        display: block;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+.carender{
+position: absolute;
+    top: 200px;
+    left: 50%;
+    width: 50%;
+    width: 630px;
+    height: 298px;
+    overflow: auto;
+
+}
+.time{
+	position: absolute;
+    top: 304px;
+    left: 50%;
+    width: 50%;
+    width: 590px;
+    height: 298px;
+    overflow: auto;
+	overflow: auto;
+}
+/*h2{
+
+	position: fixed;
+}
+h3{
+	position: fixed;
+	top:140px
+}*/
+    ul {
+  display: inline;
+}
+
+li {
+  display: inline;
+}
+.popup{
+	z-index: 9999;
+
+}
+.form-container {
+  position: relative;
+}
+div #table{
+    width: 950px;
+    height: 350px;
+    overflow: auto;		/* はみ出した場合は、スクロールバーを表示する */
+  }
+.form-container {
+  width: 200px; /* フォームの幅 */
+}
+
+#input-text {
+  width: 100%; /* テキストボックスの幅を親要素に合わせる */
+  height: auto; /* 高さを自動調整する */
+  resize: none; /* テキストボックスのリサイズを無効化する */
+}

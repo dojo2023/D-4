@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+h1 {
+    font-size: 1.3em;
+}
+nav {
+    display: flex;
+    justify-content: right;
+}
+
+nav li {
+    display: inline-flex;
+}
+
+button {
+    color: rgb(5, 185, 65);
+}
+
+.sampleimages {
+    position: absolute;
+    top: 150px;
+    left: 70%;
+   /* width: 50%;
+    width: 630px;
+    height: 501px;
+    overflow: auto;*/
+}
+
+
+.new {
+    display: flex;
+  justify-content: center;
+}
