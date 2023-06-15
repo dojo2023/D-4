@@ -1,0 +1,18 @@
+6月15日　D4
+
+実行内容
+・各プログラムの作成
+・DAO　SgDao.java・MemotbDao.java→完成　
+・servlet　CalendarServlet.java・NextMonthServlet.java・LastMonthServlet.java→80%
+・JavaScript　goal_regist.js・task_regist.js→70%
+・CSS　commmon.css→50% schedule.css→70% home.css→80%
+
+できなかった・完了しなかった項目
+・CalendarServlet.javaの完成（DAOとの同期がまだできていない）
+
+話したこと・苦心したところ・最終状況
+・ずっと苦労していた短期目標とTodoのデータをどのように送信するか、という問題点の解決の糸口を見つけることができた。
+
+次回予定
+・午前：javaBeanの作成
+　午後：各個人作業
