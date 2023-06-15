@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+html {
+    background-color: #b5f0f0;
+}
 h1 {
     font-size: 1.3em;
 }
@@ -16,16 +19,89 @@ button {
     color: rgb(5, 185, 65);
 }
 
+.btn {
+    background: linear-gradient(to bottom, #50dbaa, #50dbaa);
+    color: #FFFFFF;
+    border: none;
+    text-shadow: none;
+    border-radius: 0.25em;
+    height: 40px;
+    width: 230px;
+}
+.btn:hover {
+    background: linear-gradient(to bottom, #0b9f50, #0b9f50);
+}
+.btn:active {
+    transform: translateY(2px);
+}
+
+hr {
+    color: #05d190;
+}
+
+.side {
+    display: flex;
+    border-bottom: 1px dashed #05d190;
+    padding: 20px 8px;
+}
+
+.first {
+    /*background-color: rgb(114, 242, 184);*/
+    padding-bottom: 70px;
+}
+h2 {
+    font-size: 3.5em;
+    margin: 30px 30px 10px 10px;
+    padding: 2% -2% 0 2% ;
+}
+.first p {
+    font-size: 3ch;
+    margin: 10px 10px 10px 10px;
+    padding: 2% 2% 2% 2%;
+
+}
+
 .sampleimages {
+    /*width: 300px;
+    height: 150px;
+    position: relative;*/
+    position:absolute;
+    top:175px;
+    left:62%;
+    width:370px;
+    height:300px;
+}
+
+.sampleimages img {
+    width: 160px;
     position: absolute;
-    top: 150px;
-    left: 70%;
+    top: 170px;
+    left: 65%;
    /* width: 50%;
     width: 630px;
     height: 501px;
     overflow: auto;*/
 }
 
+.sampleimages .img_01 {
+    top: 20px;
+    left: 130px;
+}
+
+.sampleimages .img_02 {
+    top: 200px;
+    left: 0px;
+    width: 400px;
+}
+
+.sampleimages .img_03 {
+    top: 100px;
+    left: 210px;
+}
+
+.second {
+    margin: auto;
+}
 
 .new {
     display: flex;

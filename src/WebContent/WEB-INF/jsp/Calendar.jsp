@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="model.CalendarCounter" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,16 +27,22 @@
             </nav>
 </header>
 </div>
-<h2>長期目標</h2><!-- 設定された長期目標を表示する。データベースLGOALから取得 -->
-達成度％<!-- 達成度を表示する -->
-<p>
-<div class="common">
-<!-- xx年xx月を表示 -->
-<h3 id="main"></h3>
-<!-- ボタンで月移動 -->
-<div id="next-prev-button">
+<h2>長期目標 : ${lg.longGoal}</h2><!-- 設定された長期目標を表示する。データベースLGOALから取得 -->
+<h3>達成度 : ％<!-- 達成度を表示する --></h3>
+
+<table>
+<tr>
+<td colspan="3">
 <button id="prev" onclick="location.href = '/example/LastMonthServlet'">先月</button>
+<%
+	Integer month = (Integer)request.getAttribute("displayMonth");
+	Integer year = (Integer)request.getAttribute("displayYear");
+	out.print("<p>" + year + "年" + month + "月</p>");
+%>
 <button id="next" onclick="location.href= '/example/NextMonthServlet'">翌月</button>
+</td>
+</tr>
+</table>
 </div>
 <div id="calendar">
 <br>カレンダー表示</div>
@@ -47,17 +53,13 @@
             </thead>
             <tbody> <%-- カレンダーの日付を表示する部分 --%>
             <%
-            // カレンダーをセット
-            //MonthCounterを呼び出す
-			CalendarCounter cc = new CalendarCounter();
-			int mc = cc.getMonthCounter();
-			out.print(mc);
+            //MonthCounterの情報をスコープから取り出す
+			Integer mc = (Integer)session.getAttribute("monthCounter");
+			//カレンダーのインスタンスを2個生成
 			Calendar calendar1 = Calendar.getInstance();
 			Calendar calendar2 = Calendar.getInstance();
+			//calendar1を表示したいカレンダーの月にセット
             calendar1.add(Calendar.MONTH, mc);
-            //表示したい月の情報
-            //int month = calendar1.get(Calendar.MONTH);
-            //int displayMonth=month + 1;
             //月の最終日を取得
             int daysInMonth = calendar1.getActualMaximum(Calendar.DAY_OF_MONTH);//30
             //〇月１日にセットしなおす
@@ -66,10 +68,10 @@
             int firstDayOfWeek = calendar1.get(Calendar.DAY_OF_WEEK);//5
             // カレンダーの表示月の前月の日数を計算
             int daysInPreviousMonth = firstDayOfWeek - 1;//4
-
-            //先月の最終日を取得したい
+			//表示したい月の先月のカレンダーをcalendar2にセット
             int lastMonth = mc - 1;
             calendar2.add(Calendar.MONTH, lastMonth);
+            //先月の最終日を取得
             int daysInMonth_l = calendar2.getActualMaximum(Calendar.DAY_OF_MONTH);//31
 
             // カレンダーの表示月の日付を生成して表示

@@ -8,8 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import model.CalendarCounter;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class NextMonthServlet
@@ -22,16 +21,15 @@ public class NextMonthServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//MonthCounterを呼び出す(初期値は0)
-		CalendarCounter cc = new CalendarCounter();
-		int mc = cc.getMonthCounter();
+
+		// セッションを取得
+        HttpSession session = request.getSession(true);
+        // monthCounterの値をセッションから取得
+        Integer mc = (Integer) session.getAttribute("monthCounter");
 		//翌月なので+1
 		mc = mc + 1;
-		//CalendarCounterに値を返す
-		cc.setMonthCounter(mc);
-
 		// リクエストスコープに保存
-	    request.setAttribute("monthCounter", mc);
+	    session.setAttribute("monthCounter", mc);
 
 		// カレンダーサーブレットへフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Calendar.jsp");
