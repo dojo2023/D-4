@@ -6,11 +6,15 @@ public class Todo implements Serializable{
  private int sgid;
  private String todo;
  private int achieve;
+
  public Todo(int todoid,int sgid,String todo,int achieve) {
 	 this.todoid=todoid;
 	 this.sgid=sgid;
 	 this.todoid=todoid;
 	 this.achieve=achieve;
+ }
+ public Todo(int sgid) {
+	 this.sgid=sgid;
  }
 public int getTodoid() {
 	return todoid;

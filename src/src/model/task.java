@@ -1,12 +1,12 @@
 package model;
 import java.io.Serializable;
 
-public class task implements Serializable{
+public class Task implements Serializable{
 	private int number;
 	private String hour_s;
 	private String hour_e;
 	private String task;
-	public task(int number,String hour_s,String hour_e,String task) {
+	public Task(int number,String hour_s,String hour_e,String task) {
 		this.number=number;
 		this.hour_s=hour_s;
 		this.hour_e=hour_e;

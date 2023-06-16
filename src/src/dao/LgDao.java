@@ -5,12 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LgDao {
+import model.Lg;
+
+public class LgDAO {
 //取得
-	public String lg(int number,String month ){
+	public List<Lg> lg(int number,String month ){
 		Connection conn = null;
-		String lg="";
+		List<Lg> lgList = new ArrayList<Lg>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -20,7 +24,7 @@ public class LgDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 
 			// SQL文を準備する
-			String sql="select LG from LGOAL where NUMBER=? and MONTH?";
+			String sql="select * from LGOAL where NUMBER=? and MONTH?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -29,19 +33,24 @@ public class LgDao {
 
 			// SQL文を実行し、結果表を取得する
 						ResultSet rs = pStmt.executeQuery();
-
 						// 結果表をコレクションにコピーする
 						while (rs.next()) {
-							lg = rs.getString("LG");
+							Lg card = new Lg(
+							rs.getInt("LGID"),
+							rs.getInt("NUMBER"),
+							rs.getString("MONTH"),
+							rs.getString("LG")
+							);
+							lgList.add(card);
 						}
 					}
 					catch (SQLException e) {
 						e.printStackTrace();
-						lg = "";
+						lgList = null;
 					}
 					catch (ClassNotFoundException e) {
 						e.printStackTrace();
-						lg = "";
+						lgList = null;
 					}
 					finally {
 						// データベースを切断
@@ -51,11 +60,11 @@ public class LgDao {
 							}
 							catch (SQLException e) {
 								e.printStackTrace();
-								lg = "";
+								lgList = null;
 							}
 						}
 					}
-		return lg;
+		return lgList;
 	}
 
 //追加・変更
@@ -94,11 +103,11 @@ public class LgDao {
 
 
 				// SQL文を完成させる
-					pStmt.setString(1, goal.getLg());
-					pStmt.setInt(2, lgid);
+					pStmt2.setString(1, goal.getLg());
+					pStmt2.setInt(2, lgid);
 
 				// SQL文を実行する
-				if (pStmt.executeUpdate() == 1) {
+				if (pStmt2.executeUpdate() == 1) {
 					result = true;
 				}
 			}else {//長期目標がない場合追加
@@ -108,17 +117,17 @@ public class LgDao {
 
 
 				// SQL文を完成させる
-					pStmt.setInt(1, goal.getNumber());
-					pStmt.setString(2, goal.getMonth()+"-01");
+					pStmt2.setInt(1, goal.getNumber());
+					pStmt2.setString(2, goal.getMonth()+"-01");
 				if (goal.getLg() != null && !goal.getLg().equals("")) {
-					pStmt.setString(3, goal.getLg());
+					pStmt2.setString(3, goal.getLg());
 				}
 				else {
-					pStmt.setString(3, "");
+					pStmt2.setString(3, "");
 				}
 
 				// SQL文を実行する
-				if (pStmt.executeUpdate() == 1) {
+				if (pStmt2.executeUpdate() == 1) {
 					result = true;
 				}
 			}

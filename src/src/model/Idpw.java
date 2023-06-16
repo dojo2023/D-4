@@ -7,8 +7,9 @@ public class Idpw implements Serializable {
 	private String name;
 	private String pw;
 
-	public Idpw(int number, String pw) {
+	public Idpw(int number,String name, String pw) {
 		this.number = number;
+		this.name=name;
 		this.pw = pw;
 	}
 

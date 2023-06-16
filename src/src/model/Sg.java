@@ -8,7 +8,7 @@ public class Sg implements Serializable {
 	private String day_e;
 	private String sg;
 
-	private String date;;
+	private String Month;
 	private int number;
 
 	public Sg(int sgid,int lgid,String day_s,String day_e,String sg) {
@@ -62,13 +62,13 @@ public class Sg implements Serializable {
 		this.sg = sg;
 	}
 
-	public String getDate() {
-		return date;
+	public String getMonth() {
+		return Month;
 	}
 
-	public void setDate(int YYYY,int MM) {
+	public void setMonth(int YYYY,int MM) {
 		String date=(YYYY+"-"+MM);
-		this.date = date;
+		this.Month = date;
 	}
 
 	public int getNumber() {
