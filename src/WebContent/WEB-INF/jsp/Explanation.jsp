@@ -6,22 +6,21 @@
 <meta charset="UTF-8">
 <title>使い方説明</title>
 
+<link rel="stylesheet" href="common.css">
 <link rel="stylesheet" href="explanation.css">
 </head>
 <body>
-    <h1 class="logo"><img src="" alt="【ロゴ】">アプリ名</h1>
-    <!-- ロゴ画像とアプリ名 -->
-
-   <div class = wrapper>
-        <!-- ヘッダー -->
+    <main>
+    <div class = wrapper>
         <header class = header>
+    <h1 class="logo"><img src="" alt="【ロゴ】">アプリ名アプリ名アプリ名</h1>
 
         <nav class="nav">
                         <ul>
                             <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
                             <li><a href="/amateur/CalendarServlet">カレンダー</a></li>
                                 <li class="dropdown">
-                                <a href="#">追加</a><!-- #で遷移なしの表示する？ -->
+                                <a href="#">追加▽</a><!-- #で遷移なしの表示する？ -->
                                     <div class="dropdown-content">
                                         <a href="/amateur/GoalRegistServlet">目標追加画面</a>
                                         <a href="/amateur/TaskRegistServlet">タスク追加画面</a>
@@ -36,8 +35,8 @@
                     </nav>
         </header>
     </div>
-    <hr>
-     <main>
+
+
         <div class="container">
             <h2>アプリの使い方</h2>
 
@@ -57,7 +56,10 @@
             <text-area>タイトル３長さによってボタンの位置がずれるのは何？</text-area>
             <p id="description3" style="display: none;">説明３</p><br>
           </div>
-        </main>
+
+          <footer>
+            <p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
+
 
         <script src="explanation.js"></script>
     <!--<script>
@@ -114,5 +116,7 @@
 
 
   </script>-->
+</footer>
+  </main>
 </body>
 </html>

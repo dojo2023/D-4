@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class YourServlet extends HttpServlet {
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	      throws ServletException, IOException {
+
 //文字化けを防ぐために必ず入れるメソッド
 		  request.setCharacterEncoding("UTF-8");
 

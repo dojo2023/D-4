@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,8 +30,28 @@ public class LastMonthServlet extends HttpServlet {
         Integer mc = (Integer) session.getAttribute("monthCounter");
 		//先月なので-1
 		mc = mc - 1;
-		// リクエストスコープに保存
+
+		//表示したい月の年月を取得
+		Calendar calendar = Calendar.getInstance();
+	  	calendar.add(Calendar.MONTH, mc);
+	  	int month = calendar.get(Calendar.MONTH) + 1;
+	  	int year = calendar.get(Calendar.YEAR);
+
+	  	//リクエストスコープに保存
+	  	request.setAttribute("displayMonth", month);
+	  	request.setAttribute("displayYear", year);
+
+		// セッションスコープに保存
 	    session.setAttribute("monthCounter", mc);
+
+	    //ログインしている人の管理番号を取得
+	  	//Integer number = (Integer) session.getAttribute("管理番号の入った情報の名前");
+	  	//DAOを呼び出す
+	  	//LgDao ldao = new LgDao();
+	  	//長期目標を取得
+	  	//String longGoal = ldao.lg(number, displayDate)//長期目標関係のデータを保持しているbeanのインスタンスを生成);
+	  	//リクエストスコープに長期目標を保存
+	  	//request.setAttribute("lg", longGoal);
 
 		// カレンダーへフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Calendar.jsp");
