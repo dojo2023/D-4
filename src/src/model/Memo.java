@@ -13,6 +13,10 @@ public class Memo implements Serializable {
 	        this.day = day;
 	        this.memo = memo;
 	    }
+		public Memo(int number, String day) {
+	        this.number = number;
+	        this.day = day;
+	    }
 
 		public int getNumber() {
 			return number;
