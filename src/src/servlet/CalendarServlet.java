@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.LgDao;
+
 /**
  * Servlet implementation class CalendarServlet
  */
@@ -44,11 +46,11 @@ public class CalendarServlet extends HttpServlet {
 		//ログインしている人の管理番号を取得
 		//Integer number = (Integer) session.getAttribute("管理番号の入った情報の名前");
 		//DAOを呼び出す
-		//LgDao ldao = new LgDao();
+		LgDao ldao = new LgDao();
 		//長期目標を取得
-		//String longGoal = ldao.lg(number, displayDate)//長期目標関係のデータを保持しているbeanのインスタンスを生成);
+		String lg = ldao.lg(1000, displayDate);//長期目標関係のデータを保持しているbeanのインスタンスを生成);
 		//リクエストスコープに長期目標を保存
-		//request.setAttribute("lg", longGoal);
+		request.setAttribute("long",lg);
 
 		// カレンダーへフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Calendar.jsp");

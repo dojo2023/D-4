@@ -345,7 +345,7 @@
 
     function sendDataToServlet() {
     	  const xhr = new XMLHttpRequest();
-    	  xhr.open("POST", "YourServlet", true);
+    	  xhr.open("POST", "GoalRegistServlet.java", true);
     	  xhr.setRequestHeader("Content-Type", "application/json");
 
     	  // レスポンス受信時の処理
@@ -362,10 +362,10 @@
 
     	  // 送信するデータを作成
     	  const data = {
-    	    sgs: sgs,
-    	    lgs: lgs,
     	    year: currentYear,
-    	    month: currentMonth
+    	    month: currentMonth,
+    	    lgs: lgs,
+    	    sgs: sgs
     	  };
 
     	  // JSON形式でデータを送信

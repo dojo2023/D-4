@@ -65,7 +65,54 @@ public class LgDAO {
 						}
 					}
 		return lgList;
+
 	}
+
+
+	public int getLgId(int number, String month) {
+	    Connection conn = null;
+	    int lgid = 0;
+
+	    try {
+	        // JDBCドライバを読み込む
+	        Class.forName("org.h2.Driver");
+
+	        // データベースに接続する
+	        conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
+
+	        // SQL文を準備する
+	        String sql = "SELECT LGID FROM LGOAL WHERE NUMBER=? AND MONTH LIKE ?";
+	        PreparedStatement pStmt = conn.prepareStatement(sql);
+
+	        // SQL文を完成させる
+	        pStmt.setInt(1, number);
+	        pStmt.setString(2, month);
+
+	        // SQL文を実行し、結果表を取得する
+	        ResultSet rs = pStmt.executeQuery();
+
+	        // 結果表からlgidを取得
+	        if (rs.next()) {
+	            lgid = rs.getInt("LGID");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // データベースを切断
+	        if (conn != null) {
+	            try {
+	                conn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+
+	    return lgid;
+	}
+
 
 //追加・変更
 	public boolean updateLg(Lg goal) {

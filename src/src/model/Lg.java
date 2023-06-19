@@ -1,14 +1,19 @@
 package model;
 import java.io.Serializable;
-
 public class Lg implements Serializable {
 	private int lgid;
 	private int number;
 	private String month;
 	private String lg;
-
+	//データ新規追加用
+	public Lg(int number,String YYYY,String MM,String lg) {
+		this.number = number;
+		this.month = (YYYY+"-"+MM);
+		this.lg = lg;
+	}
+	//データ取得・消去・変更用
 	public Lg(int lgid,int number,String month,String lg) {
-		this.lgid = lgid;
+		this.lgid=lgid;
 		this.number = number;
 		this.month = month;
 		this.lg = lg;
@@ -38,6 +43,4 @@ public class Lg implements Serializable {
 	public void setLg(String lg) {
 		this.lg = lg;
 	}
-
-
 }
