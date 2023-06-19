@@ -7,11 +7,19 @@ public class Days implements Serializable {
     private int login;
     private int number;
     private String loginday;
+    private int days;
 
-    public Days(int login, int number, String loginday) {
+
+	public Days(int login, int number, String loginday) {
         this.login = login;
         this.number = number;
         this.loginday = loginday;
+    }
+
+
+    public Days(int number, int days) {
+        this.number = number;
+        this.days = days;
     }
 
     public int getLogin() {
@@ -38,5 +46,11 @@ public class Days implements Serializable {
         String date = (YYYY + "-" + MM + "-" + DD);
         this.loginday = date;
     }
+    public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
 
 }

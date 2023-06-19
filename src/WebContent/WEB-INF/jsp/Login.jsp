@@ -33,7 +33,7 @@
         <tr>
             <td>
             <label>ID<br>
-            <input type="text" name="NUMBER">
+            <input type="tel" name="NUMBER">
             </label>
             </td>
         </tr>

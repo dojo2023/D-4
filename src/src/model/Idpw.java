@@ -12,7 +12,14 @@ public class Idpw implements Serializable {
 		this.name=name;
 		this.pw = pw;
 	}
-
+	public Idpw(int number, String pw) {
+		this.number=number;
+		this.pw = pw;
+	}
+	public Idpw(String name, String pw) {
+		this.name=name;
+		this.pw = pw;
+	}
 	public int getNumber() {
 		return number;
 	}

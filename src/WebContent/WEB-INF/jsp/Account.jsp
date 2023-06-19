@@ -32,8 +32,8 @@
     <table>
         <tr>
             <td>
-            <label>ID<br>
-            <input type="text" name="NUMBER">
+            <label>ユーザー名<br>
+            <input type="text" name="NAME">
             </label>
             </td>
         </tr>
