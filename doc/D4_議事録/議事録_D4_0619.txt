@@ -1,0 +1,27 @@
+6月19日　D4
+
+実行内容
+・Servletの作成→完了
+
+特記事項
+Servletの完成者
+篠崎：GoalRegistServlet→100％
+鈴木：SceduleServlet→100%
+　　:login.js→100％
+　　：account.js→100％
+　　：login.css→100％
+        :account.css→　100％
+勝又：accountServlet→100%
+         :ExplanationServlet→100％
+永田；loginServlet→100％
+斎藤：CalendarServlet→80％
+　　  :AchiveServlet→50％
+　　 :lastmonthServlet→80％
+     :nextmonthServlet→80％
+
+
+
+次回予定
+・サーブレット、DAOの確認・修正
+・細かいjspの修正
+・現時点での問題点の洗い出し
