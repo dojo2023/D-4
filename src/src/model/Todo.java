@@ -14,7 +14,7 @@ public class Todo implements Serializable{
  public Todo(int todoid,int sgid,String todo,int achieve) {
 	 this.todoid=todoid;
 	 this.sgid=sgid;
-	 this.todoid=todoid;
+	 this.todo=todo;
 	 this.achieve=achieve;
  }
  	//データ新規追加用
