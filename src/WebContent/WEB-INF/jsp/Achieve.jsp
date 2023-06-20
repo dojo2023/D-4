@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>達成度入力・表示</title>
+<link rel="stylesheet" href="/simpleBC/css/common.css">
+<link rel="stylesheet" href="/simpleBC/css/achieve.css">
 </head>
 <body>
 <div class = wrapper>
@@ -24,20 +26,36 @@
             </nav>
 </header>
 <!-- ヘッダーここまで -->
+
 <!-- メインここから -->
 <!-- 月を表示するためのボタン設定 -->
+<div class = "monthMove">
+<div class = "monthcontent">
+<a href = '/example/LastMonthServlet' class = "prev"></a>
+</div>
+<div class = monthcontent><h3><c:out value= "${displayYear}"/>年<c:out value= "${displayMonth}"/>月</h3></div>
+<div class = "monthcontent">
+<a href = '/example/NextMonthServlet' class = "next"></a>
+</div>
+</div>
+
+<!-- 達成度を表示するためにはEL式じゃなくてjavaを直接埋め込む -->
 <form method="POST" action="/amateur/AchieveServlet" id = "formAchieve" >
 <p id = "lg_a">長期目標：<c:out value= "${lg}"/>
 <!-- 長期目標達成ゲージを追加するためのdiv -->
 <div id = "lg_gage"></div></p>
 
-<p id = "sg_a">短期目標：<c:out value= "${sgList.sg}"/>
+<%int i = 0;%>
+<c:forEach  var = "s"  items="${sgList}" >
+<p id = "sg_a">短期目標：<c:out value= "${s.sg}"/>
 <!-- 短期目標達成ゲージを追加するためのdiv -->
 <div id = "sg_gage"></div></p>
-
+<c:forEach  var = "t"  items="${todoList}" >
 <!-- for文を使ってformのnameの部分変えないとやばそう -->
-<p id = "todo_a">Todo：<c:out value= "${todoList.todo}"/><input type="text" name="ACHIEVE" value = "％"></p>
-
+<p id = "todo_a">Todo：<c:out value= "${t.todo}"/><input type="text" name="ACHIEVE<%out.print(i);%>" value = "${t.achieve}"></p>
+<%i++;%>
+</c:forEach>
+</c:forEach>
 <input type="submit" name="REGIST_A" value="確定">
 </form>
 <!-- メインここまで -->

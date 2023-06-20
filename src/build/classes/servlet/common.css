@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+/* jspのファイルで
+  <div class = wrapper>
+  <header class = header> を<h1>の上に配置してください*/
+body {
+  margin: 0 0 0 0;
+}
+main {
+  margin: 0 auto 0 auto;
+  max-width: 960px;
+}
+/* 全体を中央に寄せる（カレンダーに合わせ）背景色決めると境目が出る */
+
+h1 {
+    font-size: 1.3em;
+    color: rgb(1, 20, 8);
+}
+
+.wrapper {
+    background-color: #ffffff;
+}
+/* h1とnavの部分 */
+
+nav ul{
+    display: table;
+    margin: 0 auto;
+    padding: 20px 40px ;
+    width: 100%;
+    text-align: center;
+    }
+
+    nav li{
+    display: table-cell;
+    min-width: 50px;
+    }
+
+    nav a{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #555;
+    padding-bottom: 5px;
+    }
+
+    nav li:hover{
+    color: #1192c1;
+    border-bottom: 2px solid #1192c1;
+    height: 0;/* リンクの上に青色の棒がついたよ */
+    }
+
+
+    nav ul {
+        list-style-type: none;
+        padding: 0px;
+      }
+
+      nav li {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      nav li a {
+        text-decoration: none;
+        color: #333;
+        padding: 5px;
+        color: #2fe7b3;
+        font-size: 1.2em;
+      }
+
+      /* ↓追加下のボタンデザイン */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #75e3af;
+        min-width: 160px;
+        box-shadow: 0 8px 13px #197c4e;
+      }
+
+      .dropdown-content a {
+        background: linear-gradient(to bottom, #50dbaa, #3a9a8d);
+        color: #fff;
+        padding: 4px 6px;
+        display: block;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+

@@ -23,8 +23,8 @@ import model.Todo;
 /**
  * Servlet implementation class ScheduleServlet
  */
-@WebServlet("/ScheduleServlet")
-public class ScheduleServlet extends HttpServlet {
+@WebServlet("/ScheduleNextDayServlet")
+public class ScheduleNextDayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -39,8 +39,6 @@ public class ScheduleServlet extends HttpServlet {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
 		}
-		//ちょっと待って！！カレンダーから遷移した場合の処理も書きます！！
-
 		//一日ごと変更させるために年月日の情報を取得する
         // monthCounterの値をセッションから取得
         Integer dc = (Integer) session.getAttribute("dayCounter");
@@ -50,11 +48,14 @@ public class ScheduleServlet extends HttpServlet {
 		}else {
 			dc = 0;
 		}
+		//翌日なので+1
+		dc = dc + 1;
 		//セッションスコープに保存
 		session.setAttribute("monthCounter", dc);
 
 		//表示したい月の年月日を取得
 		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DATE, dc);
 		int day = calendar.get(Calendar.DATE);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);

@@ -8,47 +8,58 @@
 <meta charset="UTF-8">
 <title>カレンダー</title>
 <!-- スタイルシートの挿入リンク -->
-<link href="calendar.css" rel="stylesheet">
+<link rel="stylesheet" href="/example/css/common.css">
+<link rel="stylesheet" href="/example/css/calendar.css">
 </head>
 <body>
-<div class = wrapper>
-<!-- ヘッダー -->
-<header class = header>
+<main>
+<!-- <div class = "wrapper"> -->
 <img src = "" alt="ロゴ画像">
 <h1>アプリ名</h1>
+
+<!-- ヘッダー -->
+<header class = "header">
 <nav class="nav">
                 <ul>
                     <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
                     <li><a href="/amateur/CalendarServlet">カレンダー</a></li>
-                    <li id = add><a href="/amateur/GoalRegistServlet">追加</a></li>
+                    <li class="dropdown">
+                    <a href="#">追加</a><!-- #で遷移なしの表示する？ -->
+                                    <div class="dropdown-content">
+                                     <a href="/amateur/GoalRegistServlet">目標追加画面</a>
+                                        <a href="/amateur/TaskRegistServlet">タスク追加画面</a>
+                                    </div>
+                                </li>
                     <li><a href="/amateur/AchieveServlet">達成度</a></li>
                     <li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
                 </ul>
             </nav>
 </header>
-</div>
-<h2>長期目標 : ${lg.longGoal}</h2><!-- 設定された長期目標を表示する。データベースLGOALから取得 -->
+
+
+<h2>長期目標 : <%  String goal = (String)request.getAttribute("long");%>
+					<% out.print(goal);%></h2>
+					<!-- 設定された長期目標を表示する。データベースLGOALから取得 -->
 <h3>達成度 : ％<!-- 達成度を表示する --></h3>
 
-<table>
-<tr>
-<td colspan="3">
-<button id="prev" onclick="location.href = '/example/LastMonthServlet'">先月</button>
+<div class = "monthMove">
+<div class = "monthcontent">
+<a href = '/example/LastMonthServlet' class = "prev"></a>
+</div>
 <%
 	Integer month = (Integer)request.getAttribute("displayMonth");
 	Integer year = (Integer)request.getAttribute("displayYear");
-	out.print("<p>" + year + "年" + month + "月</p>");
+	out.print("<div class = monthcontent><h3>" + year + "年" + month + "月</h3></div>");
 %>
-<button id="next" onclick="location.href= '/example/NextMonthServlet'">翌月</button>
-</td>
-</tr>
-</table>
+<div class = "monthcontent">
+<a href = '/example/NextMonthServlet' class = "next"></a>
 </div>
-<div id="calendar">
-<br>カレンダー表示</div>
-<table>
+</div>
+
+<table  class="calendar">
             <thead>
-                <tr> <th>日</th> <th>月</th> <th>火</th> <th>水</th> <th>木</th> <th>金</th> <th>土</th>
+                <tr> <th class = Sunday>日</th> <th>月</th> <th>火</th> <th>水</th>
+                		<th>木</th> <th>金</th> <th class = Saturday>土</th>
                 </tr>
             </thead>
             <tbody> <%-- カレンダーの日付を表示する部分 --%>
@@ -81,24 +92,24 @@
 			      if(i==daysInPreviousMonth){
 			            out.print("<tr>");
 			      }else{
-			            out.print("<td>" +(daysInMonth_l-i) + "</td>");
+			            out.print("<td class = extraDays>" +(daysInMonth_l-i) + "</td>");
 			      }
 			   }
 		 }
 
 	    for(int j=1;j<=daysInMonth;j++){
 	        if((j+daysInPreviousMonth)%7==0){
-	            out.print("<td>" +j + "</td>");
+	            out.print("<td class = Saturday>" +j + "</td>");
 	            out.print("</tr>");
 	        }else if((j+daysInPreviousMonth)%7==1){
 	            out.print("<tr>");
-	            out.print("<td>" +j + "</td>");
-	        }else{
-	            out.print("<td>" +j + "</td>");
+	            out.print("<td class = Sunday>" +j + "</td>");
+	    	}else{
+	            out.print("<td class = days>" +j + "</td>");
 	        }
 	        if(j==daysInMonth && (j+daysInPreviousMonth)%7!=0){
 	            for(int k=7-((j+daysInPreviousMonth)%7);k>0;k--){
-	                out.print("<td>" +a+ "</td>");
+	                out.print("<td class = extraDays>" +a+ "</td>");
 	                a++;
 	            }
 	            out.print("</tr>");
@@ -107,6 +118,10 @@
           %>
             </tbody>
         </table>
-</div>
+<footer>
+<p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
+</footer>
+<!-- </div> -->
+</main>
 </body>
 </html>

@@ -16,15 +16,14 @@ import dao.LgDAO;
 import dao.MemotbDAO;
 import dao.SgDAO;
 import dao.TodotbDAO;
-import model.Memo;
 import model.Sg;
 import model.Todo;
 
 /**
  * Servlet implementation class ScheduleServlet
  */
-@WebServlet("/ScheduleServlet")
-public class ScheduleServlet extends HttpServlet {
+@WebServlet("/ScheduleLastDayServlet")
+public class ScheduleLastDayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -35,12 +34,10 @@ public class ScheduleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// ログインしていなかった場合、ログインページへフォワード
-		if (session.getAttribute("number") == null) {
-			response.sendRedirect("/amateur/LoginServlet");
-			return;
-		}
-		//ちょっと待って！！カレンダーから遷移した場合の処理も書きます！！
-
+		//if (session.getAttribute("number") == null) {
+			//response.sendRedirect("/amateur/LoginServlet");
+			//return;
+		//}
 		//一日ごと変更させるために年月日の情報を取得する
         // monthCounterの値をセッションから取得
         Integer dc = (Integer) session.getAttribute("dayCounter");
@@ -50,11 +47,14 @@ public class ScheduleServlet extends HttpServlet {
 		}else {
 			dc = 0;
 		}
+		//先日なので-1
+		dc = dc - 1;
 		//セッションスコープに保存
 		session.setAttribute("monthCounter", dc);
 
 		//表示したい月の年月日を取得
 		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DATE, dc);
 		int day = calendar.get(Calendar.DATE);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
@@ -105,7 +105,7 @@ public class ScheduleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("number") == null) {
+		/*if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
 		}
@@ -124,11 +124,9 @@ public class ScheduleServlet extends HttpServlet {
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Scedule.jsp");
 			dispatcher.forward(request, response);
-		}
+		}*/
 
 
 
+	  }
 	}
-	}
-
-
