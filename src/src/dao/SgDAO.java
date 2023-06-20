@@ -31,6 +31,7 @@ public class SgDAO {
 
 					// SQL文を実行し、結果表を取得する
 								ResultSet rs = pStmt.executeQuery();
+								rs.next();
 								int lgid=rs.getInt("LGID");
 
 					// SQL文を準備する
@@ -189,4 +190,5 @@ public class SgDAO {
 				// 結果を返す
 				return result;
 			}
+
 }

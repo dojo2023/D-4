@@ -4,8 +4,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.Idpw;
 public class IdpwDAO {
@@ -56,10 +54,10 @@ public class IdpwDAO {
 	}
 
 	//新規追加
-	public List<Idpw> account(Idpw info){
+	public int account(String name,String pw){
 		Connection conn = null;
 		boolean result=false;
-		List<Idpw> infoList=new ArrayList<Idpw>();
+		int number=0;
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
@@ -69,41 +67,36 @@ public class IdpwDAO {
 			String sql="insert into IDPW (NAME,PW) values(?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
-				pStmt.setString(1, info.getName());
-				pStmt.setString(2, info.getPw());
+				pStmt.setString(1,name);
+				pStmt.setString(2, pw);
 
 				if (pStmt.executeUpdate() == 1) {
 					result = true;
 				}
 			if(result) {
 				// SQL文を準備する
-			String sql2="select * from IDPW where NAME=? AND PW=?";
+			String sql2="select NUMBER from IDPW where NAME=? AND PW=?";
 			PreparedStatement pStmt2 = conn.prepareStatement(sql2);
 			// SQL文を完成させる
-				pStmt2.setString(1, info.getName());
-				pStmt2.setString(2, info.getPw());
+				pStmt2.setString(1, name);
+				pStmt2.setString(2, pw);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt2.executeQuery();
 					// 結果表をコレクションにコピーする
-					while (rs.next()) {
-						Idpw card = new Idpw(
-						rs.getInt("NUMBER"),
-						rs.getString("NAME"),
-						rs.getString("PW")
-						);
-						infoList.add(card);
-					}
+					rs.next();
+						number=rs.getInt("NUMBER");
+
 				}
 
 			}
 				catch (SQLException e) {
 					e.printStackTrace();
-					infoList = null;
+					number=0;
 				}
 				catch (ClassNotFoundException e) {
 					e.printStackTrace();
-					infoList = null;
+					number=0;
 				}
 				finally {
 					// データベースを切断
@@ -113,58 +106,60 @@ public class IdpwDAO {
 						}
 						catch (SQLException e) {
 							e.printStackTrace();
-							infoList = null;
+							number=0;
 						}
 					}
 				}
-	return infoList;
+	return number;
 	}
 	//名前取得
-		public String name(Idpw idpw ){
-			Connection conn = null;
-			String name="";
+	public String name(Idpw idpw ){
+		Connection conn = null;
+		String name="";
 
-			try {
-				// JDBCドライバを読み込む
-				Class.forName("org.h2.Driver");
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
 
-				// データベースに接続する
-				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 
-				// SQL文を準備する
-				String sql="select NAME from IDPW where NUMBER=? and PW=?";
-				PreparedStatement pStmt = conn.prepareStatement(sql);
+			// SQL文を準備する
+			String sql="select NAME from IDPW where NUMBER=? and PW=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-				// SQL文を完成させる
-					pStmt.setInt(1, idpw.getNumber());
-					pStmt.setString(2,idpw.getPw());
+			// SQL文を完成させる
+				pStmt.setInt(1, idpw.getNumber());
+				pStmt.setString(2,idpw.getPw());
 
-				// SQL文を実行し、結果表を取得する
-							ResultSet rs = pStmt.executeQuery();
-							// 結果表をコレクションにコピーする
-							rs.next();
-								name =rs.getString("NAME");
-						}
-						catch (SQLException e) {
-							e.printStackTrace();
-							name = null;
-						}
-						catch (ClassNotFoundException e) {
-							e.printStackTrace();
-							name = null;
-						}
-						finally {
-							// データベースを切断
-							if (conn != null) {
-								try {
-									conn.close();
-								}
-								catch (SQLException e) {
-									e.printStackTrace();
-									name = null;
-								}
+			// SQL文を実行し、結果表を取得する
+						ResultSet rs = pStmt.executeQuery();
+						// 結果表をコレクションにコピーする
+						rs.next();
+							name =rs.getString("NAME");
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						name = null;
+					}
+					catch (ClassNotFoundException e) {
+						e.printStackTrace();
+						name = null;
+					}
+					finally {
+						// データベースを切断
+						if (conn != null) {
+							try {
+								conn.close();
+							}
+							catch (SQLException e) {
+								e.printStackTrace();
+								name = null;
 							}
 						}
-			return name;
-		}
+					}
+		return name;
+	}
+
+
 }

@@ -15,7 +15,6 @@ import dao.LgDAO;
 import dao.MemotbDAO;
 import dao.SgDAO;
 import dao.TodotbDAO;
-import model.Lg;
 import model.Memo;
 import model.Sg;
 import model.Todo;
@@ -48,10 +47,10 @@ public class ScheduleServlet extends HttpServlet {
 
 		// 検索処理を行う
 		LgDAO bDao = new LgDAO();
-		List<Lg> lgList = bDao.lg(number,month);
+		String lg = bDao.lg(number,month);
 
 		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("lgList", lgList);
+		request.setAttribute("lg", lg);
 
 		//検索処理を行う
 		SgDAO CDao = new SgDAO();

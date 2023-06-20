@@ -57,7 +57,7 @@ public class MemotbDAO {
 			return memo;
 		}
 	//追加・変更
-		public boolean updateLg(Memo memo) {
+		public boolean updateMemo(Memo memo) {
 			Connection conn = null;
 			boolean result1 =false;
 			boolean result = false;
@@ -88,7 +88,7 @@ public class MemotbDAO {
 				//memoがある場合変更
 				if(result1) {
 					// SQL文を準備する
-					String sql2 = "update MEMOTB set MEMO=? where NUMBER=?, DAY=?";
+					String sql2 = "update MEMOTB set MEMO=? where NUMBER=? and DAY=?";
 					PreparedStatement pStmt2 = conn.prepareStatement(sql2);
 
 

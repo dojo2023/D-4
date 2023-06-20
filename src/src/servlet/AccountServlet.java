@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.DaysDAO;
 import dao.IdpwDAO;
-import model.Idpw;
+import model.LoginUser;
 /**
  * Servlet implementation class AccountServlet
  */
@@ -39,11 +40,12 @@ public class AccountServlet extends HttpServlet {
 
 				// 新規登録を行う
 				IdpwDAO iDao = new IdpwDAO();
-				List<Idpw>account=iDao.account(new Idpw(name, pw)); // ログイン成功
-					// セッションスコープにnumberを格納する
-					HttpSession session = request.getSession();
-					session.setAttribute("account", account);
-
+				int number=iDao.account(name, pw); // 新規登録成功
+				DaysDAO dDao=new DaysDAO();
+				int days=dDao.days(number);
+				// セッションスコープにIDを格納する
+				HttpSession session = request.getSession();
+				session.setAttribute("number", new LoginUser(number,name,days));
 					// 結果ページにフォワードする
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/accountID.jsp");
 					dispatcher.forward(request, response);

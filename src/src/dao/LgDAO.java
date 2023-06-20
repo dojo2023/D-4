@@ -5,113 +5,55 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.Lg;
 
-public class LgDAO {
-//取得
-	public List<Lg> lg(int number,String month ){
-		Connection conn = null;
-		List<Lg> lgList = new ArrayList<Lg>();
+public class LgDAO{
+	//取得
+		public String lg(int number,String month ){
+			Connection conn = null;
+			String longGoal = "";
+			//List<Lg> lgList = new ArrayList<Lg>();
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
+				// SQL文を準備する
+				String sql="select LG from LGOAL where NUMBER = ? AND MONTH = ?";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				// SQL文を完成させる
+					pStmt.setInt(1, number);
+					pStmt.setString(2, month);
+				// SQL文を実行し、結果表を取得する
+							ResultSet rs = pStmt.executeQuery();
+							// 結果表をコレクションにコピーする
+							rs.next();
+							longGoal = rs.getString("LG");
 
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
-
-			// SQL文を準備する
-			String sql="select * from LGOAL where NUMBER=? and MONTH?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			// SQL文を完成させる
-				pStmt.setInt(1, number);
-				pStmt.setString(2, month);
-
-			// SQL文を実行し、結果表を取得する
-						ResultSet rs = pStmt.executeQuery();
-						// 結果表をコレクションにコピーする
-						while (rs.next()) {
-							Lg card = new Lg(
-							rs.getInt("LGID"),
-							rs.getInt("NUMBER"),
-							rs.getString("MONTH"),
-							rs.getString("LG")
-							);
-							lgList.add(card);
 						}
-					}
-					catch (SQLException e) {
-						e.printStackTrace();
-						lgList = null;
-					}
-					catch (ClassNotFoundException e) {
-						e.printStackTrace();
-						lgList = null;
-					}
-					finally {
-						// データベースを切断
-						if (conn != null) {
-							try {
-								conn.close();
-							}
-							catch (SQLException e) {
-								e.printStackTrace();
-								lgList = null;
+						catch (SQLException e) {
+							e.printStackTrace();
+							longGoal = null;
+						}
+						catch (ClassNotFoundException e) {
+							e.printStackTrace();
+							longGoal = null;
+						}
+						finally {
+							// データベースを切断
+							if (conn != null) {
+								try {
+									conn.close();
+								}
+								catch (SQLException e) {
+									e.printStackTrace();
+									longGoal = null;
+								}
 							}
 						}
-					}
-		return lgList;
-
-	}
-
-
-	public int getLgId(int number, String month) {
-	    Connection conn = null;
-	    int lgid = 0;
-
-	    try {
-	        // JDBCドライバを読み込む
-	        Class.forName("org.h2.Driver");
-
-	        // データベースに接続する
-	        conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
-
-	        // SQL文を準備する
-	        String sql = "SELECT LGID FROM LGOAL WHERE NUMBER=? AND MONTH LIKE ?";
-	        PreparedStatement pStmt = conn.prepareStatement(sql);
-
-	        // SQL文を完成させる
-	        pStmt.setInt(1, number);
-	        pStmt.setString(2, month);
-
-	        // SQL文を実行し、結果表を取得する
-	        ResultSet rs = pStmt.executeQuery();
-
-	        // 結果表からlgidを取得
-	        if (rs.next()) {
-	            lgid = rs.getInt("LGID");
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } catch (ClassNotFoundException e) {
-	        e.printStackTrace();
-	    } finally {
-	        // データベースを切断
-	        if (conn != null) {
-	            try {
-	                conn.close();
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    }
-
-	    return lgid;
-	}
+			return longGoal;
+		}
 
 
 //追加・変更
