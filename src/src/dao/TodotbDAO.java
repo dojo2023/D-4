@@ -101,7 +101,7 @@ public class TodotbDAO {
 				return todoList;
 			}
 
-			//達成度入力
+			//達成度取得
 			public AllA achieve(int number,String month) {
 				Connection conn = null;
 				List<SgA> sgList = new ArrayList<SgA>();
