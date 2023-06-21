@@ -100,7 +100,132 @@ public class TodotbDAO {
 							}
 				return todoList;
 			}
+			//todo入力
+			//追加・変更・消去
+			public boolean updateTodo(Todo todo) {
+				Connection conn = null;
+				boolean result1 =false;
+				boolean result = false;
 
+				try {
+					// JDBCドライバを読み込む
+					Class.forName("org.h2.Driver");
+
+					// データベースに接続する
+					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
+					// SQL文を準備する
+					String sql = "select COUNT(*) from TODOTB where TODOID=?";
+					PreparedStatement pStmt = conn.prepareStatement(sql);
+					// SQL文を完成させる
+						pStmt.setInt(1, todo.getSgid());
+					// SELECT文を実行し、結果表を取得する
+					ResultSet rs = pStmt.executeQuery();
+
+					// todoがあるかどうかチェックする
+					rs.next();
+					if (rs.getInt("count(*)") == 1) {
+						result1 = true;
+					}
+
+					//todoがある場合
+					if(result1) {
+						if(todo.getTodo() == null || todo.getTodo().equals("")) {//未記入なら短期目標消去
+							// SQL文を準備する
+							String sql2 = "delete from TODOTB where TODOID=?";
+							PreparedStatement pStmt2 = conn.prepareStatement(sql2);
+
+
+							// SQL文を完成させる
+								pStmt2.setInt(1, todo.getTodoid());
+
+
+							// SQL文を実行する
+							if (pStmt2.executeUpdate() == 1) {
+								result = true;
+							}
+						}else {//todo変更
+							// SQL文を準備する
+							String sql2 = "update TODOTB set TODO=? where TODOID= ?";
+							PreparedStatement pStmt2 = conn.prepareStatement(sql2);
+
+
+							// SQL文を完成させる
+								pStmt2.setString(1, todo.getTodo());
+								pStmt2.setInt(2, todo.getTodoid());
+
+
+							// SQL文を実行する
+							if (pStmt2.executeUpdate() == 1) {
+								result = true;
+							}
+						}
+					}else {//todoがない場合追加
+						//長期目標IDを取得
+							// SQL文を準備する
+							String sql2 = "select LGID from LGOAL where NUMBER = ? and MONTH = ?";
+							PreparedStatement pStmt2 = conn.prepareStatement(sql2);
+
+
+							// SQL文を完成させる
+								pStmt2.setInt(1, todo.getNumber());
+								pStmt2.setString(2, todo.getMonth());
+
+								// SQL文を実行し、結果表を取得する
+								ResultSet rs2 = pStmt2.executeQuery();
+								rs2.next();
+								int lgid=rs2.getInt("LGID");
+						//短期目標IDを取得
+							// SQL文を準備する
+							String sql4 = "select SGID from SGOAL where LGID = ? and DAY_S = ? and DAY_E = ?";
+							PreparedStatement pStmt4 = conn.prepareStatement(sql4);
+
+
+							// SQL文を完成させる
+								pStmt4.setInt(1, lgid);
+								pStmt4.setString(2, todo.getDay_s());
+								pStmt4.setString(3, todo.getDay_e());
+								// SQL文を実行し、結果表を取得する
+								ResultSet rs4 = pStmt4.executeQuery();
+								rs4.next();
+								int sgid=rs4.getInt("SGID");
+						//todo追加
+							// SQL文を準備する
+							String sql3 = "insert into TODOTB (SGID,TODO,ACHIEVE) values (?,?,?)";
+							PreparedStatement pStmt3 = conn.prepareStatement(sql3);
+
+
+							// SQL文を完成させる
+								pStmt3.setInt(1, sgid);
+								pStmt3.setString(2, todo.getTodo());
+								pStmt3.setInt(3, todo.getAchieve());
+							// SQL文を実行する
+							if (pStmt3.executeUpdate() == 1) {
+								result = true;
+							}
+					}
+
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				finally {
+					// データベースを切断
+					if (conn != null) {
+						try {
+							conn.close();
+						}
+						catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+
+				// 結果を返す
+				return result;
+			}
 			//達成度取得
 			public AllA achieve(int number,String month) {
 				Connection conn = null;
@@ -155,6 +280,8 @@ public class TodotbDAO {
 									sgidList.add(rs5.getInt("SGID"));
 								}
 				//todoAを取得
+				//短期目標がある場合
+				if(sgnum!=0) {
 					for(int i=0;i<sgnum;i++) {
 						List<TodoA> todoList = new ArrayList<TodoA>();
 					// SQL文を準備する
@@ -195,9 +322,14 @@ public class TodotbDAO {
 					ResultSet rs3 = pStmt3.executeQuery();
 					rs3.next();
 						int achieve=0;
+					if(todonum!=0) {
 						for(int k=0;k<todonum;k++) {
 							achieve=achieve+todoList.get(k).gettAchieve();
 						}
+					}else {
+						achieve=1000;
+						todonum++;
+					}
 						SgA card = new SgA(
 						sgidList.get(i),
 						lgid,
@@ -213,7 +345,10 @@ public class TodotbDAO {
 						LgA=LgA+sgList.get(l).getsAchieve();
 					}
 					LgA=(LgA/sgnum);
-
+				}else {
+					//短期目標がない場合
+					LgA=1000;
+				}
 							}
 							catch (SQLException e) {
 								e.printStackTrace();
