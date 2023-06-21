@@ -28,7 +28,7 @@ public class TasktbDAO {
 
 			// SQL文を完成させる
 				pStmt.setInt(1, number);
-				pStmt.setString(1, day +"%");
+				pStmt.setString(2, day +"%");
 
 			// SQL文を実行し、結果表を取得する
 						ResultSet rs = pStmt.executeQuery();
