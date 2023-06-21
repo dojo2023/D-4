@@ -2,14 +2,20 @@ package model;
 import java.util.List;
 
 public class AllA {
+	private String lg;
 	private int LgA;
 	private List<SgA> SgA;
-	private List<TodoA> TodoA;
 
-	public AllA(int LgA,List<SgA> SgA,List<TodoA> TodoA) {
+	public AllA(String lg,int LgA,List<SgA> SgA) {
+		this.lg=lg;
 		this.LgA=LgA;
 		this.SgA=SgA;
-		this.TodoA=TodoA;
+	}
+	public String getLg() {
+		return lg;
+	}
+	public void setLg(String lg) {
+		this.lg = lg;
 	}
 	public int getLgA() {
 		return LgA;
@@ -23,11 +29,6 @@ public class AllA {
 	public void setSgA(List<SgA> sgA) {
 		this.SgA = sgA;
 	}
-	public List<TodoA> getTodoA() {
-		return TodoA;
-	}
-	public void setTodoA(List<TodoA> todoA) {
-		this.TodoA = todoA;
-	}
+
 
 }

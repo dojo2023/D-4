@@ -3,16 +3,24 @@ import java.io.Serializable;
 public class TodoA implements Serializable{
 	private int todoId;
 	private int sgId;
+	private String todo;
 	private int tAchieve;
 	public TodoA() {
 		this.todoId = 0;
 		this.sgId = 0;
 		this.tAchieve = 0;
 	}
-	public TodoA(int todoId,int sgId,int tAchieve) {
+	public TodoA(int todoId,int sgId,String todo,int tAchieve) {
 		this.todoId = todoId;
 		this.sgId = sgId;
+		this.todo=todo;
 		this.tAchieve = tAchieve;
+	}
+	public String getTodo() {
+		return todo;
+	}
+	public void setTodo(String todo) {
+		this.todo = todo;
 	}
 	public int getTodoId() {
 		return todoId;

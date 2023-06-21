@@ -1,10 +1,13 @@
 package model;
 import java.io.Serializable;
+import java.util.List;
 
 public class SgA implements Serializable {
 	private int sgId;
 	private int lgId;
+	private String sg;
 	private int sAchieve;
+	private List<TodoA> TodoA;
 
 	//初期値設定
 	public SgA() {
@@ -13,11 +16,29 @@ public class SgA implements Serializable {
 		this.sAchieve = 0;
 	}
 
+	public List<TodoA> getTodoA() {
+		return TodoA;
+	}
+
+	public String getSg() {
+		return sg;
+	}
+
+	public void setSg(String sg) {
+		this.sg = sg;
+	}
+
+	public void setTodoA(List<TodoA> TodoA) {
+		this.TodoA = TodoA;
+	}
+
 	//SQLで配列に入れるためのメソッド
-	public SgA(int lgId, int sgId, int sAchieve) {
+	public SgA(int lgId, int sgId,String sg, int sAchieve ,List<TodoA> TodoA) {
 		this.lgId = lgId;
 		this.sgId = sgId;
+		this.sg=sg;
 		this.sAchieve = sAchieve;
+		this.TodoA = TodoA;
 	}
 
 	public int getLgId() {
