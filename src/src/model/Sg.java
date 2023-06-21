@@ -18,6 +18,7 @@ public class Sg implements Serializable {
 	}
 	//データ取得・消去・変更用
 	public Sg(int sgid,int lgid,String day_s,String day_e,String sg) {
+		this.sgid=sgid;
 		this.lgid = lgid;
 		this.day_s = day_s;
 		this.day_e = day_e;

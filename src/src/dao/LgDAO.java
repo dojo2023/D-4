@@ -107,7 +107,7 @@ public class LgDAO{
 
 				// SQL文を完成させる
 					pStmt2.setInt(1, goal.getNumber());
-					pStmt2.setString(2, goal.getMonth()+"-01");
+					pStmt2.setString(2, goal.getMonth());
 				if (goal.getLg() != null && !goal.getLg().equals("")) {
 					pStmt2.setString(3, goal.getLg());
 				}
