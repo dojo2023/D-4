@@ -1,0 +1,48 @@
+@charset "UTF-8" ;
+
+/*年月を動かす所*/
+.monthMove {
+	display: flex;
+	padding: 5px;
+	align-items: center;
+	justify-content: center;
+	margin-left: 190px;
+	margin-right:170px;
+	height: 40px;
+}
+.monthcontent {
+	margin: 10px;
+}
+/*三角を作る*/
+.prev {
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #f4a460 transparent transparent;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.next {
+	border-style: solid;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent transparent transparent #f4a460;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.prev a:hover {
+	border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #66cdaa transparent transparent;
+    display: inline-block;
+    width: 0;
+    height: 0
+}
+.next a:hover {
+	border-style: solid;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent transparent transparent #66cdaa;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}

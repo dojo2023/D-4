@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,12 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import dao.LgDao;
-import dao.SgDAO;
 import dao.TodotbDAO;
-import model.Sg;
-import model.Todo;
+import model.AllA;
 
 /**
  * Servlet implementation class AchieveServlet
@@ -34,35 +31,35 @@ public class AchieveServlet extends HttpServlet {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
 		}*/
+		// セッションを取得
+        HttpSession session = request.getSession(true);
+        // monthCounterの値をセッションから取得
+        Integer mc = (Integer) session.getAttribute("monthCounter");
+        //monthCounterを初期値に戻す
+		if( mc == null ) { //mcが存在しなかったときの処理
+			mc = 0;
+		}else {
+			mc = 0;
+		}
+		//セッションスコープに保存
+		session.setAttribute("monthCounter", mc);
 
-		//長期目標、短期目標、Todo、達成度のデータを取得する
 		//表示したい月の年月を取得
 		Calendar calendar = Calendar.getInstance();
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
 		String displayDate = year + "-" + month + "-01";
 
+		session.setAttribute("displayDate", displayDate);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
 
 		//ログインしている人の管理番号を取得
 		//Integer number = (Integer) session.getAttribute("管理番号の入った情報の名前");
-		//DAOを呼び出す
-		LgDao ldao = new LgDao();
-		//長期目標を取得
-		String lg = ldao.lg(1000, displayDate);
-		//リクエストスコープに長期目標を保存
-		request.setAttribute("lg",lg);
-
-		//短期目標を取得する
-		SgDAO sdao = new SgDAO();
-		List<Sg> sgList = sdao.sg(1000, displayDate);
-		request.setAttribute("sgList",sgList);
-
-		//Todoを取得する
+		//TodoDAOを呼び出してすべての達成度を取得する
 		TodotbDAO tdao = new TodotbDAO();
-		List<Todo> todoList = tdao.todo(1000, displayDate);
-		request.setAttribute("todoList",todoList);
+		AllA alla = tdao.achieve(1000, displayDate);
+		request.setAttribute("a",alla);
 
 		//達成度入力ページへフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
@@ -80,9 +77,23 @@ public class AchieveServlet extends HttpServlet {
 			return;
 		}*/
 
+		//達成度データをDAOに送る
+		//セッションスコープからTodothDAO呼び出しに必要な情報を取得
+		HttpSession session = request.getSession(true);
+		//Integer id = (Integer)session.getAttribute("id");
+		String displayDate = (String)session.getAttribute("displayDate");
 
-		//Todoと達成度をデータベースに送信する処理
-		//Todoの数だけサーブレットの処理を増やさなくてはいけない
+		//TodoIDをどうにかして取得する
+		TodotbDAO tdao = new TodotbDAO();
+		AllA alla = tdao.achieve(1000, displayDate);
+		//ACHIEVEの値を配列に入れる
+		String[] achieve = request.getParameterValues("ACHIEVE");
+
+		for(int i = 0; i < achieve.length; i++) {
+			Integer ac = Integer.parseInt(achieve[i]);
+		}
+
+
 
 
 		//達成度入力ページへフォワード
