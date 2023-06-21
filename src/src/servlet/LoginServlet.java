@@ -51,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 					int days=dDao.days(number);
 					// セッションスコープにIDを格納する
 					HttpSession session = request.getSession();
+					session.setAttribute("id", number);
 					session.setAttribute("number", new LoginUser(number,name,days));
 
 					// ホームサーブレットにリダイレクトする

@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.util.Calendar;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,6 +57,10 @@ public class TaskRegistServlet extends HttpServlet {
 		request.setAttribute("displayday", day);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
+
+		//タスク追加画面にフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/TaskRegist.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
