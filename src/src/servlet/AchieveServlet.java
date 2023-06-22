@@ -86,19 +86,40 @@ public class AchieveServlet extends HttpServlet {
 		//TodoIDをどうにかして取得する
 		TodotbDAO tdao = new TodotbDAO();
 		AllA alla = tdao.achieve(1000, displayDate);
-		//ACHIEVEの値を配列に入れる
-		String[] achieve = request.getParameterValues("ACHIEVE");
+		int a = alla.getSgA().size();
 
-		for(int i = 0; i < achieve.length; i++) {
-			Integer ac = Integer.parseInt(achieve[i]);
+		//Todoの達成度を更新
+		int achieve;
+		int todo;
+		int i = 0;
+		//ACHIEVEの値を配列に入れる
+		while(i < a) {
+			int b = alla.getSgA().get(i).getTodoA().size();
+			int j = 0;
+			while(j < b) {
+					achieve = Integer.parseInt(request.getParameter("ACHIEVE" + i + "-" + j));
+					todo =Integer.parseInt(request.getParameter("TODOID" + i + "-" + j));
+					if(tdao.update(todo,achieve) == false) {
+						response.setContentType("text/html");
+						response.setCharacterEncoding("UTF-8");
+						response.getWriter().println("データの受け取りに失敗しました");
+						break;
+						}
+					j++;
+				}
+			i++;
 		}
 
 
-
+		// レスポンスの設定
+		response.setContentType("text/html");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().println("データの受け取りが完了しました");
+		response.getWriter().println("<a href = /simpleBC/AchieveServlet >達成度に戻る</a>");
 
 		//達成度入力ページへフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
-		dispatcher.forward(request, response);
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
+		//dispatcher.forward(request, response);
 
 	}
 

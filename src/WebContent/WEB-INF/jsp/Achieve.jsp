@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.AllA"%>
-<%@ page import="dao.TodotbDAO"%>
 
 <!DOCTYPE html>
 <html lang = "ja">
@@ -39,11 +38,11 @@
 <!-- 月を表示するためのボタン設定 -->
 <div class = "monthMove">
 <div class = "monthcontent">
-<a href = '/example/LastMonthServlet' class = "prev"></a>
+<a href = '/amateur/AchieveLastMonthServlet' class = "prev"></a>
 </div>
 <div class = monthcontent><h3><c:out value= "${displayYear}"/>年<c:out value= "${displayMonth}"/>月</h3></div>
 <div class = "monthcontent">
-<a href = '/example/NextMonthServlet' class = "next"></a>
+<a href = '/amateur/AchieveNextMonthServlet' class = "next"></a>
 </div>
 </div>
 
@@ -52,7 +51,7 @@
 AllA a = (AllA)request.getAttribute("a");
  %>
 
-<form method="POST" action="/amateur/AchieveServlet" id = "formAchieve" >
+<form method="POST" action="/simpleBC/AchieveServlet" id = "formAchieve" >
 <p id = "lg_a">長期目標：<%=a.getLg()%>　達成度：<%=a.getLgA()%>％
 <!-- 長期目標達成ゲージを追加するためのdiv -->
 <div id = "lg_gage"></div></p>
@@ -62,7 +61,8 @@ AllA a = (AllA)request.getAttribute("a");
 	"達成度：" + (a.getSgA()).get(i).getsAchieve()+ "％<div id = sg_gage></div></p>");
 	for(int j=0;j<a.getSgA().get(i).getTodoA().size();j++) {
 		out.println("<p>todo"+(j+1)+":" + a.getSgA().get(i).getTodoA().get(j).getTodo()
-			 + "<input type=text name = ACHIEVE value = '" + a.getSgA().get(i).getTodoA().get(j).gettAchieve() + " '>％</p>");
+			 + "<input type=text name = 'ACHIEVE" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).gettAchieve() +
+			 "'>％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></p>");
 		}
 } %>
 
