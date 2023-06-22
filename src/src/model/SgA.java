@@ -6,6 +6,8 @@ public class SgA implements Serializable {
 	private int sgId;
 	private int lgId;
 	private String sg;
+	private String day_s;
+	private String day_e;
 	private int sAchieve;
 	private List<TodoA> TodoA;
 
@@ -33,12 +35,30 @@ public class SgA implements Serializable {
 	}
 
 	//SQLで配列に入れるためのメソッド
-	public SgA(int lgId, int sgId,String sg, int sAchieve ,List<TodoA> TodoA) {
+	public SgA(int lgId, int sgId,String sg,String day_s,String day_e, int sAchieve ,List<TodoA> TodoA) {
 		this.lgId = lgId;
 		this.sgId = sgId;
 		this.sg=sg;
+		this.day_s=day_s;
+		this.day_e=day_e;
 		this.sAchieve = sAchieve;
 		this.TodoA = TodoA;
+	}
+
+	public String getDay_s() {
+		return day_s;
+	}
+
+	public void setDay_s(String day_s) {
+		this.day_s = day_s;
+	}
+
+	public String getDay_e() {
+		return day_e;
+	}
+
+	public void setDay_e(String day_e) {
+		this.day_e = day_e;
 	}
 
 	public int getLgId() {

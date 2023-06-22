@@ -1,3 +1,4 @@
+//2023-06-22 15h
 package dao;
 
 import java.sql.Connection;
@@ -226,7 +227,7 @@ public class TodotbDAO {
 				// 結果を返す
 				return result;
 			}
-			//達成度取得
+		//達成度取得
 			public AllA achieve(int number,String month) {
 				Connection conn = null;
 				List<SgA> sgList = new ArrayList<SgA>();
@@ -312,7 +313,7 @@ public class TodotbDAO {
 				//短期目標達成度を入力
 					//SGIDを取得
 					// SQL文を準備する
-					String sql3="select SG from SGOAL where SGID=?";
+					String sql3="select SG,DAY_S,DAY_E from SGOAL where SGID=?";
 					PreparedStatement pStmt3 = conn.prepareStatement(sql3);
 
 					// SQL文を完成させる
@@ -334,6 +335,8 @@ public class TodotbDAO {
 						sgidList.get(i),
 						lgid,
 						rs3.getString("SG"),
+						rs3.getString("DAY_S"),
+						rs3.getString("DAY_E"),
 						(achieve/todonum),
 						todoList
 						);
