@@ -71,7 +71,7 @@ public class MemotbDAO {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 				// SQL文を準備する
-				String sql = "select COUNT(*),NUMBER,DAY from MEMOTB where NUMBER=? and DAY=?";
+				String sql = "select COUNT(*) from MEMOTB where NUMBER=? and DAY=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				// SQL文を完成させる
 					pStmt.setInt(1, memo.getNumber());
@@ -84,8 +84,6 @@ public class MemotbDAO {
 				if (rs.getInt("count(*)") == 1) {
 					result1 = true;
 				}
-				int number=rs.getInt("NUMBER");
-				String day=rs.getString("DAY");
 
 				//memoがある場合変更
 				if(result1) {
@@ -96,8 +94,8 @@ public class MemotbDAO {
 
 					// SQL文を完成させる
 						pStmt2.setString(1, memo.getMemo());
-						pStmt2.setInt(2, number);
-						pStmt2.setString(3, day);
+						pStmt2.setInt(2, memo.getNumber());
+						pStmt2.setString(3, memo.getDay());
 
 					// SQL文を実行する
 					if (pStmt2.executeUpdate() == 1) {
@@ -105,22 +103,16 @@ public class MemotbDAO {
 					}
 				}else {//memoがない場合追加
 					// SQL文を準備する
-					String sql2 = "insert into MEMO (NUMBER,DAY,MEMO) values ( ?,?,?)";
+					String sql2 = "insert into MEMOTB (NUMBER,DAY,MEMO) values (?,?,?)";
 					PreparedStatement pStmt2 = conn.prepareStatement(sql2);
 
 
 					// SQL文を完成させる
 						pStmt2.setInt(1, memo.getNumber());
 						pStmt2.setString(2, memo.getDay());
-					if (memo.getMemo() != null && !memo.getMemo().equals("")) {
 						pStmt2.setString(3, memo.getMemo());
-					}
-					else {
-						pStmt2.setString(3, "");
-					}
-
 					// SQL文を実行する
-					if (pStmt.executeUpdate() == 1) {
+					if (pStmt2.executeUpdate() == 1) {
 						result = true;
 					}
 				}
