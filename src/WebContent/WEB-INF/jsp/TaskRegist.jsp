@@ -1,169 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Calendar" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>タスク追加</title>
-
-<link rel="stylesheet" href="/タスク.css">
+	<title>タスク追加</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
-<h1>タスク追加</h1>
+	<div class=wrapper>
+		<!-- ヘッダー -->
+		<header class=header>
+			<h1>アプリ名</h1>
+			<nav class="nav">
+				<ul>
+					<li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
+					<li><a href="/amateur/CalendarServlet">カレンダー</a></li>
+					<li id=add>追加</li>
+					<li><a href="/amateur/AchieveServlet">達成度</a></li>
+					<li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
+				</ul>
+			</nav>
+		</header>
+		<!-- メイン -->
+		<main class="main">
+			<h1>タスク</h1>
+			<!-- form -->
+			<form id="dataForm" action="TaskRegistServlet" method="POST">
+				<!-- +ボタンでコピーされるコピー元 -->
+				<div id="container" style="display: none;">
+					<input type="text" class="taskBox" name="task_0">
+					<input type="datetime-local"class="timesBox" name="times_0">
+					<input type="datetime-local"class="timeeBox" name="timee_0">
+				</div>
+				<!-- ディスプレイ上の一個目 -->
+				<input type="text" id="task1" class="taskBox" name="task_1">
+				<input type="datetime-local"class="timesBox" name="times_1">
+				<input type="datetime-local"class="timeeBox" name="timee_1"><br>
+				<!-- taskを追加するためのボタン -->
+                <div id="plus">
+				<button type="button" onclick="addTaskBox()">+</button>
+				<input id="taskcount" type="hidden" value="" name="length">
+                </div>
+				<!-- 登録ボタン -->
+                <div id="register">
+				<input type="submit" value="登録">
+                </div>
+			</form>
 
-<div class = "monthMove">
-    <div class = "monthcontent">
-    <a href = '/example/LastMonthServlet' class = "prev"></a>
-    </div>
-    <%
-        Integer day = (Integer)request.getAttribute("displayDay");
-        Integer month = (Integer)request.getAttribute("displayMonth");
-        Integer year = (Integer)request.getAttribute("displayYear");
-        out.print("<div class = monthcontent><h3>" + year + "年" + month + "月" + day + "日</h3></div>");
-    %>
-    <div class = "monthcontent">
-    <a href = '/example/NextMonthServlet' class = "next"></a>
-    </div>
-    </div>
+		</main>
+	</div>
+	<script>
+		function addTaskBox() {
+			var container = document.getElementById("container").cloneNode(true);
+			container.style.display = "block";
+			console.log(container);//<div id="container" style="display: block;">
+			// 追加するtaskBoxの名前を task_ + 今の個数にする
+			let taskBoxName = "task_" + document.getElementsByClassName("taskBox").length;
+			let timesBoxName = "times_" + document.getElementsByClassName("timesBox").length;
+			let timeeBoxName = "timee_" + document.getElementsByClassName("timeeBox").length;
+			console.log(taskBoxName);//task_2
+			// 追加するtaskBoxを取得
+			let taskbox = container.getElementsByClassName("taskBox")[0];
+			taskbox.name = taskBoxName;
+			console.log(taskbox.name);//task_2
+			console.log(taskbox);//<input class="taskBox" type="text" name="task_2">
+			console.log(container.getElementsByClassName("timesBox")[0]);
+			console.log(container.getElementsByClassName("timesBox")[0].name = timesBoxName);
+			container.getElementsByClassName("timesBox")[0].name = timesBoxName;
+			container.getElementsByClassName("timeeBox")[0].name = timeeBoxName;
+			//taskの個数を送信するために格納
+			var taskboxCount = document.getElementsByName("taskBox").length;
+			var taskcountInput = document.getElementById("taskcount");
+			taskcountInput.value = taskboxCount;
 
-    <form action="" method="post">
-        <input type="text" id="taskInput" name="task" placeholder="タスク">
-        <label for="startTime">開始時間:</label>
-            <!--<input type="time" id="startTime" name="startTime">-->
-        <input type="number" id="startHour" name="startHour" min="0" max="23">時
+			// タスクボックスを追加する位置を特定
+			var task1 = document.getElementById("task1");
+			// タスクボックスを追加
+			task1.parentNode.insertBefore(container, null);//第二引数task1.nextSibling
 
-        <label for="endTime">終了時間:</label>
-            <!--<input type="time" id="endTime" name="endTime">-->
-        <input type="number" id="endHour" name="endHour" min="0" max="23" readonly>時<br>
-            <!-- 初めの時間を設定した後に一時間後に終わりが設定される処理↑ -->
-        <input type="button" onclick="addTask()">
-        <input type="submit" value="登録">
-    </form>
+			var deleteButton = document.createElement("button");
+			deleteButton.innerText = "-";
+			deleteButton.onclick = function () {
+				var taskContainer = deleteButton.parentNode;
+				taskContainer.parentNode.removeChild(taskContainer);
+			}
+			container.appendChild(deleteButton);
 
-    <script>
-        // 開始時間のフィールド
-        var startHourField = document.getElementById("startHour");
-        // 終了時間のフィールド
-        var endHourField = document.getElementById("endHour");
-
-        // 開始時間のフィールドが変更されたときに終了時間を計算する関数
-        startHourField.addEventListener("change", function() {
-            var startHour = parseInt(startHourField.value, 10);
-            var endHour = (startHour + 1) % 24; // 開始時間から1時間後の終了時間を計算（24時を超えた場合は0時に戻る）
-
-            // 終了時間のフィールドに計算結果を設定
-            endHourField.value = endHour;
-        });
-    </script>
-
-
-    <!--<form>
-        <label for="hour">時刻:</label>
-        <input type="number" id="hour" name="hour" min="0" max="23">時
-        // 時間で判別しているのか数字で判別しているのか？
-        // <input type="number" id="minute" name="minute" min="0" max="59">分　　//分を表示するやつ
-        <input type="text" id="sgInput" placeholder="タスク">
-    </form>-->
-
-   <!--　//パワープレイ
-     <form action="Schedule.html" method="post">
-        <label for="hours">0時~1時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">1時~2時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">2時~3時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">3時~4時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">4時~5時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">5時~6時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">6時~7時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">7時~8時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">8時~9時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">9時~10時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">10時~11時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">11時~12時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">12時~13時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">13時~14時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">14時~15時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">15時~16時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">16時~17時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">17時~18時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">18時~19時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">19時~20時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">20時~21時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">21時~22時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">22時~23時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        <label for="hours">23時~24時</label><br>
-        <label for="schedule">タスク追加:</label>
-        <input type="text" id="schedule" name="schedule"><br>
-
-        //<input type="submit" value="送信"><br>-->
-
-
+		}
+	</script>
 </body>
+
 </html>
