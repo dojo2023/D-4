@@ -1,5 +1,6 @@
 //2023-06-22 15h
 //2023-06-23
+//2023-06-23 11h
 package dao;
 
 import java.sql.Connection;
@@ -337,6 +338,13 @@ public class TodotbDAO {
 								sgList.add(card);
 					}else {
 						//todoがない場合
+						TodoA todo = new TodoA(
+								0,
+								0,
+								"",
+								0
+								);
+								todoList.add(todo);
 						SgA card = new SgA(
 								0,
 								0,
@@ -382,7 +390,7 @@ public class TodotbDAO {
 				}
 				}else {
 					//長期目標がない場合
-					lg=null;
+					lg="";
 					LgA=0;
 					List<TodoA> todoList = new ArrayList<TodoA>();
 					TodoA todo = new TodoA(
