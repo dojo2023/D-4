@@ -1,4 +1,5 @@
 //2023-06-22 15h
+//2023-06-23
 package dao;
 
 import java.sql.Connection;
@@ -248,10 +249,9 @@ public class TodotbDAO {
 					// SQL文を完成させる
 						pStmt.setInt(1, number);
 						pStmt.setString(2, month);
-
-					// SQL文を実行し、結果表を取得する
 						ResultSet rs = pStmt.executeQuery();
-						rs.next();
+					// SQL文を実行し、結果表を取得する
+			if (rs.next()) {
 						lg=rs.getString("LG");
 						int lgid=rs.getInt("LGID");
 
@@ -282,7 +282,7 @@ public class TodotbDAO {
 								}
 				//todoAを取得
 				//短期目標がある場合
-				if(sgnum!=0) {
+				if(sgnum>0) {
 					for(int i=0;i<sgnum;i++) {
 						List<TodoA> todoList = new ArrayList<TodoA>();
 					// SQL文を準備する
@@ -307,9 +307,6 @@ public class TodotbDAO {
 
 				//todoの個数を取得
 					int todonum=todoList.size();
-					if(todonum==0) {
-						todonum++;
-					}
 				//短期目標達成度を入力
 					//SGIDを取得
 					// SQL文を準備する
@@ -323,24 +320,37 @@ public class TodotbDAO {
 					ResultSet rs3 = pStmt3.executeQuery();
 					rs3.next();
 						int achieve=0;
-					if(todonum!=0) {
+					if(todonum>0) {
+						//todoがある場合
 						for(int k=0;k<todonum;k++) {
 							achieve=achieve+todoList.get(k).gettAchieve();
 						}
+						SgA card = new SgA(
+								sgidList.get(i),
+								lgid,
+								rs3.getString("SG"),
+								rs3.getString("DAY_S"),
+								rs3.getString("DAY_E"),
+								(achieve/todonum),
+								todoList
+								);
+								sgList.add(card);
 					}else {
+						//todoがない場合
+						SgA card = new SgA(
+								0,
+								0,
+								"",
+								"",
+								"",
+								0,
+								todoList
+								);
+								sgList.add(card);
 						achieve=1000;
 						todonum++;
 					}
-						SgA card = new SgA(
-						sgidList.get(i),
-						lgid,
-						rs3.getString("SG"),
-						rs3.getString("DAY_S"),
-						rs3.getString("DAY_E"),
-						(achieve/todonum),
-						todoList
-						);
-						sgList.add(card);
+
 					}
 
 				//長期目標達成度を入力
@@ -350,7 +360,48 @@ public class TodotbDAO {
 					LgA=(LgA/sgnum);
 				}else {
 					//短期目標がない場合
+					List<TodoA> todoList = new ArrayList<TodoA>();
+					TodoA todo = new TodoA(
+							0,
+							0,
+							"",
+							0
+							);
+							todoList.add(todo);
+					SgA card = new SgA(
+					0,
+					0,
+					"",
+					"",
+					"",
+					0,
+					todoList
+					);
+					sgList.add(card);
 					LgA=1000;
+				}
+				}else {
+					//長期目標がない場合
+					lg=null;
+					LgA=0;
+					List<TodoA> todoList = new ArrayList<TodoA>();
+					TodoA todo = new TodoA(
+							0,
+							0,
+							"",
+							0
+							);
+							todoList.add(todo);
+					SgA card = new SgA(
+					0,
+					0,
+					"",
+					"",
+					"",
+					0,
+					todoList
+					);
+					sgList.add(card);
 				}
 							}
 							catch (SQLException e) {

@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.TasktbDAO;
+import model.Task;
 
 /**
  * Servlet implementation class TaskRegistServlet
@@ -26,11 +30,11 @@ public class TaskRegistServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// ログインしていなかった場合、ログインページへフォワード
-		if (session.getAttribute("number") == null) {
+		/*if (session.getAttribute("number") == null) {
 				response.sendRedirect("/amateur/LoginServlet");
 					return;
 			}
-
+*/		int number=1000;
 		//一日ごと変更させるために年月日の情報を取得する
         // monthCounterの値をセッションから取得
         Integer dc = (Integer) session.getAttribute("dayCounter");
@@ -48,15 +52,17 @@ public class TaskRegistServlet extends HttpServlet {
 		int day = calendar.get(Calendar.DATE);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
-		//長期・短期目標、Todoを取得するための引数を作る
-		String displayDate = year + "-" + month + "-01";
 		//メモを取得するための引数を作る
 		String memoDate = year + "-" + month + "-" + day;
-
+		//taskを取得
+		TasktbDAO bDao=new TasktbDAO();
+		List<Task> task =bDao.task(number, memoDate);
 		//リクエストスコープに保存
+		request.setAttribute("task", task);
 		request.setAttribute("displayday", day);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
+
 
 		//タスク追加画面にフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/TaskRegist.jsp");
@@ -67,8 +73,24 @@ public class TaskRegistServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		/*		HttpSession session = request.getSession();
+				if (session.getAttribute("id") == null) {
+					response.sendRedirect("/bc/LoginServlet");
+					return;
+				}*/int number=1000;
+				// リクエストパラメータを取得する
+				request.setCharacterEncoding("UTF-8");
+				//タスクの数を取得
+				int num=Integer.parseInt(request.getParameter("length"));
+				TasktbDAO bDao=new TasktbDAO();
+				for(int i=0;i<num;i++) {
+					bDao.updateTask(new Task(number,request.getParameter("times_"+(i+1)),request.getParameter("timee_"+(i+1)),request.getParameter("task_"+(i+1))));
+				}
+
+				// 結果ページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("TaskRegistServlet");
+				dispatcher.forward(request, response);
 	}
 
 }
