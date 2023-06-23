@@ -20,17 +20,26 @@
 				<ul>
 					<li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
 					<li><a href="/amateur/CalendarServlet">カレンダー</a></li>
-					<li id=add>追加</li>
+						<li class="dropdown">
+						<a href="#">追加▽</a><!-- #で遷移なしの表示する？ -->
+							<div class="dropdown-content">
+								<a href="/amateur/GoalRegistServlet">目標追加画面</a>
+								<a href="/amateur/TaskRegistServlet">タスク追加画面</a>
+							</div>
+						</li>
+
 					<li><a href="/amateur/AchieveServlet">達成度</a></li>
-					<li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
+					<li class="current"><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
+					<!-- currentで選択ページの下に色線がつくから各ページ変える -->
+					<li id = "logout"><a href="/amateur/LogoutServlet">ログアウト</a></li>
 				</ul>
 			</nav>
 		</header>
 		<!-- メイン -->
 		<main class="main">
-			<h1>タスク</h1>
+			<h2>タスク追加</h2>
 			<!-- form -->
-			<form id="dataForm" action="TaskRegistServlet" method="POST">
+			<form id="dataForm" action="/amature/TaskRegistServlet" method="POST">
 				<!-- +ボタンでコピーされるコピー元 -->
 				<div id="container" style="display: none;">
 					<input type="text" class="taskBox" name="task_0">
@@ -53,6 +62,10 @@
 			</form>
 
 		</main>
+		<footer>
+		<p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
+
+	</footer>
 	</div>
 	<script>
 		function addTaskBox() {

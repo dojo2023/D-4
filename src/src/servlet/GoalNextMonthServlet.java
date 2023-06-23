@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.LgDAO;
+import dao.TodotbDAO;
+import model.AllA;
+import model.Lg;
+
 /**
  * Servlet implementation class GoalNextMonthServlet
  */
@@ -39,7 +44,7 @@ public class GoalNextMonthServlet extends HttpServlet {
 
 	  	request.setAttribute("displayMonth", month);
 	  	request.setAttribute("displayYear", year);
-
+	  	String displayDate = year + "-" + month + "-01";
 	    // セッションスコープに保存
 	    session.setAttribute("monthCounter", mc);
 
@@ -47,6 +52,11 @@ public class GoalNextMonthServlet extends HttpServlet {
 	  	//Integer id = (Integer) session.getAttribute("id");
 
 	  	//↓これ以降に表示するために取得したい情報を書いてください↓
+
+		TodotbDAO tdao = new TodotbDAO();
+		AllA alla = tdao.achieve(1000, displayDate);
+		request.setAttribute("a",alla);
+
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/GoalRegist.jsp");
 		dispatcher.forward(request, response);
@@ -57,7 +67,7 @@ public class GoalNextMonthServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
 
 
 		// セッションを取得
@@ -127,7 +137,7 @@ public class GoalNextMonthServlet extends HttpServlet {
 				//スコープからNUMBERを取得
 
 			    //int number = Integer.parseInt(request.getParameter("NUMBER"));
-
+				int number = 1000;
 				//nullチェック（lg sg td）
 				// 受け取ったデータの表示
 
@@ -135,13 +145,14 @@ public class GoalNextMonthServlet extends HttpServlet {
 				if (lg != null && lg != "") {
 					System.out.println("長期目標: " + lg);
 
-				//number, year, month, lgをLGOALに登録
+					//number, year, month, lgをLGOALに登録
 
-					//LgDAO lgDao = new LgDAO();
-				    //Lg lgs = new Lg(number, year, month, lg);
+					LgDAO lgDao = new LgDAO();
+					if(lgDao.updateLg(new Lg(number, Date, lg))) {
+						System.out.println("成功");
+					}
 
-				}
-				//短期目標１
+				}				//短期目標１
 				if (sg1 != null && sg1 != "") {
 					System.out.println("短期目標１: " + sg1);
 					System.out.println(day_s_1);
@@ -246,7 +257,8 @@ public class GoalNextMonthServlet extends HttpServlet {
 					System.out.println("短期目標５のToDo5: " + td5_5);
 				}
 				// 他の処理を追加することも可能
-
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/simpleBC/NextMonthServlet");
+				dispatcher.forward(request, response);
 				// レスポンスの設定
 				response.setContentType("text/html");
 				response.setCharacterEncoding("UTF-8");

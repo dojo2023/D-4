@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>使い方説明</title>
 
-<link rel="stylesheet" href="common.css">
-<link rel="stylesheet" href="explanation.css">
+<link rel="stylesheet" href="/amateur/css/common.css">
+<link rel="stylesheet" href="/amateur/css/explanation.css">
 </head>
 <body>
     <main>

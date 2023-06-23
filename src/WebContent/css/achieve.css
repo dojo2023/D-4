@@ -46,3 +46,140 @@
     width: 0;
     height: 0;
 }
+
+
+    .bar {
+      height: 20px;
+      margin-bottom: 5px;
+    }
+
+    .red {
+    height: 20px;
+    width:12px;
+      margin-bottom: 30px;
+      background-color: red;
+    }
+
+	.orenge{
+ 	height: 20px;
+    width:12px;
+      margin-bottom: 30px;
+      background-color: orange;
+}
+    .yellow {
+    height: 20px;
+    width:60px;
+      margin-bottom: 5px;
+      background-color: yellow;
+    }
+
+    .green {
+    height: 20px;
+    width:40px;
+      margin-bottom: 5px;
+      background-color: green;
+    }
+        .blue {
+    height: 20px;
+    width:40px;
+      margin-bottom: 5px;
+      background-color: blue;
+    }
+.lg{
+		position: absolute;
+    top: 190px;
+    left:68%; /* 左端からの距離を100%に指定 */
+    width: 50%;
+    height: 20px;
+    transform: translate(-50%, -50%); /* 中央揃え */
+}
+.lgtext{
+			position: absolute;
+    top: 143px;
+    left: 70%; /* 左端からの距離を100%に指定 */
+    width: 21%;
+    height: 20px;
+    transform: translate(-50%, -50%); /* 中央揃え */
+}
+    .bar {
+      height: 20px;
+      margin-bottom: 5px;
+    }
+
+    .red {
+    height: 20px;
+    width:12px;
+      margin-bottom: 30px;
+      background-color: red;
+    }
+
+	.orenge{
+ 	height: 20px;
+    width:12px;
+      margin-bottom: 30px;
+      background-color: orange;
+}
+    .yellow {
+    height: 20px;
+    width:60px;
+      margin-bottom: 5px;
+      background-color: yellow;
+    }
+
+    .green {
+    height: 20px;
+    width:40px;
+      margin-bottom: 5px;
+      background-color: green;
+    }
+        .blue {
+    height: 20px;
+    width:40px;
+      margin-bottom: 5px;
+      background-color: blue;
+    }
+    .goal-0 {
+  position: absolute;
+  width: 400px;
+  height: 17px;
+  padding: 10px;
+  left: 80%; /* 左端からの距離を100%に指定 */
+  top: 36%;
+  transform: translate(-50%, -50%); /* 中央揃え */
+}
+.goal-1 {
+      position: absolute;
+      width: 400px;
+      height: 17px;
+      padding: 10px;
+      left: 80%; /* 左端からの距離を100%に指定 */
+      top:282px;
+      transform: translate(-50%, -50%); /* 中央揃え */
+}
+.goal-2 {
+      position: absolute;
+      width: 400px;
+      height: 17px;
+      padding: 10px;
+      left: 80%; /* 左端からの距離を100%に指定 */
+      top:349px;
+      transform: translate(-50%, -50%); /* 中央揃え */
+}
+.goal-3 {
+      position: absolute;
+      width: 400px;
+      height: 17px;
+      padding: 10px;
+      left: 100%; /* 左端からの距離を100%に指定 */
+      top:400px;
+      transform: translate(-50%, -50%); /* 中央揃え */
+}
+.goal-4 {
+      position: absolute;
+      width: 400px;
+      height: 17px;
+      padding: 10px;
+      left: 100%; /* 左端からの距離を100%に指定 */
+      top:470px;
+      transform: translate(-50%, -50%); /* 中央揃え */
+}

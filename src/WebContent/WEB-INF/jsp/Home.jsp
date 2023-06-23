@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +8,7 @@
     <title>ホームページ</title>
 
     <!-- リンクスペース -->
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="/simpleBC/css/home.css">
 
 </head>
 
@@ -16,8 +18,8 @@
     <!-- ロゴ画像とアプリ名 -->
     <nav><!-- アプリ名の横にボタン配置 -->
         <ul>
-            <button class="btn" onclick="/amateur/LoginServlet">ログイン</button>
-            <button class="btn" onclick="/amateur/AccountServlet">新規登録</button>
+            <button type = "button" class="btn" onclick="location.href='/amateur/LoginServlet'">ログイン</button>
+            <button type = "button" class="btn" onclick="location.href='/amateur/AccountServlet'">新規登録</button>
         </ul>
     </nav>
     <hr>
@@ -52,11 +54,18 @@
 
 
     <div class="new">
-        <button class="btn" onclick="/amateur/AccountServlet">新規登録</button>
+        <button type = "button" class="btn" onclick="location.href='/amateur/AccountServlet'">新規登録</button>
 
         <script src="home.js"></script>
     </div>
+
+
 </main>
+
+<div class="footer">
+        &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
+
+    </div>
 </body>
 
 </html>

@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>カレンダー</title>
 <!-- スタイルシートの挿入リンク -->
-<link rel="stylesheet" href="/example/css/common.css">
-<link rel="stylesheet" href="/example/css/calendar.css">
+<link rel="stylesheet" href="/amateur/css/common.css">
+<link rel="stylesheet" href="/amateur/css/calendar.css">
 </head>
 <body>
 <main>
@@ -44,7 +44,7 @@
 
 <div class = "monthMove">
 <div class = "monthcontent">
-<a href = '/example/LastMonthServlet' class = "prev"></a>
+<a href = '/amateur/LastMonthServlet' class = "prev"></a>
 </div>
 <%
 	Integer month = (Integer)request.getAttribute("displayMonth");
@@ -52,7 +52,7 @@
 	out.print("<div class = monthcontent><h3>" + year + "年" + month + "月</h3></div>");
 %>
 <div class = "monthcontent">
-<a href = '/example/NextMonthServlet' class = "next"></a>
+<a href = '/amateur/NextMonthServlet' class = "next"></a>
 </div>
 </div>
 
