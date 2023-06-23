@@ -24,6 +24,12 @@ public class Sg implements Serializable {
 		this.day_e = day_e;
 		this.sg = sg;
 	}
+	public Sg(int sgid,String day_s,String day_e,String sg) {
+		this.sgid=sgid;
+		this.day_s = day_s;
+		this.day_e = day_e;
+		this.sg = sg;
+	}
 	public int getSgid() {
 		return sgid;
 	}
