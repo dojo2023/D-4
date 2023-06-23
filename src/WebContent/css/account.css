@@ -1,0 +1,35 @@
+@charset "UTF-8";
+.button {
+  text-align: left;
+  background-color:red;
+}
+table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input[name="LOGIN"] {
+  background-color: green;
+  color: white;
+  position: absolute;
+    top: 478px;
+    left: 31%;
+    width: 50%;
+    width: 143px;
+    height: 35px;
+    overflow: auto;
+  /* 他のスタイルプロパティも追加できます */
+}
+input[type="reset"] {
+  background-color: red;
+  color: white;
+  position: absolute;
+  top: 478px;
+    left:59%;
+    width: 50%;
+    width: 143px;
+    height: 35px;
+    overflow: auto;
+  /* 他のスタイルプロパティも追加できます */
+}

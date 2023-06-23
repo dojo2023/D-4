@@ -8,7 +8,8 @@
     <title>ホームページ</title>
 
     <!-- リンクスペース -->
-    <link rel="stylesheet" href="/simpleBC/css/home.css">
+    <link rel="stylesheet" href="/amature/css/home.css">
+    <link rel="stylesheet" href="/amature/css/commmon.css">
 
 </head>
 

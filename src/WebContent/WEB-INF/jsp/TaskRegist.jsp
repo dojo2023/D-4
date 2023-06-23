@@ -8,7 +8,8 @@
 <head>
 	<title>タスク追加</title>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<link rel="stylesheet" href="/amature/css/commmon.css">
+	<link rel="stylesheet" href="/amature/css/task_regist.css">
 </head>
 
 <body>
@@ -106,6 +107,8 @@
 
 		}
 	</script>
+	<div class="footer">
+        &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
 </body>
 
 </html>

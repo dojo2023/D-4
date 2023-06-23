@@ -1,0 +1,155 @@
+@charset "UTF-8" ;
+/*鈴木くんが使っているCSSにコピペしてください*/
+/*ポップアップ表示をするためのcss*/
+.popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #555;
+      color: #fff;
+      width: 200px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 6px;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s;
+    }
+
+    .popup.show {
+      visibility: visible;
+      opacity: 1;
+
+    }
+
+/*年月日を動かす所*/
+.monthMove {
+	display: flex;
+	padding: 5px;
+	align-items: center;
+	justify-content: center;
+	margin-left: 190px;
+	margin-right:170px;
+	height: 40px;
+}
+.monthcontent {
+	margin: 10px;
+}
+/*三角を作る*/
+.prev {
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #f4a460 transparent transparent;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.next {
+	border-style: solid;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent transparent transparent #f4a460;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.prev a:hover {
+	border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #66cdaa transparent transparent;
+    display: inline-block;
+    width: 0;
+    height: 0
+}
+.next a:hover {
+	border-style: solid;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent transparent transparent #66cdaa;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+
+/*h2{
+
+	position: fixed;
+}
+h3{
+	position: fixed;
+	top:140px
+}*/
+    ul {
+  display: inline;
+}
+
+li {
+  display: inline;
+}
+.popup{
+	z-index: 9999;
+
+}
+.form-container {
+  position: relative;
+}
+
+/*時刻表*/
+table{
+	border-collapse: collapse;
+    width: 950px;
+    height: 350px;
+    overflow: auto;		/* はみ出した場合は、スクロールバーを表示する */
+}
+th,td {
+	 border: 1px solid black;
+	 padding: 5px;
+}
+.time{
+	position: absolute;
+    top: 263px;
+    left: 50%;
+    width: 50%;
+    width: 590px;
+    height: 441px;
+    overflow: auto;
+	overflow: auto;
+}
+
+/*メモ*/
+.form-container {
+  width: 200px; /* フォームの幅 */
+}
+
+#input-text {
+  width: 100%; /* テキストボックスの幅を親要素に合わせる */
+  height: auto; /* 高さを自動調整する */
+  resize: none; /* テキストボックスのリサイズを無効化する */
+}
+
+
+/*たぶんヘッダー周り*/
+.logo{
+	background-image:url("../img/logo.png");
+	  background-size: cover;
+	  background-color: red;
+}
+h1{
+		position: absolute;
+    top: 43px;
+    left: 37%;
+    width: 50%;
+    width: 590px;
+    height: 47px;
+
+}
+.image {
+  width: 200px;  /* 幅を200ピクセルに設定 */
+  height: 150px; /* 高さを150ピクセルに設定 */
+}
+/*table {
+	border-collapse: collapse;
+}
+th,td {
+	border: 1px solid black;
+	padding: 5px;
+}*/

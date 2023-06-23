@@ -32,6 +32,7 @@
                                 </li>
                     <li><a href="/amateur/AchieveServlet">達成度</a></li>
                     <li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
+                    <li id = "logout"><a href="/amateur/LogoutServlet">ログアウト</a></li>
                 </ul>
             </nav>
 </header>

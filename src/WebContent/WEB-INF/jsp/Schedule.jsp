@@ -18,11 +18,11 @@
 <link rel="icon" type="image/png" href="/amateur/css/fabicon.png">
 <link rel ="stylesheet" href="/amateur/css/schedule.css">
 <link rel="stylesheet" href="/amateur/css/common.css">
-  <div id="popup" class="popup">
-
+<title>1日のスケジュール</title>
+ <div id="popup" class="popup">
     <p id="random-word"></p>
     <button class="close-btn">閉じる</button>
-
+</div>
   <script>
   var words = ["おはようございます！今日も頼りにしています。", "朝から元気そうですね！素晴らしいスタートです。", "早く来てくれてありがとう！助かります。",
 	  "いつも時間通りに来てくれて感謝しています。", "あなたがいると安心です。","朝一番にあなたの笑顔を見ると、一日が明るくなります。","チームの一員として頼もしい存在ですね。","出勤がスムーズにできるのは、あなたのおかげです。","仕事の始まりにあなたと一緒にいると、気持ちが引き締まります。","仕事の始まりにあなたと一緒にいると、気持ちが引き締まります。",
@@ -45,20 +45,17 @@
         var randomWord = words[randomIndex];
         document.getElementById("random-word").textContent = randomWord;
 
-      }*/
-  </script>
+      }
+    const popup = document.querySelector('.popup');
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none'; // ポップアップを非表示にする
+    });
+    */
+</script>
 </head>
 <body>
 
-  <script>
-  const popup = document.querySelector('.popup');
-  const closeBtn = document.querySelector('.close-btn');
-  closeBtn.addEventListener('click', () => {
-    popup.style.display = 'none'; // ポップアップを非表示にする
-  });
-</script>
-</div>
-<title>1日のスケジュール</title>
 <div class = wrapper>
 <!-- ヘッダー -->
 <header class = header>
@@ -135,6 +132,7 @@
   <textarea id="input-text" name = "MEMO">${memo}</textarea>
   <input type="submit" name="REGIST_M" value="登録">
 </div>
+</form>
 
 <script>
 //メモのJavaScript
@@ -146,6 +144,7 @@ inputText.addEventListener("input", function(event) {
 	});
 </script>
 
+<!-- タスク表示用の時刻表 -->
 <div class="time">
 <h3>時刻表</h3>
 <table>
@@ -159,12 +158,13 @@ inputText.addEventListener("input", function(event) {
 	      <!-- ここに時間ごとの行を追加します -->
 	    </tbody>
 </table>
+</div>
 <!-- タスクの中身を非表示で表示 -->
 <div class = "taskContent">
 <%//(L<Task>)request.getAttribute("taskL");%>
 <p><%//t.get(0).getTask(); %></p>
 
-</div>
+
 	<script>
 	//時刻表を表示させるためのjavascript
 	  window.onload = function() {
