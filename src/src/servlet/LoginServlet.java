@@ -1,6 +1,8 @@
+//2023-06-23 h13:30
 package servlet;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,14 +50,22 @@ public class LoginServlet extends HttpServlet {
 				if (iDao.isLoginOK(new Idpw(number, pw))) {	// ログイン成功
 					String name=iDao.name(new Idpw(number, pw));
 					DaysDAO dDao=new DaysDAO();
+					Calendar calendar = Calendar.getInstance();
+					calendar.add(Calendar.DATE, 0);
+					int day = calendar.get(Calendar.DATE);
+					int month = calendar.get(Calendar.MONTH) + 1;
+					int year = calendar.get(Calendar.YEAR);
+					//メモを取得するための引数を作る
+					String memoDate = year + "-" + month + "-" + day;
+					if(dDao.insert(number,memoDate)) {
 					int days=dDao.days(number);
 					// セッションスコープにIDを格納する
 					HttpSession session = request.getSession();
-					session.setAttribute("id", number);
 					session.setAttribute("number", new LoginUser(number,name,days));
 
 					// ホームサーブレットにリダイレクトする
 					response.sendRedirect("/amateur/ScheduleServlet");
+					}
 				}
 				else {									// ログイン失敗
 					// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
