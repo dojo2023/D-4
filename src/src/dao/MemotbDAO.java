@@ -1,3 +1,4 @@
+//2023-06-23
 package dao;
 
 import java.sql.Connection;
@@ -20,20 +21,21 @@ public class MemotbDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 
 				// SQL文を準備する
-				String sql="SELECT * FROM MEMOTB where NUMBER=? and DAY = ?";
+				String sql="SELECT MEMO FROM MEMOTB where NUMBER=? and DAY = ?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
 					pStmt.setInt(1, number);
-					pStmt.setString(1, day);
+					pStmt.setString(2, day);
 
 				// SQL文を実行し、結果表を取得する
 							ResultSet rs = pStmt.executeQuery();
 
 							// 結果表をコレクションにコピーする
-							rs.next();
+							if(rs.next()) {
 							memo=rs.getString("MEMO");
 						}
+			}
 						catch (SQLException e) {
 							e.printStackTrace();
 							memo = "";
