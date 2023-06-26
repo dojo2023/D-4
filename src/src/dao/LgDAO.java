@@ -1,3 +1,4 @@
+//2023-06-26 h11
 package dao;
 
 import java.sql.Connection;
@@ -28,9 +29,11 @@ public class LgDAO{
 				// SQL文を実行し、結果表を取得する
 							ResultSet rs = pStmt.executeQuery();
 							// 結果表をコレクションにコピーする
-							rs.next();
+							if(rs.next()) {
 							longGoal = rs.getString("LG");
-
+							}else {
+							longGoal = "";
+							}
 						}
 						catch (SQLException e) {
 							e.printStackTrace();
