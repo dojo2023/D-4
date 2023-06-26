@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 <title>カレンダー</title>
 <!-- スタイルシートの挿入リンク -->
-<link rel="stylesheet" href="/simpleBC/css/common.css">
-<link rel="stylesheet" href="/simpleBC/css/calendar.css">
+<link rel="stylesheet" href="/amateur/css/common.css">
+<link rel="stylesheet" href="/amateur/css/calendar.css">
 </head>
 
 <body>
@@ -71,14 +71,14 @@
 </div>
 <div class = "monthMove">
 <div class = "monthcontent">
-<a href = '/simpleBC/LastMonthServlet' class = "prev"></a>
+<a href = '/amateur/LastMonthServlet' class = "prev"></a>
 </div>
 <div class = monthcontent><h3>
 	<span id = "year"><c:out value= "${displayYear}"/></span>年
 	<span id = "month"><c:out value= "${displayMonth}"/></span>月
 </h3></div>
 <div class = "monthcontent">
-<a href = '/simpleBC/NextMonthServlet' class = "next"></a>
+<a href = '/amateur/NextMonthServlet' class = "next"></a>
 </div>
 </div>
 
@@ -159,7 +159,7 @@
 
 </div>
 
-<script src = "/simpleBC/js/calendar.js"></script>
+<script src = "/amateur/js/calendar.js"></script>
 
 </body>
 </html>

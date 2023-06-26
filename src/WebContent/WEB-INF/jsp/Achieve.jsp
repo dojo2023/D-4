@@ -158,7 +158,5 @@ AllA a = (AllA)request.getAttribute("a");
 
   </script>
 
-<head>
-
 </body>
 </html>

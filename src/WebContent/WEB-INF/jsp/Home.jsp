@@ -8,8 +8,8 @@
     <title>ホームページ</title>
 
     <!-- リンクスペース -->
-    <link rel="stylesheet" href="/amature/css/home.css">
-    <link rel="stylesheet" href="/amature/css/commmon.css">
+    <link rel="stylesheet" href="/amateur/css/home.css">
+    <link rel="stylesheet" href="/amateur/css/commmon.css">
 
 </head>
 

@@ -25,7 +25,7 @@ public class CalendarServlet extends HttpServlet {
 		// セッションを取得
         HttpSession session = request.getSession(true);
         // monthCounterの値をセッションから取得
-        Integer mc = (Integer) session.getAttribute("monthCounter");
+        Integer mc = (Integer)session.getAttribute("monthCounter");
         //monthCounterを初期値に戻す
 		if( mc == null ) { //mcが存在しなかったときの処理
 			mc = 0;

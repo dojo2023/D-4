@@ -30,7 +30,7 @@ public class LastMonthServlet extends HttpServlet {
 		// セッションを取得
         HttpSession session = request.getSession(true);
         // monthCounterの値をセッションから取得
-        Integer mc = (Integer) session.getAttribute("monthCounter");
+        int mc = (Integer)session.getAttribute("monthCounter");
 		//先月なので-1
 		mc = mc - 1;
 

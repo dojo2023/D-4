@@ -50,6 +50,9 @@ public class ScheduleServlet extends HttpServlet {
 		}else {
 			dc = 0;
 		}
+		//セッションスコープに保存
+		session.setAttribute("dayCounter", dc);
+
 		//表示したい月の年月日を取得
 		Calendar calendar = Calendar.getInstance();
 		//カレンダーからページ遷移したかの判定を行う
@@ -88,9 +91,6 @@ public class ScheduleServlet extends HttpServlet {
 		request.setAttribute("displayday", day);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
-
-		//セッションスコープに保存
-		session.setAttribute("dayCounter", dc);
 
 		//セッションスコープからログインIDを取得
 		//int id = (Integer) session.getAttribute("id");

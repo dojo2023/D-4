@@ -74,7 +74,7 @@
             <p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
 
 
-        <script src="explanation.js"></script>
+        <script src="/amateur/js/explanation.js"></script>
     <!--<script>
     //ボタンの表示を横向きから下向きに変える
     //後でJavaScriptに書き換える

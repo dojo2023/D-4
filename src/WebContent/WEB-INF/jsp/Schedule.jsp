@@ -60,7 +60,7 @@
     <!-- 月を表示するためのボタン設定 -->
 <div class = "monthMove">
 <div class = "monthcontent">
-<a href = '/simpleBC/ScheduleLastDayServlet' class = "prev"></a>
+<a href = '/amateur/ScheduleLastDayServlet' class = "prev"></a>
 </div>
 <div class = monthcontent><h3>
 	<span id = "year"><c:out value= "${displayYear}"/></span>年
@@ -68,7 +68,7 @@
 	<span id = "day"><c:out value= "${displayday}"/></span>日
 </h3></div>
 <div class = "monthcontent">
-<a href = '/simpleBC/ScheduleNextDayServlet' class = "next"></a>
+<a href = '/amateur/ScheduleNextDayServlet' class = "next"></a>
 </div>
 </div>
 
@@ -157,7 +157,7 @@
         &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
     </footer>
 
-    <script src = "/simpleBC/js/schedule.js"></script>
+    <script src = "/amateur/js/schedule.js"></script>
 
 
 </div>
