@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <title>目標追加</title>
 
-<link rel="stylesheet" href="/amateur/css/common.css">
-<link rel="stylesheet" href="/amateur/css/goal_regist.css">
+<link rel="stylesheet" href="/simpleBC/SimpleBC_css/common.css">
+<link rel="stylesheet" href="/simpleBC/SimpleBC_css/goal_regist.css">
 </head>
 
 <body>
@@ -40,13 +40,11 @@
 		</header>
 		<!-- メイン -->
 		<main class="main">
-
-			<form id="dataForm" action="/amature/GoalRegistServlet" method="POST">
-
+			<form id="dataForm" action="GoalRegistServlet" method="POST">
 				<!-- 現在の年月を表示 -->
 				<div class="monthMove">
 					<div class="monthcontent">
-						<a href='/amateur/GoalLastMonthServlet' class="prev"></a>
+						<a href='/simpleBC/GoalLastMonthServlet' class="prev"></a>
 					</div>
 					<div class=monthcontent>
 						<h3>
@@ -57,7 +55,7 @@
 						</h3>
 					</div>
 					<div class="monthcontent">
-						<a href='/amateur/GoalNextMonthServlet' class="next"></a>
+						<a href='/simpleBC/GoalNextMonthServlet' class="next"></a>
 					</div>
 				</div>
 
@@ -77,11 +75,13 @@ AllA a = (AllA)request.getAttribute("a");
 				<div class="short">
 				<!-- 短期目標１ -->
 					<div class="first">
+					<% out.print(a.getSgA().get(0).getSg());%>
 				<label>短期目標１</label><br><input id='sgInput1' type='text' name='sg1' value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getSg());}%>'><br>
 				<input type='date' id='sgStart' name='day_s_1' placeholder='開始'value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getDay_s());}%>'>
-				<input type='date' id='sgEnd' name='day_e_1' placeholder='終了'value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getDay_e());}%>'>");<br>
+				<input type='date' id='sgEnd' name='day_e_1' placeholder='終了'value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getDay_e());}%>'><br>
 
-				<input type="hidden" name="sgId2" value='<%if(a.getSgA().size()>1){a.getSgA().get(1).getSgId();}%>'>
+				<input type="hidden" name="sgId1" value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getSgId());}%>'>
+
 				<!-- 短期目標１のToDoグループ -->
 				<input id='tdInput1_1' type='text' name='td1_1' placeholder='todo' value='<%if(a.getSgA().get(0).getTodoA().size()>0){out.print( a.getSgA().get(0).getTodoA().get(0).getTodo());}%>'><br>
 				<input type="hidden" name="tdId1_1" value='<%if(a.getSgA().size()>0&&a.getSgA().get(0).getTodoA().size()>0){a.getSgA().get(0).getTodoA().get(0).getTodoId();} %>'>
@@ -103,7 +103,7 @@ AllA a = (AllA)request.getAttribute("a");
 				<div class="second">
 				<label>短期目標２</label><br><input id='sgInput2' type='text' name='sg2' value='<%if(a.getSgA().size()>1){out.print(a.getSgA().get(1).getSg());}%>'><br>
 				<input type='date' id='sgStart' name='day_s_2' placeholder='開始'value='<%if(a.getSgA().size()>1){out.print(a.getSgA().get(1).getDay_s());}%>'>
-				<input type='date' id='sgEnd' name='day_e_2' placeholder='終了'value='<%if(a.getSgA().size()>1){out.print(a.getSgA().get(1).getDay_e());}%>'>");<br>
+				<input type='date' id='sgEnd' name='day_e_2' placeholder='終了'value='<%if(a.getSgA().size()>1){out.print(a.getSgA().get(1).getDay_e());}%>'><br>
 
 				<input type="hidden" name="sgId2" value='<%if(a.getSgA().size()>1){a.getSgA().get(1).getSgId();}%>'>
 
@@ -127,7 +127,7 @@ AllA a = (AllA)request.getAttribute("a");
 				<div class="theard">
 				<label>短期目標３</label><br><input id='sgInput3' type='text' name='sg3' value='<%if(a.getSgA().size()>2){out.print(a.getSgA().get(2).getSg());}%>'><br>
 				<input type='date' id='sgStart' name='day_s_3' placeholder='開始'value='<%if(a.getSgA().size()>2){out.print(a.getSgA().get(2).getDay_s());}%>'>
-				<input type='date' id='sgEnd' name='day_e_3' placeholder='終了'value='<%if(a.getSgA().size()>2){out.print(a.getSgA().get(2).getDay_e());}%>'>");<br>
+				<input type='date' id='sgEnd' name='day_e_3' placeholder='終了'value='<%if(a.getSgA().size()>2){out.print(a.getSgA().get(2).getDay_e());}%>'><br>
 
 				<input type="hidden" name="sgId3" value='<%if(a.getSgA().size()>2){a.getSgA().get(2).getSgId();}%>'>
 
@@ -151,7 +151,7 @@ AllA a = (AllA)request.getAttribute("a");
 				<div class="fourth">
 				<label>短期目標４</label><br><input id='sgInput4' type='text' name='sg4' value='<%if(a.getSgA().size()>3){out.print(a.getSgA().get(3).getSg());}%>'><br>
 				<input type='date' id='sgStart' name='day_s_4' placeholder='開始'value='<%if(a.getSgA().size()>3){out.print(a.getSgA().get(3).getDay_s());}%>'>
-				<input type='date' id='sgEnd' name='day_e_4' placeholder='終了'value='<%if(a.getSgA().size()>3){out.print(a.getSgA().get(3).getDay_e());}%>'>");<br>
+				<input type='date' id='sgEnd' name='day_e_4' placeholder='終了'value='<%if(a.getSgA().size()>3){out.print(a.getSgA().get(3).getDay_e());}%>'><br>
 
 				<input type="hidden" name="sgId4" value='<%if(a.getSgA().size()>3){a.getSgA().get(3).getSgId();}%>'>
 
@@ -175,7 +175,7 @@ AllA a = (AllA)request.getAttribute("a");
 				<div class="fifth">
 				<label>短期目標５</label><br><input id='sgInput5' type='text' name='sg5' value='<%if(a.getSgA().size()>4){out.print(a.getSgA().get(4).getSg());}%>'><br>
 				<input type='date' id='sgStart' name='day_s_5' placeholder='開始'value='<%if(a.getSgA().size()>4){out.print(a.getSgA().get(4).getDay_s());}%>'>
-				<input type='date' id='sgEnd' name='day_e_5' placeholder='終了'value='<%if(a.getSgA().size()>4){out.print(a.getSgA().get(4).getDay_e());}%>'>");<br>
+				<input type='date' id='sgEnd' name='day_e_5' placeholder='終了'value='<%if(a.getSgA().size()>4){out.print(a.getSgA().get(4).getDay_e());}%>'><br>
 
 				<input type="hidden" name="sgId5" value='<%if(a.getSgA().size()>4){a.getSgA().get(4).getSgId();}%>'>
 

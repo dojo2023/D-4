@@ -127,6 +127,7 @@ public class GoalRegistServlet extends HttpServlet {
 		String sg2 = request.getParameter("sg2");
 		String day_s_2 = request.getParameter("day_s_2");
 		String day_e_2 = request.getParameter("day_e_2");
+		String sgId2 = request.getParameter("sgId2");
 		//短期目標２のToDo
 		String td2_1 = request.getParameter("td2_1");
 		String td2_2 = request.getParameter("td2_2");
@@ -242,14 +243,20 @@ public class GoalRegistServlet extends HttpServlet {
 		}
 
 		//短期目標２
-		if (sg2 != null && sg2 != "") {
-			System.out.println("短期目標２: " + sg2);
+		if (sgId2.equals("") || sgId2 == null) {
+			System.out.println("短期目標１: " + sg2);
+			System.out.println(day_s_2);
+			System.out.println(day_e_2);
 
 			SgDAO sgDao = new SgDAO();
 			if(sgDao.updateSg(new Sg(number, Date, day_s_2, day_e_2, sg2))) {
 				System.out.println("成功");
 			}
-
+		}else {
+			SgDAO sgDao = new SgDAO();
+			if(sgDao.updateSg(new Sg(Integer.parseInt(sgId2), day_s_2, day_e_2, sg2))) {
+				System.out.println("成功");
+			}
 		}
 		//短期目標２のToDo
 		if (td2_1 != null && td2_1 != "") {
@@ -448,7 +455,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		// 他の処理を追加することも可能
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/simpleBC/GoalNextMonthServlet");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
 		dispatcher.forward(request, response);
 		// レスポンスの設定
 		response.setContentType("text/html");
