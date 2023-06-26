@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="stylesheet" href="/amateur/css/common.css">
+<link rel="stylesheet" href="/amateur/css/login.css">
 </head>
 <body>
 <div class = wrapper>

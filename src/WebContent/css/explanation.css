@@ -8,11 +8,14 @@
     }
 
     .container h2 {
-        font-size: 3em;
+        font-size: 2em;
         width: 100%;
         margin-left: 0%;
         text-align: center;
-        background-color: #2fe7b3;
+        color: #2fe791;
+        color: #2fe791;
+        /*border-top: 3px solid #2fe791; */
+
     }
 
     .container button {
@@ -31,3 +34,5 @@
         margin-left: 60px;
         margin-right: 60px;
     }
+
+

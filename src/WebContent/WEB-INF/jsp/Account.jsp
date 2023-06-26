@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
+<link rel="stylesheet" href="/amateur/css/common.css">
+<link rel="stylesheet" href="/amateur/css/account.css">
 </head>
 <body>
 <div class = wrapper>
@@ -53,6 +55,10 @@
 </form>
 <!-- メインここまで -->
 <!-- フッターここから -->
+<div class="footer">
+        &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
+
+    </div>
 <!-- フッターここまで -->
 </div>
 </body>

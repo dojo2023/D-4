@@ -16,8 +16,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="/amateur/css/fabicon.png">
-<link rel ="stylesheet" href="/simpleBC/css/schedule.css">
-<link rel="stylesheet" href="/simpleBC/css/common.css">
+<link rel ="stylesheet" href="/amateur/css/schedule.css">
+<link rel="stylesheet" href="/amateur/css/common.css">
 <title>1日のスケジュール</title>
 </head>
 
@@ -38,7 +38,7 @@
 <!-- ヘッダー -->
 <!-- <img src = ""> -->
  <header class = "header">
-<img src="/simpleBC/img/logo.png" alt="Image" class="image"id="moving-image">
+<img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
 <h1>あなただけの秘書</h1>
         <nav class="nav">
                         <ul>

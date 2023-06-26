@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <title>目標追加</title>
 
-<link rel="stylesheet" href="/simpleBC/SimpleBC_css/common.css">
-<link rel="stylesheet" href="/simpleBC/SimpleBC_css/goal_regist.css">
+<link rel="stylesheet" href="/amateur/css/common.css">
+<link rel="stylesheet" href="/amateur/css/goal_regist.css">
 </head>
 
 <body>

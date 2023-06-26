@@ -29,8 +29,9 @@ h2 {
 }
 
 #sgInput1 {
-    width: 90%;
+    width: 70%;
     font-size: 20px;
+    transform: translate(15%, 0%);
 }
 
 #sgStart {
@@ -41,24 +42,27 @@ h2 {
 }
 
 #sgInput2 {
-    width: 90%;
+    width: 70%;
     font-size: 20px;
+    transform: translate(15%, 0%);
 }
 
 #sgInput3 {
-    width: 90%;
+    width: 70%;
     font-size: 20px;
+    transform: translate(15%, 0%);
 }
 
 #sgInput4{
-    width: 90%;
+    width: 70%;
     font-size: 20px;
-    top: 30px;
+    transform: translate(15%, 0%);
 }
 
 #sgInput5 {
-    width: 90%;
+    width: 70%;
     font-size: 20px;
+    transform: translate(15%, 0%);
 }
 
 .first {
@@ -67,7 +71,7 @@ h2 {
     left: 1%;
     width: 30%;
     height:230px;
-    border: 1px solid #0008ff;/*囲み線は後で消す*/
+    /*border: 1px solid #0008ff;囲み線は後で消す*/
 }
 
 .second {
@@ -76,7 +80,7 @@ h2 {
     left:35%;
     width: 30%;
     height:230px;
-    border: 1px solid #0008ff;
+    /*border: 1px solid #0008ff;*/
 }
 
 .third {
@@ -85,7 +89,7 @@ h2 {
     left:70%;
     width: 30%;
     height:230px;
-    border: 1px solid #2fe791;
+    /*border: 1px solid #2fe791;*/
 }
 
 .fourth {
@@ -94,7 +98,7 @@ h2 {
     left:17%;
     width: 30%;
     height:230px;
-    border: 1px solid #2fe791;
+    /*border: 1px solid #2fe791;*/
 }
 
 .fifth {
@@ -103,9 +107,137 @@ h2 {
     left:55%;
     width: 30%;
     height:230px;
-    border: 1px solid #2fe791;
+     /*border: 1px solid #2fe791;*/
 }
 
+/* それぞれのToDoグループのCSS↓ */
+#tdInput1_1 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput1_2 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput1_3 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput1_4 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput1_5 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput2_1 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput2_2 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput2_3 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput2_4 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput2_5 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput3_1 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput3_2 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput3_3 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput3_4 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput3_5 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput4_1 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput4_2 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput4_3 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput4_4 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput4_5 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput5_1 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput5_2 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput5_3 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput5_4 {
+    width: 90%;
+    font-size: 15px;
+}
+
+#tdInput5_5 {
+    width: 90%;
+    font-size: 15px;
+}
+/* ToDoグループここまで */
+
+/* 登録ボタン */
 .btn {
     background: linear-gradient(to bottom, #50dbaa, #50dbc8);
     color: #FFFFFF;
