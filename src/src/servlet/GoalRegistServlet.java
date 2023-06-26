@@ -208,12 +208,11 @@ public class GoalRegistServlet extends HttpServlet {
 		}
 		//短期目標１のToDo
 		if (tdId1_1.equals("") || tdId1_1 == null) {
-			System.out.println("短期目標１のToDo1: " + td1_1);
+			System.out.println("短期目標１のToDo１: " + td1_1);
 
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(number, Date, day_s_1, day_e_1, td1_1))) {
 				System.out.println("成功");
-
 			}
 		}else {
 			TodotbDAO todotbDao = new TodotbDAO();
