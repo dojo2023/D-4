@@ -1,14 +1,7 @@
 @charset "UTF-8" ;
 
 /*カレンダーのCSS*/
-/*ページ全体*/
-body{
-	margin: 0 0 0 0;
-}
-main {
-	margin: 0 auto 0 auto;
-    max-width: 960px;
-}
+
 /*年月を動かす所*/
 .monthMove {
 	display: flex;
@@ -56,10 +49,18 @@ main {
     width: 0;
     height: 0;
 }
+/*短期目標を隠す*/
+/*.sgContent{
+	display: none;
+}
+.calculation{
+	display: none;
+}*/
 /*カレンダー本体*/
 .calendar {
 	border-collapse: collapse;
 	margin-left: 190px;
+	margin-bottom: 50px;
 	width: 600px;
 	height:450px;
 }
@@ -70,6 +71,7 @@ main {
 }
 .calendar td {
 	vertical-align: top;
+	cursor: pointer;
 }
 .days {
 	background-color: #fffff9;
@@ -85,7 +87,8 @@ main {
 .extraDays{
 	background-color: #c8c8c8;
 	color: #888888;
+	cursor: default;
 }
 .calendar th {
-	background-color: #fffff9;
+	background-color: #f5fffa;
 }

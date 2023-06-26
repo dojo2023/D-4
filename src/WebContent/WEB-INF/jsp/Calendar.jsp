@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="model.AllA"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,12 +10,12 @@
 <meta charset="UTF-8">
 <title>カレンダー</title>
 <!-- スタイルシートの挿入リンク -->
-<link rel="stylesheet" href="/amateur/css/common.css">
-<link rel="stylesheet" href="/amateur/css/calendar.css">
+<link rel="stylesheet" href="/simpleBC/css/common.css">
+<link rel="stylesheet" href="/simpleBC/css/calendar.css">
 </head>
+
 <body>
-<main>
-<!-- <div class = "wrapper"> -->
+<div class = "wrapper">
 <img src = "" alt="ロゴ画像">
 <h1>アプリ名</h1>
 
@@ -32,38 +34,61 @@
                                 </li>
                     <li><a href="/amateur/AchieveServlet">達成度</a></li>
                     <li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
-                    <li id = "logout"><a href="/amateur/LogoutServlet">ログアウト</a></li>
+                	<li id = "logout"><a href="/amateur/LogoutServlet">ログアウト</a></li>
                 </ul>
             </nav>
 </header>
 
-
-<h2>長期目標 : <%  String goal = (String)request.getAttribute("long");%>
-					<% out.print(goal);%></h2>
-					<!-- 設定された長期目標を表示する。データベースLGOALから取得 -->
-<h3>達成度 : ％<!-- 達成度を表示する --></h3>
-
+<%
+  AllA al = (AllA)request.getAttribute("a");
+%>
+<h2>長期目標 :
+<%if (al.getLg() == null){
+	out.print("");
+}else{
+	out.print(al.getLg());
+}%>
+</h2>
+<h3>達成度 :
+<%if (al.getLgA() != 1000){
+	out.print(al.getLgA());
+}else{
+	out.print("0");
+}%>％</h3>
+<!-- 見えない短期目標を設定 -->
+<div class = "sgContent">
+<%for (int i=0;i < (al.getSgA()).size();i++){
+	String sg = (al.getSgA()).get(i).getSg();
+	if(sg.equals("")){
+		break;
+	}else{
+		out.println("<span class = \"sgContent\">" + (al.getSgA()).get(i).getSg() + "</span>");
+		out.println("<span class = \"achieve\">" + (al.getSgA()).get(i).getsAchieve() + "</span>");
+		out.println("<span class = \"start\">" + al.getSgA().get(i).getDay_s() + "</span>");
+		out.println("<span class = \"end\">" + al.getSgA().get(i).getDay_e() + "</span>");
+	}
+}%>
+</div>
 <div class = "monthMove">
 <div class = "monthcontent">
-<a href = '/amateur/LastMonthServlet' class = "prev"></a>
+<a href = '/simpleBC/LastMonthServlet' class = "prev"></a>
 </div>
-<%
-	Integer month = (Integer)request.getAttribute("displayMonth");
-	Integer year = (Integer)request.getAttribute("displayYear");
-	out.print("<div class = monthcontent><h3>" + year + "年" + month + "月</h3></div>");
-%>
+<div class = monthcontent><h3>
+	<span id = "year"><c:out value= "${displayYear}"/></span>年
+	<span id = "month"><c:out value= "${displayMonth}"/></span>月
+</h3></div>
 <div class = "monthcontent">
-<a href = '/amateur/NextMonthServlet' class = "next"></a>
+<a href = '/simpleBC/NextMonthServlet' class = "next"></a>
 </div>
 </div>
 
-<table  class="calendar">
-            <thead>
+<table  class="calendar" id = "cal">
+			<thead>
                 <tr> <th class = Sunday>日</th> <th>月</th> <th>火</th> <th>水</th>
                 		<th>木</th> <th>金</th> <th class = Saturday>土</th>
                 </tr>
             </thead>
-            <tbody> <%-- カレンダーの日付を表示する部分 --%>
+            <%-- カレンダーの日付を表示する部分 --%>
             <%
             //MonthCounterの情報をスコープから取り出す
 			Integer mc = (Integer)session.getAttribute("monthCounter");
@@ -106,7 +131,7 @@
 	            out.print("<tr>");
 	            out.print("<td class = Sunday>" +j + "</td>");
 	    	}else{
-	            out.print("<td class = days>" +j + "</td>");
+	            out.print("<td>" + j + "</td>");
 	        }
 	        if(j==daysInMonth && (j+daysInPreviousMonth)%7!=0){
 	            for(int k=7-((j+daysInPreviousMonth)%7);k>0;k--){
@@ -116,13 +141,25 @@
 	            out.print("</tr>");
 	        }
 	    }
+	    out.print("<div class = \"calculation\"><span id = \"PreviousDays\">" + daysInPreviousMonth + "</span>");
+	    out.print("<span id = \"monthDays\">" + daysInMonth + "</span></div>");
           %>
-            </tbody>
         </table>
+
+        <!-- 隠しフォームを作る -->
+        <form  method="GET" action="/simpleBC/ScheduleServlet" id = "scheMove">
+        <input type = hidden name = "YEAR" value = "">
+        <input type = hidden name = "MONTH" value = "">
+        <input type = hidden name = "DAY" value = "">
+        </form>
+
 <footer>
 <p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
 </footer>
-<!-- </div> -->
-</main>
+
+</div>
+
+<script src = "/simpleBC/js/calendar.js"></script>
+
 </body>
 </html>

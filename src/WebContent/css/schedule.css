@@ -1,26 +1,49 @@
 @charset "UTF-8" ;
-/*鈴木くんが使っているCSSにコピペしてください*/
+
 /*ポップアップ表示をするためのcss*/
 .popup {
       position: fixed;
-      top: 50%;
+      top: 30%;
       left: 50%;
+      width: 400px;
       transform: translate(-50%, -50%);
-      background-color: #555;
-      color: #fff;
-      width: 200px;
-      padding: 20px;
-      text-align: center;
+      background-color: #fff;
       border-radius: 6px;
       visibility: hidden;
       opacity: 0;
       transition: visibility 0s, opacity 0.3s;
+      box-shadow: 0 20px 25px 0 rgba(0, 0, 0, .5);
+      z-index: 9999;
     }
-
     .popup.show {
       visibility: visible;
       opacity: 1;
 
+    }
+    .popupHeader{
+    	position: absolute;
+    	width: 400px;
+    	margin: 0px;
+    	background-color: #2fe791;
+    	color: #fff;
+    	font-size: 20px;
+    	text-align: right;
+    }
+    #close-btn{
+    	font-weight: 600;
+    	cursor: pointer;
+    	padding: 5px;
+    }
+    .popupContent{
+    	position: relative;
+    	margin: 5px;
+      	padding: 20px;
+    	background-color:  white;
+    	text-align: center;
+    	z-index: -1;
+    }
+    #userName{
+    	font-weight: 600;
     }
 
 /*年月日を動かす所*/
@@ -32,6 +55,7 @@
 	margin-left: 190px;
 	margin-right:170px;
 	height: 40px;
+	padding-top: 30px;
 }
 .monthcontent {
 	margin: 10px;
@@ -40,7 +64,7 @@
 .prev {
     border-style: solid;
     border-width: 15px 15px 15px 0;
-    border-color: transparent #f4a460 transparent transparent;
+    border-color: transparent #20b2aa transparent transparent;
     display: inline-block;
     width: 0;
     height: 0;
@@ -48,7 +72,7 @@
 .next {
 	border-style: solid;
     border-width: 15px 0 15px 15px;
-    border-color: transparent transparent transparent #f4a460;
+    border-color: transparent transparent transparent #20b2aa;
     display: inline-block;
     width: 0;
     height: 0;
@@ -70,54 +94,89 @@
     height: 0;
 }
 
-/*h2{
-
-	position: fixed;
+/*時刻表と目標を横並びにする*/
+.position{
+	display: flex;
+	border-top: dashed 1.5px #00fa9a;
+	padding-top: 15px;
+	padding-bottom: 40px;
 }
-h3{
-	position: fixed;
-	top:140px
-}*/
-    ul {
-  display: inline;
-}
-
-li {
-  display: inline;
-}
-.popup{
-	z-index: 9999;
-
-}
-.form-container {
-  position: relative;
+.goals{
+	padding: 10px;
+	background-color: #20b2aa;
+	width: 380px;
 }
 
 /*時刻表*/
-table{
-	border-collapse: collapse;
-    width: 950px;
-    height: 350px;
-    overflow: auto;		/* はみ出した場合は、スクロールバーを表示する */
+.scheTitle{
+	margin-left: 170px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	display: inline-block;
+  	position: relative;
+  	padding: 0.3em;
 }
-th,td {
-	 border: 1px solid black;
+.scheTitle:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7px;
+  background: repeating-linear-gradient(-45deg, #ff69b4, #ff69b4 2px, white 2px, white 4px);
+}
+table{
+	border-collapse: separate;  /* 表の線と線の間を空ける */
+    border-spacing:  5px;
+    width: 400px;
+    height: 300px;
+}
+td {
+	 width:300px;
+	 border: 0.5px dotted #dcdcdc;
+	 font-weight: 700;
+	 padding: 5px;
+	 text-decoration:underline;
+     text-decoration-color: #ff69b4;
+}
+th {
+	background-color: #9effce;
 	 padding: 5px;
 }
-.time{
-	position: absolute;
-    top: 263px;
-    left: 50%;
-    width: 50%;
-    width: 590px;
+.thTitle th{
+	border: 2px solid #9effce;
+	background-color: white;
+}
+.timeSchedule{
+    margin-left: 100px;
+}
+.schedule{
+	width: 430px;
     height: 441px;
-    overflow: auto;
-	overflow: auto;
+	overflow: auto; /*はみ出した場合は、スクロールバーを表示する*/
+}
+/*スクロールバーの設定*/
+.schedule::-webkit-scrollbar{
+   width: 10px;
+}
+.schedule::-webkit-scrollbar-track{
+   background-color: #ccc;
+}
+.schedule::-webkit-scrollbar-thumb{
+   background-color: #20b2aa;
+   border-radius: 100px;
+}
+
+
+/*タスクの内容を隠す*/
+.taskContent{
+	display: none;
 }
 
 /*メモ*/
 .form-container {
   width: 200px; /* フォームの幅 */
+  position: relative;
 }
 
 #input-text {
@@ -146,6 +205,7 @@ h1{
   width: 200px;  /* 幅を200ピクセルに設定 */
   height: 150px; /* 高さを150ピクセルに設定 */
 }
+
 /*table {
 	border-collapse: collapse;
 }
