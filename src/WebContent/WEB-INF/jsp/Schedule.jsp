@@ -97,7 +97,6 @@
 </div>
     <hr>
 
-<p>${tmeDate}</p>
 <div class="lg">
 <c:forEach var="e" items="${taskList}" ><p><c:out value= "${e.task}"/></p></c:forEach>
 <p>長期目標：<%=a.getLg()%></p>

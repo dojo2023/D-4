@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import dao.MemotbDAO;
 import dao.TasktbDAO;
 import dao.TodotbDAO;
 import model.AllA;
+import model.Task;
 
 /**
  * Servlet implementation class ScheduleServlet
@@ -40,19 +42,31 @@ public class ScheduleLastDayServlet extends HttpServlet {
 		//一日ごと変更させるために年月日の情報を取得する
         // dayCounterの値をセッションから取得
         Integer dc = (Integer) session.getAttribute("dayCounter");
-		//先日なので-1
-		dc = dc - 1;
+        Integer my = (Integer) session.getAttribute("moveYear");
 
 		//表示したい月の年月日を取得
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DATE, dc);
+		if(my != null) {
+			Integer mm = (Integer) session.getAttribute("moveMonth");
+			Integer md = (Integer) session.getAttribute("moveDay");
+			calendar.set(my, mm, md);
+		}
+		dc = dc - 1;
+		calendar.add(Calendar.DAY_OF_MONTH, dc);
+
 		int day = calendar.get(Calendar.DATE);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
 		//長期・短期目標、Todoを取得するための引数を作る
-		String displayDate = year + "-" + month + "-01";
-		//メモを取得するための引数を作る
-		String tmeDate = year + "-" + month + "-" + day;
+		String tmeDate;
+		String displayDate;
+		if(month < 10) {
+			displayDate = year + "-0" + month + "-01";
+			tmeDate = year + "-0" + month + "-" + day;
+		}else {
+			displayDate = year + "-" + month + "-01";
+			tmeDate = year + "-" + month + "-" + day;
+		}
 
 		//リクエストスコープに保存
 		request.setAttribute("displayday", day);
@@ -61,6 +75,7 @@ public class ScheduleLastDayServlet extends HttpServlet {
 
 		//セッションスコープに保存
 		session.setAttribute("dayCounter", dc);
+		session.setAttribute("tmeDate", tmeDate);
 
 		//セッションスコープからログインIDを取得
 				//int id = (Integer) session.getAttribute("id");
@@ -72,7 +87,8 @@ public class ScheduleLastDayServlet extends HttpServlet {
 
 				//タスクを取得
 				TasktbDAO tDao = new TasktbDAO();
-				request.setAttribute("taskL",tDao.task(1000, tmeDate));
+				List<Task> taskList = tDao.task(1000, tmeDate);
+				request.setAttribute("task",taskList);
 
 				//メモを取得
 				MemotbDAO mDao = new MemotbDAO();
@@ -89,15 +105,20 @@ public class ScheduleLastDayServlet extends HttpServlet {
 				for(int i = 0; i < (alla.getSgA()).size(); i++) {
 					String start = alla.getSgA().get(i).getDay_s();
 					String end = alla.getSgA().get(i).getDay_e();
-					int s = sdf.parse(tmeDate).compareTo(sdf.parse(start));
-					int e = sdf.parse(tmeDate).compareTo(sdf.parse(end));
+					if(start == "" && end == "" ) {
+						sgId[i] = 0;
+						break;
+					}else {
+						int s = sdf.parse(tmeDate).compareTo(sdf.parse(start));
+						int e = sdf.parse(tmeDate).compareTo(sdf.parse(end));
 
-					if(s >= 0 && e <= 0) {
-							sgId[i] = alla.getSgA().get(i).getSgId();
-						}else {
-							sgId[i] = 0;
-						}
+							if(s >= 0 && e <= 0) {
+								sgId[i] = alla.getSgA().get(i).getSgId();
+							}else {
+								sgId[i] = 0;
+							}
 					}
+				}
 					//スコープに短期目標のIDが入った配列をセット
 					request.setAttribute("sgId",sgId);
 

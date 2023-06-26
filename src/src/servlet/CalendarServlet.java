@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.LgDAO;
+import dao.TodotbDAO;
+import model.AllA;
 
 /**
  * Servlet implementation class CalendarServlet
@@ -38,19 +39,22 @@ public class CalendarServlet extends HttpServlet {
 		Calendar calendar = Calendar.getInstance();
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
-		String displayDate = year + "-" + month + "-01";
+		String displayDate;
+		if(month < 10) {
+			displayDate = year + "-0" + month + "-01";
+		}else {
+			displayDate = year + "-" + month + "-01";
+		}
 
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
 
 		//ログインしている人の管理番号を取得
 		//Integer number = (Integer) session.getAttribute("管理番号の入った情報の名前");
-		//DAOを呼び出す
-		LgDAO ldao = new LgDAO();
-		//長期目標を取得
-		String lg = ldao.lg(1000, displayDate);//長期目標関係のデータを保持しているbeanのインスタンスを生成);
-		//リクエストスコープに長期目標を保存
-		request.setAttribute("long",lg);
+		//長期・短期目標、Todoと達成度を取得
+		TodotbDAO tdao = new TodotbDAO();
+		AllA alla = tdao.achieve(1000, displayDate);
+		request.setAttribute("a",alla);
 
 		// カレンダーへフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Calendar.jsp");

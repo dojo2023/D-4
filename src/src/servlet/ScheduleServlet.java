@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import dao.TasktbDAO;
 import dao.TodotbDAO;
 import model.AllA;
 import model.Memo;
+import model.Task;
 
 /**
  * Servlet implementation class ScheduleServlet
@@ -38,7 +40,6 @@ public class ScheduleServlet extends HttpServlet {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
 		}*/
-		//ちょっと待って！！カレンダーから遷移した場合の処理も書きます！！
 
 		//一日ごと変更させるために年月日の情報を取得する
         // monthCounterの値をセッションから取得
@@ -49,16 +50,39 @@ public class ScheduleServlet extends HttpServlet {
 		}else {
 			dc = 0;
 		}
-
 		//表示したい月の年月日を取得
 		Calendar calendar = Calendar.getInstance();
+		//カレンダーからページ遷移したかの判定を行う
+		//カレンダーから移動してきた場合の先月・来月の判定もやらないといけないかも
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String mYear = request.getParameter("YEAR");
+		if(mYear != null) { //空ではなかったら、カレンダーページから引き渡された数字からカレンダーセット
+				int moveYear = Integer.parseInt(mYear);
+				int moveMonth = Integer.parseInt(request.getParameter("MONTH"));
+				moveMonth = moveMonth - 1;
+				int moveDay = Integer.parseInt(request.getParameter("DAY"));
+				calendar.set(moveYear, moveMonth, moveDay);
+				//セッションスコープに保存
+				session.setAttribute("moveYear", moveYear);
+				session.setAttribute("moveMonth", moveMonth);
+				session.setAttribute("moveDay", moveDay);
+		}
 		int day = calendar.get(Calendar.DATE);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
+
 		//長期・短期目標、Todoを取得するための引数を作る
-		String displayDate = year + "-0" + month + "-01";
-		//メモを取得するための引数を作る
-		String tmeDate = year + "-0" + month + "-" + day;
+		//メモとタスクを取得するための引数を作る
+		String tmeDate;
+		String displayDate;
+		if(month < 10) {
+			displayDate = year + "-0" + month + "-01";
+			tmeDate = year + "-0" + month + "-" + day;
+		}else {
+			displayDate = year + "-" + month + "-01";
+			tmeDate = year + "-" + month + "-" + day;
+		}
 
 		//リクエストスコープに保存
 		request.setAttribute("displayday", day);
@@ -67,7 +91,6 @@ public class ScheduleServlet extends HttpServlet {
 
 		//セッションスコープに保存
 		session.setAttribute("dayCounter", dc);
-		session.setAttribute("tmeDate", tmeDate);
 
 		//セッションスコープからログインIDを取得
 		//int id = (Integer) session.getAttribute("id");
@@ -79,7 +102,8 @@ public class ScheduleServlet extends HttpServlet {
 
 		//タスクを取得
 		TasktbDAO tDao = new TasktbDAO();
-		request.setAttribute("taskL",tDao.task(1000, "2023-06-01"));
+		List<Task> taskList = tDao.task(1000, tmeDate);
+		request.setAttribute("task",taskList);
 
 		//メモを取得
 		MemotbDAO mDao = new MemotbDAO();
@@ -96,15 +120,20 @@ public class ScheduleServlet extends HttpServlet {
 		for(int i = 0; i < (alla.getSgA()).size(); i++) {
 			String start = alla.getSgA().get(i).getDay_s();
 			String end = alla.getSgA().get(i).getDay_e();
-			int s = sdf.parse(tmeDate).compareTo(sdf.parse(start));
-			int e = sdf.parse(tmeDate).compareTo(sdf.parse(end));
+			if(start == "" && end == "" ) {
+				sgId[i] = 0;
+				break;
+			}else {
+				int s = sdf.parse(tmeDate).compareTo(sdf.parse(start));
+				int e = sdf.parse(tmeDate).compareTo(sdf.parse(end));
 
-			if(s >= 0 && e <= 0) {
-					sgId[i] = alla.getSgA().get(i).getSgId();
-				}else {
-					sgId[i] = 0;
-				}
+					if(s >= 0 && e <= 0) {
+						sgId[i] = alla.getSgA().get(i).getSgId();
+					}else {
+						sgId[i] = 0;
+					}
 			}
+		}
 			//スコープに短期目標のIDが入った配列をセット
 			request.setAttribute("sgId",sgId);
 
