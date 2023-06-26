@@ -12,12 +12,12 @@ public class SgA implements Serializable {
 	private List<TodoA> TodoA;
 
 	//初期値設定
-	public SgA() {
+/*	public SgA() {
 		this.sgId = 0;
 		this.lgId = 0;
 		this.sAchieve = 0;
 	}
-
+*/
 	public List<TodoA> getTodoA() {
 		return TodoA;
 	}
@@ -35,7 +35,7 @@ public class SgA implements Serializable {
 	}
 
 	//SQLで配列に入れるためのメソッド
-	public SgA(int lgId, int sgId,String sg,String day_s,String day_e, int sAchieve ,List<TodoA> TodoA) {
+	public SgA(int sgId, int lgId,String sg,String day_s,String day_e, int sAchieve ,List<TodoA> TodoA) {
 		this.lgId = lgId;
 		this.sgId = sgId;
 		this.sg=sg;

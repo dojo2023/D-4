@@ -118,10 +118,15 @@ public class GoalRegistServlet extends HttpServlet {
 		String sgId1 = request.getParameter("sgId1");
 		// 短期目標１のToDo
 		String td1_1 = request.getParameter("td1_1");
+		String tdId1_1 = request.getParameter("tdId1_1");
 		String td1_2 = request.getParameter("td1_2");
+		String tdId1_2 = request.getParameter("tdId1_2");
 		String td1_3 = request.getParameter("td1_3");
+		String tdId1_3 = request.getParameter("tdId1_3");
 		String td1_4 = request.getParameter("td1_4");
+		String tdId1_4 = request.getParameter("tdId1_4");
 		String td1_5 = request.getParameter("td1_5");
+		String tdId1_5 = request.getParameter("tdId1_5");
 
 		//短期目標２
 		String sg2 = request.getParameter("sg2");
@@ -172,6 +177,7 @@ public class GoalRegistServlet extends HttpServlet {
 		// 受け取ったデータの表示
 		//データの処理
 
+
 		//長期目標
 		if (lg != null && lg != "") {
 			System.out.println("長期目標: " + lg);
@@ -201,50 +207,76 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//短期目標１のToDo
-		if (td1_1 != null && td1_1 != "") {
+		if (tdId1_1.equals("") || tdId1_1 == null) {
 			System.out.println("短期目標１のToDo1: " + td1_1);
 
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(number, Date, day_s_1, day_e_1, td1_1))) {
 				System.out.println("成功");
+
+			}
+		}else {
+			TodotbDAO todotbDao = new TodotbDAO();
+			if(todotbDao.updateTodo(new Todo(Integer.parseInt(tdId1_1), Integer.parseInt(sgId1), td1_1))) {
+
 			}
 		}
-		if (td1_2 != null && td1_2 != "") {
-			System.out.println("短期目標１のToDo2: " + td1_2);
+		if (tdId1_2.equals("") || tdId1_2 == null) {
+			System.out.println("短期目標１のToDo２: " + td1_2);
 
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(number, Date, day_s_1, day_e_1, td1_2))) {
 				System.out.println("成功");
 			}
+		}else {
+			TodotbDAO todotbDao = new TodotbDAO();
+			if(todotbDao.updateTodo(new Todo(Integer.parseInt(tdId1_2), Integer.parseInt(sgId1), td1_2))) {
+
+			}
 		}
-		if (td1_3 != null && td1_3 != "") {
-			System.out.println("短期目標１のToDo3: " + td1_3);
+		if (tdId1_3.equals("") || tdId1_3 == null) {
+			System.out.println("短期目標１のToDo３: " + td1_3);
 
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(number, Date, day_s_1, day_e_1, td1_3))) {
 				System.out.println("成功");
 			}
+		}else {
+			TodotbDAO todotbDao = new TodotbDAO();
+			if(todotbDao.updateTodo(new Todo(Integer.parseInt(tdId1_3), Integer.parseInt(sgId1), td1_3))) {
+
+			}
 		}
-		if (td1_4 != null && td1_4 != "") {
-			System.out.println("短期目標１のToDo4: " + td1_4);
+		if (tdId1_4.equals("") || tdId1_4 == null) {
+			System.out.println("短期目標１のToDo４: " + td1_4);
 
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(number, Date, day_s_1, day_e_1, td1_4))) {
 				System.out.println("成功");
 			}
+		}else {
+			TodotbDAO todotbDao = new TodotbDAO();
+			if(todotbDao.updateTodo(new Todo(Integer.parseInt(tdId1_4), Integer.parseInt(sgId1), td1_4))) {
+
+			}
 		}
-		if (td1_5 != null && td1_5 != "") {
-			System.out.println("短期目標１のToDo5: " + td1_5);
+		if (tdId1_5.equals("") || tdId1_5 == null) {
+			System.out.println("短期目標１のToDo５: " + td1_5);
 
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(number, Date, day_s_1, day_e_1, td1_5))) {
 				System.out.println("成功");
 			}
+		}else {
+			TodotbDAO todotbDao = new TodotbDAO();
+			if(todotbDao.updateTodo(new Todo(Integer.parseInt(tdId1_5), Integer.parseInt(sgId1), td1_5))) {
+
+			}
 		}
 
 		//短期目標２
 		if (sgId2.equals("") || sgId2 == null) {
-			System.out.println("短期目標１: " + sg2);
+			System.out.println("短期目標２: " + sg2);
 			System.out.println(day_s_2);
 			System.out.println(day_e_2);
 
