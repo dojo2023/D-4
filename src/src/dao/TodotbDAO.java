@@ -1,6 +1,7 @@
 //2023-06-22 15h
 //2023-06-23
 //2023-06-23 11h
+//2023-06-26 11h
 package dao;
 
 import java.sql.Connection;
@@ -305,7 +306,6 @@ public class TodotbDAO {
 									);
 									todoList.add(card);
 								}
-
 				//todoの個数を取得
 					int todonum=todoList.size();
 				//短期目標達成度を入力
@@ -346,12 +346,12 @@ public class TodotbDAO {
 								);
 								todoList.add(todo);
 						SgA card = new SgA(
-								0,
-								0,
-								"",
-								"",
-								"",
-								0,
+								sgidList.get(i),
+								lgid,
+								rs3.getString("SG"),
+								rs3.getString("DAY_S"),
+								rs3.getString("DAY_E"),
+								1000,
 								todoList
 								);
 								sgList.add(card);
