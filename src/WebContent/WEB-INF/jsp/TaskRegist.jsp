@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="model.Task"%>
+<%@page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -8,8 +10,7 @@
 <head>
 	<title>タスク追加</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/amature/css/commmon.css">
-	<link rel="stylesheet" href="/amature/css/task_regist.css">
+	<title>Insert title here</title>
 </head>
 
 <body>
@@ -21,41 +22,71 @@
 				<ul>
 					<li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
 					<li><a href="/amateur/CalendarServlet">カレンダー</a></li>
-						<li class="dropdown">
-						<a href="#">追加▽</a><!-- #で遷移なしの表示する？ -->
-							<div class="dropdown-content">
-								<a href="/amateur/GoalRegistServlet">目標追加画面</a>
-								<a href="/amateur/TaskRegistServlet">タスク追加画面</a>
-							</div>
-						</li>
-
+					<li id=add>追加</li>
 					<li><a href="/amateur/AchieveServlet">達成度</a></li>
-					<li class="current"><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
-					<!-- currentで選択ページの下に色線がつくから各ページ変える -->
-					<li id = "logout"><a href="/amateur/LogoutServlet">ログアウト</a></li>
+					<li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
 				</ul>
 			</nav>
 		</header>
 		<!-- メイン -->
 		<main class="main">
-			<h2>タスク追加</h2>
+		    <!-- 月を表示するためのボタン設定 -->
+<div class = "monthMove">
+<div class = "monthcontent">
+<a href = '/amatuer/TaskLastDayServlet' class = "prev"></a>
+</div>
+<div class = monthcontent><h3>
+	<span id = "year"><c:out value= "${displayYear}"/></span>年
+	<span id = "month"><c:out value= "${displayMonth}"/></span>月
+	<span id = "day"><c:out value= "${displayday}"/></span>日
+</h3></div>
+<div class = "monthcontent">
+<a href = '/amatuer/TaskNextDayServlet' class = "next"></a>
+</div>
+</div>
+			<h1>タスク</h1>
 			<!-- form -->
-			<form id="dataForm" action="/amature/TaskRegistServlet" method="POST">
-				<!-- +ボタンでコピーされるコピー元 -->
-				<div id="container" style="display: none;">
-					<input type="text" class="taskBox" name="task_0">
-					<input type="datetime-local"class="timesBox" name="times_0">
-					<input type="datetime-local"class="timeeBox" name="timee_0">
-				</div>
+			<%
+//まずリクエストスコープとセッションスコープからtaskを取ってくる
+List<Task> a = (List<Task>)request.getAttribute("task");
+ %>
+			<form id="dataForm" action="TaskRegistServlet" method="POST">
+				<%for(int i=0;i<a.size();i++){
+				out.print("<input type=\"text\" name=\"task_"+(i+1)+"\" value=\""+a.get(i).getTask()+"\">");
+				out.print("<input type=\"datetime-local\" step=\"1800\" name=\"times_"+(i+1)+"\" value=\""+a.get(i).getHour_s()+"\">");
+				out.print("<input type=\"datetime-local\" step=\"1800\" name=\"timee_"+(i+1)+"\" value=\""+a.get(i).getHour_e()+"\"><br>");
+				}
+				%>
+					<input type="text" class="taskBox" name="task0">
+					<input type="datetime-local"class="timesBox" name="times0"step="1800">
+					<input type="datetime-local"class="timeeBox" name="timee0"step="1800"><br>
 				<!-- ディスプレイ上の一個目 -->
-				<input type="text" id="task1" class="taskBox" name="task_1">
-				<input type="datetime-local"class="timesBox" name="times_1">
-				<input type="datetime-local"class="timeeBox" name="timee_1"><br>
+				<div id="container1" style="display: none;">
+					<input type="text" class="taskBox" name="task1">
+					<input type="datetime-local"class="timesBox" name="times1" step="1800">
+					<input type="datetime-local"class="timeeBox" name="timee1" step="1800"><br>
+				</div>
+				<div id="container2" style="display: none;">
+					<input type="text" class="taskBox" name="task2">
+					<input type="datetime-local"class="timesBox" name="times2"step="1800">
+					<input type="datetime-local"class="timeeBox" name="timee2"step="1800"><br>
+				</div>
+				<div id="container3" style="display: none;">
+					<input type="text" class="taskBox" name="task3">
+					<input type="datetime-local"class="timesBox" name="times3"step="1800">
+					<input type="datetime-local"class="timeeBox" name="timee3"step="1800"><br>
+				</div>
+				<div id="container4" style="display: none;">
+					<input type="text" class="taskBox" name="task4">
+					<input type="datetime-local"class="timesBox" name="times4"step="1800">
+					<input type="datetime-local"class="timeeBox" name="timee4"step="1800"><br>
+				</div>
 				<!-- taskを追加するためのボタン -->
-                <div id="plus">
-				<button type="button" onclick="addTaskBox()">+</button>
+				<button type="button" onclick="addTaskBox()">新規</button>
+				<div id="del" style="display: none;">
+				<button type="button" onclick="delTaskBox()">-</button>
+				</div>
 				<input id="taskcount" type="hidden" value="" name="length">
-                </div>
 				<!-- 登録ボタン -->
                 <div id="register">
 				<input type="submit" value="登録">
@@ -63,52 +94,32 @@
 			</form>
 
 		</main>
-		<footer>
-		<p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
-
-	</footer>
 	</div>
-	<script>
+<script>
+		var i=0;
 		function addTaskBox() {
-			var container = document.getElementById("container").cloneNode(true);
-			container.style.display = "block";
-			console.log(container);//<div id="container" style="display: block;">
-			// 追加するtaskBoxの名前を task_ + 今の個数にする
-			let taskBoxName = "task_" + document.getElementsByClassName("taskBox").length;
-			let timesBoxName = "times_" + document.getElementsByClassName("timesBox").length;
-			let timeeBoxName = "timee_" + document.getElementsByClassName("timeeBox").length;
-			console.log(taskBoxName);//task_2
-			// 追加するtaskBoxを取得
-			let taskbox = container.getElementsByClassName("taskBox")[0];
-			taskbox.name = taskBoxName;
-			console.log(taskbox.name);//task_2
-			console.log(taskbox);//<input class="taskBox" type="text" name="task_2">
-			console.log(container.getElementsByClassName("timesBox")[0]);
-			console.log(container.getElementsByClassName("timesBox")[0].name = timesBoxName);
-			container.getElementsByClassName("timesBox")[0].name = timesBoxName;
-			container.getElementsByClassName("timeeBox")[0].name = timeeBoxName;
-			//taskの個数を送信するために格納
-			var taskboxCount = document.getElementsByName("taskBox").length;
-			var taskcountInput = document.getElementById("taskcount");
-			taskcountInput.value = taskboxCount;
-
-			// タスクボックスを追加する位置を特定
-			var task1 = document.getElementById("task1");
-			// タスクボックスを追加
-			task1.parentNode.insertBefore(container, null);//第二引数task1.nextSibling
-
-			var deleteButton = document.createElement("button");
-			deleteButton.innerText = "-";
-			deleteButton.onclick = function () {
-				var taskContainer = deleteButton.parentNode;
-				taskContainer.parentNode.removeChild(taskContainer);
-			}
-			container.appendChild(deleteButton);
-
+			 if(i<4){
+				 i++;
+				 var elementPage1 = document.getElementById( "container"+i );
+				 elementPage1.style.display = 'block';
+			 }
+			 if(i>0){
+				 var elementPage2 = document.getElementById( "del" );
+				 elementPage2.style.display = 'block';
+			 }
+		}
+		function delTaskBox(){
+			 if(i>0){
+				 var elementPage3 = document.getElementById( "container"+i );
+				 elementPage3.style.display = 'none';
+					i--;
+				}
+			 if(i<1){
+				 var elementPage2 = document.getElementById( "del" );
+				 elementPage2.style.display = 'none';
+			 }
 		}
 	</script>
-	<div class="footer">
-        &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
 </body>
 
 </html>
