@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="/amateur/css/fabicon.png">
+<link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
 <link rel ="stylesheet" href="/amateur/css/schedule.css">
 <link rel="stylesheet" href="/amateur/css/common.css">
 <title>1日のスケジュール</title>

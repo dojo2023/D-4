@@ -7,7 +7,56 @@ h2 {
     text-align: center;
     color: #2fe791;
 }
-
+.goalcontent{
+	border-top: dashed 1.5px #00fa9a;
+}
+/*年月日を動かす所*/
+.monthMove {
+	display: flex;
+	padding: 5px;
+	align-items: center;
+	justify-content: center;
+	margin-left: 190px;
+	margin-right:170px;
+	height: 40px;
+	padding-top: 30px;
+}
+.monthcontent {
+	margin: 10px;
+}
+/*三角を作る*/
+.prev {
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #20b2aa transparent transparent;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.next {
+	border-style: solid;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent transparent transparent #20b2aa;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+.prev a:hover {
+	border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #66cdaa transparent transparent;
+    display: inline-block;
+    width: 0;
+    height: 0
+}
+.next a:hover {
+	border-style: solid;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent transparent transparent #66cdaa;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
 
 
 #lgInput {
@@ -15,56 +64,51 @@ h2 {
     font-size: 30px;
     border: 3px solid #2fe791;
 }
-
+#lgInput:focus {
+  outline: 0;
+  border: 2px solid #ff69b4;
+}
 .long {
     font-size: 200%;
     text-align: center;
     margin: 2%;
 }
-
+/*短期目標*/
 .short {
     font-size: 140%;
     position: relative;
     margin: 0 0 250px 0;
 }
-
-#sgInput1 {
-    width: 70%;
+.sg{
+	width: 260px;
+	height: 20px;
     font-size: 20px;
-    transform: translate(15%, 0%);
+    border-radius: 5px;
+  	border: 2px solid #c8c8c8;
 }
-
+.sg:focus {
+  outline: 0;
+  border: 2px solid #00fa9a;
+}
 #sgStart {
     font-size: 15px;
+    border-radius: 5px;
+  	border: 2px solid #c8c8c8;
+}
+#sgStart:focus{
+	outline: 0;
+  	border: 2px solid #00fa9a;
 }
 #sgEnd {
+    margin-left: 12px;
     font-size: 15px;
+    border-radius: 5px;
+  	border: 2px solid #c8c8c8;
 }
-
-#sgInput2 {
-    width: 70%;
-    font-size: 20px;
-    transform: translate(15%, 0%);
+#sgEnd:focus{
+	outline: 0;
+  	border: 2px solid #00fa9a;
 }
-
-#sgInput3 {
-    width: 70%;
-    font-size: 20px;
-    transform: translate(15%, 0%);
-}
-
-#sgInput4{
-    width: 70%;
-    font-size: 20px;
-    transform: translate(15%, 0%);
-}
-
-#sgInput5 {
-    width: 70%;
-    font-size: 20px;
-    transform: translate(15%, 0%);
-}
-
 .first {
     position:absolute;
     position: relative;
@@ -94,7 +138,7 @@ h2 {
 
 .fourth {
     position:absolute;
-    top:100%;
+    top:130%;
     left:17%;
     width: 30%;
     height:230px;
@@ -103,142 +147,30 @@ h2 {
 
 .fifth {
     position:absolute;
-    top:100%;
+    top:130%;
     left:55%;
     width: 30%;
     height:230px;
+    margin-bottom: 20px;
      /*border: 1px solid #2fe791;*/
 }
 
 /* それぞれのToDoグループのCSS↓ */
-#tdInput1_1 {
-    width: 90%;
+.todo{
+	width: 90%;
     font-size: 15px;
+    font-size: 20px;
+    border-radius: 5px;
+  	border: 2px solid #c8c8c8;
 }
-
-#tdInput1_2 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput1_3 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput1_4 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput1_5 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput2_1 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput2_2 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput2_3 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput2_4 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput2_5 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput3_1 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput3_2 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput3_3 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput3_4 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput3_5 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput4_1 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput4_2 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput4_3 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput4_4 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput4_5 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput5_1 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput5_2 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput5_3 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput5_4 {
-    width: 90%;
-    font-size: 15px;
-}
-
-#tdInput5_5 {
-    width: 90%;
-    font-size: 15px;
+.sg:focus {
+  outline: 0;
+  border: 2px solid #00fa9a;
 }
 /* ToDoグループここまで */
 
 /* 登録ボタン */
-.btn {
+#regist {
     background: linear-gradient(to bottom, #50dbaa, #50dbc8);
     color: #FFFFFF;
     border: none;
@@ -247,11 +179,17 @@ h2 {
     border-radius: 0.25em;
     height: 40px;
     width: 150px;
-    margin-left: 10%;
+    top: 200%;
+    margin-left: 42%;
+    margin-top: 15%;
+
 }
-.btn:hover {
+#regist:hover {
     background: linear-gradient(to bottom, #0b9f50, #91cb0b);
 }
-.btn:active {
+#regist:active {
     transform: translateY(2px);
+}
+footer{
+	margin-top: 60px;
 }

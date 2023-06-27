@@ -11,26 +11,36 @@
 	<title>タスク追加</title>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
+	<link rel ="stylesheet" href="/amateur/css/task_regist.css">
+	<link rel="stylesheet" href="/amateur/css/common.css">
 </head>
 
 <body>
 	<div class=wrapper>
 		<!-- ヘッダー -->
-		<header class=header>
+		<header class= "header">
+		<img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
 			<h1>アプリ名</h1>
 			<nav class="nav">
-				<ul>
-					<li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
-					<li><a href="/amateur/CalendarServlet">カレンダー</a></li>
-					<li id=add>追加</li>
-					<li><a href="/amateur/AchieveServlet">達成度</a></li>
-					<li><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
-				</ul>
-			</nav>
+			<ul>
+				<li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
+                            <li><a href="/amateur/CalendarServlet">カレンダー</a></li>
+                                <li class="dropdown">
+                                <a href="#">追加▽</a>
+                                    <div class="dropdown-content">
+                                        <a href="/amateur/GoalRegistServlet">目標追加画面</a>
+                                        <a href="/amateur/TaskRegistServlet">タスク追加画面</a>
+                                    </div>
+                                </li>
+                            <li><a href="/amateur/AchieveServlet">達成度</a></li>
+                         <li class="current"><a href="/amateur/ExplanationServlet">アプリの使い方</a></li>
+                     <li id = "logout"><a href="/amateur/LogoutServlet">ログアウト</a></li>
+			</ul>
+		</nav>
 		</header>
-		<!-- メイン -->
-		<main class="main">
-		    <!-- 月を表示するためのボタン設定 -->
+<!-- メイン -->
+<!-- 月を表示するためのボタン設定 -->
 <div class = "monthMove">
 <div class = "monthcontent">
 <a href = '/amatuer/TaskLastDayServlet' class = "prev"></a>
@@ -44,57 +54,58 @@
 <a href = '/amatuer/TaskNextDayServlet' class = "next"></a>
 </div>
 </div>
-			<h1>タスク</h1>
 			<!-- form -->
-			<%
+<%
 //まずリクエストスコープとセッションスコープからtaskを取ってくる
 List<Task> a = (List<Task>)request.getAttribute("task");
  %>
+ 		<div class = "taskContener">
 			<form id="dataForm" action="TaskRegistServlet" method="POST">
 				<%for(int i=0;i<a.size();i++){
-				out.print("<input type=\"text\" name=\"task_"+(i+1)+"\" value=\""+a.get(i).getTask()+"\">");
-				out.print("<input type=\"datetime-local\" step=\"1800\" name=\"times_"+(i+1)+"\" value=\""+a.get(i).getHour_s()+"\">");
-				out.print("<input type=\"datetime-local\" step=\"1800\" name=\"timee_"+(i+1)+"\" value=\""+a.get(i).getHour_e()+"\"><br>");
+				out.print("<input type=\"text\" name=\"task_"+(i+1)+"\" value=\""+a.get(i).getTask()+"\" class = \"taskBox\">");
+				out.print("<input type=\"datetime-local\" step=\"3600\" name=\"times_"+(i+1)+"\" value=\""+a.get(i).getHour_s()+"\">");
+				out.print("<input type=\"datetime-local\" step=\"3600\" name=\"timee_"+(i+1)+"\" value=\""+a.get(i).getHour_e()+"\"><br>");
 				}
 				%>
 					<input type="text" class="taskBox" name="task0">
-					<input type="datetime-local"class="timesBox" name="times0"step="1800">
-					<input type="datetime-local"class="timeeBox" name="timee0"step="1800"><br>
+					<input type="datetime-local"class="timesBox" name="times0"step="3600">
+					<input type="datetime-local"class="timeeBox" name="timee0"step="3600"><br>
 				<!-- ディスプレイ上の一個目 -->
 				<div id="container1" style="display: none;">
 					<input type="text" class="taskBox" name="task1">
-					<input type="datetime-local"class="timesBox" name="times1" step="1800">
-					<input type="datetime-local"class="timeeBox" name="timee1" step="1800"><br>
+					<input type="datetime-local"class="timesBox" name="times1" step="3600">
+					<input type="datetime-local"class="timeeBox" name="timee1" step="3600"><br>
 				</div>
 				<div id="container2" style="display: none;">
 					<input type="text" class="taskBox" name="task2">
-					<input type="datetime-local"class="timesBox" name="times2"step="1800">
-					<input type="datetime-local"class="timeeBox" name="timee2"step="1800"><br>
+					<input type="datetime-local"class="timesBox" name="times2"step="3600">
+					<input type="datetime-local"class="timeeBox" name="timee2"step="3600"><br>
 				</div>
 				<div id="container3" style="display: none;">
 					<input type="text" class="taskBox" name="task3">
-					<input type="datetime-local"class="timesBox" name="times3"step="1800">
-					<input type="datetime-local"class="timeeBox" name="timee3"step="1800"><br>
+					<input type="datetime-local"class="timesBox" name="times3"step="3600">
+					<input type="datetime-local"class="timeeBox" name="timee3"step="3600"><br>
 				</div>
 				<div id="container4" style="display: none;">
 					<input type="text" class="taskBox" name="task4">
-					<input type="datetime-local"class="timesBox" name="times4"step="1800">
-					<input type="datetime-local"class="timeeBox" name="timee4"step="1800"><br>
+					<input type="datetime-local"class="timesBox" name="times4"step="3600">
+					<input type="datetime-local"class="timeeBox" name="timee4"step="3600"><br>
 				</div>
 				<!-- taskを追加するためのボタン -->
-				<button type="button" onclick="addTaskBox()">新規</button>
+				<div class = "buttonContainer">
+				<button type="button" onclick="addTaskBox()" class = "add">新規タスク追加</button>
 				<div id="del" style="display: none;">
-				<button type="button" onclick="delTaskBox()">-</button>
+				<button type="button" onclick="delTaskBox()" class = "deleate">削除</button>
 				</div>
-				<input id="taskcount" type="hidden" value="" name="length">
+				<input id="taskcount" type="hidden" value="<%out.print(a.size()); %>" name="length">
 				<!-- 登録ボタン -->
                 <div id="register">
-				<input type="submit" value="登録">
+				<input type="submit" value="登録" id = "taskRegist">
+                </div>
                 </div>
 			</form>
+		</div>
 
-		</main>
-	</div>
 <script>
 		var i=0;
 		function addTaskBox() {
@@ -120,6 +131,11 @@ List<Task> a = (List<Task>)request.getAttribute("task");
 			 }
 		}
 	</script>
+
+	<footer class="footer">
+        &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
+    </footer>
+</div>
 </body>
 
 </html>
