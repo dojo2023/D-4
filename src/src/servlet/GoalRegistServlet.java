@@ -601,7 +601,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 		//短期目標５
 		if (sgId5.equals("") || sgId5 == null) {
-			if(!sg3.equals("")) {
+			if(!sg5.equals("")) {
 			System.out.println("短期目標５: " + sg5);
 			System.out.println(day_s_5);
 			System.out.println(day_e_5);
@@ -696,12 +696,11 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		// 他の処理を追加することも可能
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
-		dispatcher.forward(request, response);
+		  String url = "/WEB-INF/jsp/GoalRegist.jsp";
+
+		  response.sendRedirect(url);
 		// レスポンスの設定
-		response.setContentType("text/html");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().println("データの受け取りが完了しました");
+
 	}
 
 }
