@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.TasktbDAO;
+import model.LoginUser;
 import model.Task;
 
 /**
@@ -34,6 +37,8 @@ public class TaskNextDayServlet extends HttpServlet {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
 			}
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
 		//一日ごと変更させるために年月日の情報を取得する
 		// monthCounterの値をセッションから取得
 		Integer dc = (Integer) session.getAttribute("dayCounter");
@@ -54,8 +59,6 @@ public class TaskNextDayServlet extends HttpServlet {
 		int day = calendar.get(Calendar.DATE);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
-		//長期・短期目標、Todoを取得するための引数を作る
-		String displayDate = year + "-" + month + "-01";
 		//メモを取得するための引数を作る
 		String memoDate = year + "-" + month + "-" + day;
 		//taskを取得
@@ -78,23 +81,42 @@ public class TaskNextDayServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-				/*		HttpSession session = request.getSession();
-						if (session.getAttribute("id") == null) {
-							response.sendRedirect("/bc/LoginServlet");
-							return;
-						}*/int number=1000;
-						// リクエストパラメータを取得する
-						request.setCharacterEncoding("UTF-8");
-						//タスクの数を取得
-						int num=Integer.parseInt(request.getParameter("length"));
-						TasktbDAO bDao=new TasktbDAO();
-						for(int i=0;i<num;i++) {
-							bDao.updateTask(new Task(number,request.getParameter("times_"+(i+1)),request.getParameter("timee_"+(i+1)),request.getParameter("task_"+(i+1))));
-						}
+		HttpSession session = request.getSession();
+		if (session.getAttribute("id") == null) {
+			response.sendRedirect("/bc/LoginServlet");
+			return;
+		}
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		//タスクの数を取得
+		int num=Integer.parseInt(request.getParameter("length"));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-						// 結果ページにフォワードする
-						RequestDispatcher dispatcher = request.getRequestDispatcher("TaskRegistServlet");
-						dispatcher.forward(request, response);
+
+		TasktbDAO bDao=new TasktbDAO();
+		for(int i=0;i<num;i++) {
+			bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times_"+(i+1))).format(formatter),LocalDateTime.parse(request.getParameter("timee_"+(i+1))).format(formatter),request.getParameter("task_"+(i+1))));
+		}
+		if(!(request.getParameter("task0").equals(""))) {
+		bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times0")).format(formatter),LocalDateTime.parse(request.getParameter("timee0")).format(formatter),request.getParameter("task0")));
+		}
+		if(!(request.getParameter("task1").equals(""))) {
+			bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times1")).format(formatter),LocalDateTime.parse(request.getParameter("timee1")).format(formatter),request.getParameter("task1")));
+			}
+		if(!(request.getParameter("task2").equals(""))) {
+			bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times2")).format(formatter),LocalDateTime.parse(request.getParameter("timee2")).format(formatter),request.getParameter("task2")));
+			}
+		if(!(request.getParameter("task3").equals(""))) {
+			bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times3")).format(formatter),LocalDateTime.parse(request.getParameter("timee3")).format(formatter),request.getParameter("task3")));
+			}
+		if(!(request.getParameter("task4").equals(""))) {
+			bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times4")).format(formatter),LocalDateTime.parse(request.getParameter("timee4")).format(formatter),request.getParameter("task4")));
+			}
+		// 結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("TaskRegistServlet");
+		dispatcher.forward(request, response);
 	}
 
 }
