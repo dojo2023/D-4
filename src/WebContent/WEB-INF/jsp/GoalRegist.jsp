@@ -44,7 +44,7 @@
 				<!-- 現在の年月を表示 -->
 				<div class="monthMove">
 					<div class="monthcontent">
-						<a href='/simpleBC/GoalLastMonthServlet' class="prev"></a>
+						<a href='/amateur/GoalLastMonthServlet' class="prev"></a>
 					</div>
 					<div class=monthcontent>
 						<h3>
@@ -55,7 +55,7 @@
 						</h3>
 					</div>
 					<div class="monthcontent">
-						<a href='/simpleBC/GoalNextMonthServlet' class="next"></a>
+						<a href='/amateur/GoalNextMonthServlet' class="next"></a>
 					</div>
 				</div>
 
@@ -103,23 +103,23 @@ AllA a = (AllA)request.getAttribute("a");
 				<input type='date' id='sgStart' name='day_s_2' placeholder='開始'value='<%if(a.getSgA().size()>1){out.print(a.getSgA().get(1).getDay_s());}%>'>
 				<input type='date' id='sgEnd' name='day_e_2' placeholder='終了'value='<%if(a.getSgA().size()>1){out.print(a.getSgA().get(1).getDay_e());}%>'><br>
 
-				<input type="hidden" name="sgId2" value='<%if(a.getSgA().size()>1){a.getSgA().get(1).getSgId();}%>'>
+				<input type="hidden" name="sgId2" value='<%if(a.getSgA().size()>1){out.print(a.getSgA().get(1).getSgId());}%>'>
 
 				<!-- 短期目標２のToDoグループ -->
 				<input id='tdInput2_1' class = 'todo' type='text' name='td2_1' placeholder='todo' value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>0){out.print( a.getSgA().get(1).getTodoA().get(0).getTodo());}%>'><br>
-				<input type="hidden" name="tdId2_1" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>0){a.getSgA().get(1).getTodoA().get(0).getTodoId();} %>'>
+				<input type="hidden" name="tdId2_1" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>0){out.print(a.getSgA().get(1).getTodoA().get(0).getTodoId());} %>'>
 
 				<input id='tdInput2_2' class = 'todo' type='text' name='td2_2' placeholder='todo' value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>1){out.print( a.getSgA().get(1).getTodoA().get(1).getTodo());}%>'><br>
-				<input type="hidden" name="tdId2_2" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>1){a.getSgA().get(1).getTodoA().get(1).getTodoId();} %>'>
+				<input type="hidden" name="tdId2_2" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>1){out.print(a.getSgA().get(1).getTodoA().get(1).getTodoId());} %>'>
 
 				<input id='tdInput2_3' class = 'todo' type='text' name='td2_3' placeholder='todo' value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>2){out.print( a.getSgA().get(1).getTodoA().get(2).getTodo());}%>'><br>
-				<input type="hidden" name="tdId2_3" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>2){a.getSgA().get(1).getTodoA().get(2).getTodoId();} %>'>
+				<input type="hidden" name="tdId2_3" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>2){out.print(a.getSgA().get(1).getTodoA().get(2).getTodoId());} %>'>
 
 				<input id='tdInput2_4' class = 'todo' type='text' name='td2_4' placeholder='todo' value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>3){out.print( a.getSgA().get(1).getTodoA().get(3).getTodo());}%>'><br>
-				<input type="hidden" name="tdId2_4" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>3){a.getSgA().get(1).getTodoA().get(3).getTodoId();} %>'>
+				<input type="hidden" name="tdId2_4" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>3){out.print(a.getSgA().get(1).getTodoA().get(3).getTodoId());} %>'>
 
 				<input id='tdInput2_5' class = 'todo' type='text' name='td2_5' placeholder='todo' value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>4){out.print( a.getSgA().get(1).getTodoA().get(4).getTodo());}%>'><br>
-				<input type="hidden" name="tdId2_5" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>4){a.getSgA().get(1).getTodoA().get(4).getTodoId();} %>'>
+				<input type="hidden" name="tdId2_5" value='<%if(a.getSgA().size()>1&&a.getSgA().get(1).getTodoA().size()>4){out.print(a.getSgA().get(1).getTodoA().get(4).getTodoId());} %>'>
 </div>
 				<!-- 短期目標３ -->
 				<div class="third">
@@ -127,23 +127,23 @@ AllA a = (AllA)request.getAttribute("a");
 				<input type='date' id='sgStart' name='day_s_3' placeholder='開始'value='<%if(a.getSgA().size()>2){out.print(a.getSgA().get(2).getDay_s());}%>'>
 				<input type='date' id='sgEnd' name='day_e_3' placeholder='終了'value='<%if(a.getSgA().size()>2){out.print(a.getSgA().get(2).getDay_e());}%>'><br>
 
-				<input type="hidden" name="sgId3" value='<%if(a.getSgA().size()>2){a.getSgA().get(2).getSgId();}%>'>
+				<input type="hidden" name="sgId3" value='<%if(a.getSgA().size()>2){out.print(a.getSgA().get(2).getSgId());}%>'>
 
 				<!-- 短期目標３のToDoグループ -->
 				<input id='tdInput3_1' class = 'todo' type='text' name='td3_1' placeholder='todo' value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>0){out.print( a.getSgA().get(2).getTodoA().get(0).getTodo());}%>'><br>
-				<input type="hidden" name="tdId3_1" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>0){a.getSgA().get(2).getTodoA().get(0).getTodoId();} %>'>
+				<input type="hidden" name="tdId3_1" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>0){out.print(a.getSgA().get(2).getTodoA().get(0).getTodoId());} %>'>
 
 				<input id='tdInput3_2' class = 'todo' type='text' name='td3_2' placeholder='todo' value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>1){out.print( a.getSgA().get(2).getTodoA().get(1).getTodo());}%>'><br>
-				<input type="hidden" name="tdId3_2" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>1){a.getSgA().get(2).getTodoA().get(1).getTodoId();} %>'>
+				<input type="hidden" name="tdId3_2" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>1){out.print(a.getSgA().get(2).getTodoA().get(1).getTodoId());} %>'>
 
 				<input id='tdInput3_3' class = 'todo' type='text' name='td3_3' placeholder='todo' value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>2){out.print( a.getSgA().get(2).getTodoA().get(2).getTodo());}%>'><br>
-				<input type="hidden" name="tdId3_3" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>2){a.getSgA().get(2).getTodoA().get(2).getTodoId();} %>'>
+				<input type="hidden" name="tdId3_3" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>2){out.print(a.getSgA().get(2).getTodoA().get(2).getTodoId());} %>'>
 
 				<input id='tdInput3_4' class = 'todo' type='text' name='td3_4' placeholder='todo' value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>3){out.print( a.getSgA().get(2).getTodoA().get(3).getTodo());}%>'><br>
-				<input type="hidden" name="tdId3_4" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>3){a.getSgA().get(2).getTodoA().get(3).getTodoId();} %>'>
+				<input type="hidden" name="tdId3_4" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>3){out.print(a.getSgA().get(2).getTodoA().get(3).getTodoId());} %>'>
 
 				<input id='tdInput3_5' class = 'todo' type='text' name='td3_5' placeholder='todo' value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>4){out.print( a.getSgA().get(2).getTodoA().get(4).getTodo());}%>'><br>
-				<input type="hidden" name="tdId3_5" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>4){a.getSgA().get(2).getTodoA().get(4).getTodoId();} %>'>
+				<input type="hidden" name="tdId3_5" value='<%if(a.getSgA().size()>2&&a.getSgA().get(2).getTodoA().size()>4){out.print(a.getSgA().get(2).getTodoA().get(4).getTodoId());} %>'>
 </div>
 				<!-- 短期目標４ -->
 				<div class="fourth">
@@ -151,23 +151,23 @@ AllA a = (AllA)request.getAttribute("a");
 				<input type='date' id='sgStart' name='day_s_4' placeholder='開始'value='<%if(a.getSgA().size()>3){out.print(a.getSgA().get(3).getDay_s());}%>'>
 				<input type='date' id='sgEnd' name='day_e_4' placeholder='終了'value='<%if(a.getSgA().size()>3){out.print(a.getSgA().get(3).getDay_e());}%>'><br>
 
-				<input type="hidden" name="sgId4" value='<%if(a.getSgA().size()>3){a.getSgA().get(3).getSgId();}%>'>
+				<input type="hidden" name="sgId4" value='<%if(a.getSgA().size()>3){out.print(a.getSgA().get(3).getSgId());}%>'>
 
 				<!-- 短期目標４のToDoグループ -->
 				<input id='tdInput4_1' class = 'todo' type='text' name='td4_1' placeholder='todo' value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>0){out.print( a.getSgA().get(3).getTodoA().get(0).getTodo());}%>'><br>
-				<input type="hidden" name="tdId4_1" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>0){a.getSgA().get(3).getTodoA().get(0).getTodoId();} %>'>
+				<input type="hidden" name="tdId4_1" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>0){out.print(a.getSgA().get(3).getTodoA().get(0).getTodoId());} %>'>
 
 				<input id='tdInput4_2' class = 'todo' type='text' name='td4_2' placeholder='todo' value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>1){out.print( a.getSgA().get(3).getTodoA().get(1).getTodo());}%>'><br>
-				<input type="hidden" name="tdId4_2" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>1){a.getSgA().get(3).getTodoA().get(1).getTodoId();} %>'>
+				<input type="hidden" name="tdId4_2" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>1){out.print(a.getSgA().get(3).getTodoA().get(1).getTodoId());} %>'>
 
 				<input id='tdInput4_3' class = 'todo' type='text' name='td4_3' placeholder='todo' value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>2){out.print( a.getSgA().get(3).getTodoA().get(2).getTodo());}%>'><br>
-				<input type="hidden" name="tdId4_3" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>2){a.getSgA().get(3).getTodoA().get(2).getTodoId();} %>'>
+				<input type="hidden" name="tdId4_3" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>2){out.print(a.getSgA().get(3).getTodoA().get(2).getTodoId());} %>'>
 
 				<input id='tdInput4_4' class = 'todo' type='text' name='td4_4' placeholder='todo' value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>3){out.print( a.getSgA().get(3).getTodoA().get(3).getTodo());}%>'><br>
-				<input type="hidden" name="tdId4_4" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>3){a.getSgA().get(3).getTodoA().get(3).getTodoId();} %>'>
+				<input type="hidden" name="tdId4_4" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>3){out.print(a.getSgA().get(3).getTodoA().get(3).getTodoId());} %>'>
 
 				<input id='tdInput4_5' class = 'todo' type='text' name='td4_5' placeholder='todo' value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>4){out.print( a.getSgA().get(3).getTodoA().get(4).getTodo());}%>'><br>
-				<input type="hidden" name="tdId4_5" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>4){a.getSgA().get(3).getTodoA().get(4).getTodoId();} %>'>
+				<input type="hidden" name="tdId4_5" value='<%if(a.getSgA().size()>3&&a.getSgA().get(3).getTodoA().size()>4){out.print(a.getSgA().get(3).getTodoA().get(4).getTodoId());} %>'>
 </div>
 				<!-- 短期目標５ -->
 				<div class="fifth">
@@ -175,23 +175,23 @@ AllA a = (AllA)request.getAttribute("a");
 				<input type='date' id='sgStart' name='day_s_5' placeholder='開始'value='<%if(a.getSgA().size()>4){out.print(a.getSgA().get(4).getDay_s());}%>'>
 				<input type='date' id='sgEnd' name='day_e_5' placeholder='終了'value='<%if(a.getSgA().size()>4){out.print(a.getSgA().get(4).getDay_e());}%>'><br>
 
-				<input type="hidden" name="sgId5" value='<%if(a.getSgA().size()>4){a.getSgA().get(4).getSgId();}%>'>
+				<input type="hidden" name="sgId5" value='<%if(a.getSgA().size()>4){out.print(a.getSgA().get(4).getSgId());}%>'>
 
 				<!-- 短期目標５のToDoグループ -->
 				<input id='tdInput5_1' class = 'todo' type='text' name='td5_1' placeholder='todo' value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>0){out.print( a.getSgA().get(4).getTodoA().get(0).getTodo());}%>'><br>
-				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>0){a.getSgA().get(4).getTodoA().get(0).getTodoId();} %>'>
+				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>0){out.print(a.getSgA().get(4).getTodoA().get(0).getTodoId());} %>'>
 
 				<input id='tdInput5_2' class = 'todo' type='text' name='td5_2' placeholder='todo' value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>1){out.print( a.getSgA().get(4).getTodoA().get(1).getTodo());}%>'><br>
-				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>1){a.getSgA().get(4).getTodoA().get(1).getTodoId();} %>'>
+				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>1){out.print(a.getSgA().get(4).getTodoA().get(1).getTodoId());} %>'>
 
 				<input id='tdInput5_3' class = 'todo' type='text' name='td5_3' placeholder='todo' value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>2){out.print( a.getSgA().get(4).getTodoA().get(2).getTodo());}%>'><br>
-				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>2){a.getSgA().get(4).getTodoA().get(2).getTodoId();} %>'>
+				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>2){out.print(a.getSgA().get(4).getTodoA().get(2).getTodoId());} %>'>
 
 				<input id='tdInput5_4' class = 'todo' type='text' name='td5_4' placeholder='todo' value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>3){out.print( a.getSgA().get(4).getTodoA().get(3).getTodo());}%>'><br>
-				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>3){a.getSgA().get(4).getTodoA().get(3).getTodoId();} %>'>
+				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>3){out.print(a.getSgA().get(4).getTodoA().get(3).getTodoId());} %>'>
 
 				<input id='tdInput5_5' class = 'todo' type='text' name='td5_5' placeholder='todo' value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>4){out.print( a.getSgA().get(4).getTodoA().get(4).getTodo());}%>'><br>
-				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>4){a.getSgA().get(4).getTodoA().get(4).getTodoId();} %>'>
+				<input type="hidden" name="tdId5_" value='<%if(a.getSgA().size()>4&&a.getSgA().get(4).getTodoA().size()>4){out.print(a.getSgA().get(4).getTodoA().get(4).getTodoId());} %>'>
 </div>
 </div>
 </div>
