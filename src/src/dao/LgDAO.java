@@ -1,4 +1,5 @@
 //2023-06-26 h11
+//2023-06-27 h14
 package dao;
 
 import java.sql.Connection;
@@ -72,7 +73,7 @@ public class LgDAO{
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 			// SQL文を準備する
-			String sql = "select COUNT(*),LGID from LGOAL where NUMBER=? and MONTH=?";
+			String sql = "select COUNT(*) from LGOAL where NUMBER=? and MONTH=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 				pStmt.setInt(1, goal.getNumber());
@@ -85,7 +86,18 @@ public class LgDAO{
 			if (rs.getInt("count(*)") == 1) {
 				result1 = true;
 			}
-			int lgid=rs.getInt("LGID");
+			// SQL文を準備する
+						String sql3 = "select LGID from LGOAL where NUMBER=? and MONTH=?";
+						PreparedStatement pStmt3 = conn.prepareStatement(sql3);
+						// SQL文を完成させる
+							pStmt3.setInt(1, goal.getNumber());
+							pStmt3.setString(2, goal.getMonth());
+						// SELECT文を実行し、結果表を取得する
+						ResultSet rs3 = pStmt3.executeQuery();
+						int lgid=0;
+						if(rs3.next()) {
+							lgid=rs3.getInt("LGID");
+						}
 
 			//長期目標がある場合変更
 			if(result1) {
