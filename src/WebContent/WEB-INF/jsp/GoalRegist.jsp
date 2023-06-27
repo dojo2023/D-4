@@ -40,7 +40,7 @@
 		</header>
 		<!-- メイン -->
 		<main class="main">
-			<form id="dataForm" action="GoalRegistServlet" method="POST">
+			<form id="dataForm" action="/amateur/GoalRegistServlet" method="POST">
 				<!-- 現在の年月を表示 -->
 				<div class="monthMove">
 					<div class="monthcontent">

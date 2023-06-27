@@ -26,13 +26,11 @@ public class AchieveNextMonthServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//ログインされていなかったときの処理
-		/*HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
-		}*/
-		// セッションを取得
-        HttpSession session = request.getSession(true);
+		}
         // monthCounterの値をセッションから取得
         Integer mc = (Integer) session.getAttribute("monthCounter");
         //翌月なので+1
@@ -106,16 +104,8 @@ public class AchieveNextMonthServlet extends HttpServlet {
 		}
 
 
-		// レスポンスの設定
-		response.setContentType("text/html");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().println("データの受け取りが完了しました");
-		response.getWriter().println("<a href = /simpleBC/AchieveServlet >達成度に戻る</a>");
-
 		//達成度入力ページへフォワード
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
-		//dispatcher.forward(request, response);
-
+		response.sendRedirect("/amateur/ScheduleServlet");
 	}
 
 }

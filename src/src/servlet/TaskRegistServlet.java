@@ -119,8 +119,7 @@ public class TaskRegistServlet extends HttpServlet {
 					bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times4")).format(formatter),LocalDateTime.parse(request.getParameter("timee4")).format(formatter),request.getParameter("task4")));
 					}
 				// 結果ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("TaskRegistServlet");
-				dispatcher.forward(request, response);
+				response.sendRedirect("/amateur/ScheduleServlet");
 	}
 
 }

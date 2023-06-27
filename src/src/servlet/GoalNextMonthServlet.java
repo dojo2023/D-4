@@ -677,13 +677,9 @@ public class GoalNextMonthServlet extends HttpServlet {
 					if(todotbDao.updateTodo(new Todo(Integer.parseInt(tdId5_5), Integer.parseInt(sgId5), td5_5))) {
 
 					}
-				}			// 他の処理を追加することも可能
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/simpleBC/NextMonthServlet");
-				dispatcher.forward(request, response);
-				// レスポンスの設定
-				response.setContentType("text/html");
-				response.setCharacterEncoding("UTF-8");
-				response.getWriter().println("データの受け取りが完了しました");
+				}
+				//一日のスケジュールへ遷移
+				response.sendRedirect("/amateur/ScheduleServlet");
 		}
 	}
 

@@ -71,15 +71,14 @@ public class AchieveLastMonthServlet extends HttpServlet {
 			 */
 			protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				//ログインされていなかったときの処理
-				/*HttpSession session = request.getSession();
+				HttpSession session = request.getSession();
 				if (session.getAttribute("id") == null) {
 					response.sendRedirect("/amateur/LoginServlet");
 					return;
-				}*/
+				}
 
 				//達成度データをDAOに送る
 				//セッションスコープからTodothDAO呼び出しに必要な情報を取得
-				HttpSession session = request.getSession(true);
 				//Integer id = (Integer)session.getAttribute("id");
 				String displayDate = (String)session.getAttribute("displayDate");
 
@@ -110,17 +109,8 @@ public class AchieveLastMonthServlet extends HttpServlet {
 					i++;
 				}
 
-
-				// レスポンスの設定
-				response.setContentType("text/html");
-				response.setCharacterEncoding("UTF-8");
-				response.getWriter().println("データの受け取りが完了しました");
-				response.getWriter().println("<a href = /simpleBC/AchieveServlet >達成度に戻る</a>");
-
 				//達成度入力ページへフォワード
-				//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
-				//dispatcher.forward(request, response);
-
+				response.sendRedirect("/amateur/ScheduleServlet");
 			}
 
 		}

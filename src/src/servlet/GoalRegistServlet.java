@@ -695,12 +695,8 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		// 他の処理を追加することも可能
-		  String url = "/WEB-INF/jsp/GoalRegist.jsp";
-
-		  response.sendRedirect(url);
-		// レスポンスの設定
-
+		//一日のスケジュールへ遷移
+		response.sendRedirect("/amateur/ScheduleServlet");
 	}
 
 }

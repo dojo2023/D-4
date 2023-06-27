@@ -680,13 +680,8 @@ public class GoalLastMonthServlet extends HttpServlet {
 
 					}
 				}
-				// 他の処理を追加することも可能
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/simpleBC/GoalLastMonthServlet");
-				dispatcher.forward(request, response);
-				// レスポンスの設定
-				response.setContentType("text/html");
-				response.setCharacterEncoding("UTF-8");
-				response.getWriter().println("データの受け取りが完了しました");
+				//一日のスケジュールに遷移
+				response.sendRedirect("/amateur/ScheduleServlet");
 		}
 	}
 

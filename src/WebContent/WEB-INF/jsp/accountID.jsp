@@ -8,6 +8,8 @@
 </head>
 
 <body>
+<img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
+<h1>あなただけの秘書</h1>
 <div id="popup" class="popup">
 <div class="popuptext">
     <h2>ご注意ください!!</h2>
@@ -26,6 +28,9 @@
 <br><br>
 <br><br><br><br><br>
 <a href="/amateur/ScheduleServlet">1日のスケジュール</a>
+<footer class="footer">
+        &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
+    </footer>
 </div>
 
 <script src = "/amateur/js/accountID.js"></script>

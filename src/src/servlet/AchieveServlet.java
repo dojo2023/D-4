@@ -110,17 +110,8 @@ public class AchieveServlet extends HttpServlet {
 			i++;
 		}
 
-
-		// レスポンスの設定
-		response.setContentType("text/html");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().println("データの受け取りが完了しました");
-		response.getWriter().println("<a href = /simpleBC/AchieveServlet >達成度に戻る</a>");
-
 		//達成度入力ページへフォワード
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Achieve.jsp");
-		//dispatcher.forward(request, response);
-
+		response.sendRedirect("/amateur/ScheduleServlet");
 	}
 
 }

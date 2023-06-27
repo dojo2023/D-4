@@ -18,6 +18,7 @@ import dao.MemotbDAO;
 import dao.TasktbDAO;
 import dao.TodotbDAO;
 import model.AllA;
+import model.Memo;
 import model.Task;
 
 /**
@@ -35,10 +36,10 @@ public class ScheduleNextDayServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// ログインしていなかった場合、ログインページへフォワード
-		/*if (session.getAttribute("number") == null) {
+		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
-		}*/
+		}
 		//一日ごと変更させるために年月日の情報を取得する
         // dayCounterの値をセッションから取得
         Integer dc = (Integer) session.getAttribute("dayCounter");
@@ -136,13 +137,13 @@ public class ScheduleNextDayServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
 		}
 		int number=(Integer)session.getAttribute("number");
-		String day="";
+		String day = (String)session.getAttribute("tmeDate");
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
@@ -154,9 +155,8 @@ public class ScheduleNextDayServlet extends HttpServlet {
 		request.setAttribute("memo", memo);
 
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Scedule.jsp");
-		dispatcher.forward(request, response);
-		}*/
+		response.sendRedirect("/amateur/MemoRedirectServlet");
+		}
 
 
 

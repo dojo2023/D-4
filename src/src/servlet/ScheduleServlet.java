@@ -91,6 +91,7 @@ public class ScheduleServlet extends HttpServlet {
 		request.setAttribute("displayday", day);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
+		session.setAttribute("tmeDate", tmeDate);
 
 		//セッションスコープからログインIDを取得
 		//int id = (Integer) session.getAttribute("id");
@@ -166,12 +167,8 @@ public class ScheduleServlet extends HttpServlet {
 		MemotbDAO bDao = new MemotbDAO();
 		bDao.updateMemo(new Memo(1000,day,memo));
 
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("memo", memo);
-
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Scedule.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/amateur/MemoRedirectServlet");
 
 	}
 }

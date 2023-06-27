@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>カレンダー</title>
 <!-- スタイルシートの挿入リンク -->
+<link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
 <link rel="stylesheet" href="/amateur/css/common.css">
 <link rel="stylesheet" href="/amateur/css/calendar.css">
 </head>
@@ -21,6 +22,8 @@
 
 <!-- ヘッダー -->
 <header class = "header">
+<img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
+<h1>あなただけの秘書</h1>
 <nav class="nav">
                 <ul>
                     <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
