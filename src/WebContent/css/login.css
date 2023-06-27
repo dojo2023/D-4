@@ -1,54 +1,43 @@
 @charset "UTF-8";
-nav ul{
-    display: table;
-    margin: 0 auto;
-    padding: 0 ;
-    width: 80%;
-    text-align: center;
-    }
-    nav li{
-    display: table-cell;
-    min-width: 50px;
-    }
-    nav a{
-    display: block;
-    width: 100%;
-    text-decoration: none;
-    color: #555;
-    padding-bottom: 5px;
-    }
-    nav li.current{
-    border-bottom: 3px solid #12A778;
-    }
-    nav li:hover{
-    color: #1192C1;
-    border-bottom: 3px solid #1192C1;
-    }
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-      }
-      nav li {
-        display: inline-block;
-        margin-right: 10px;
-      }
-      nav li a {
-        text-decoration: none;
-        color: #333;
-        padding: 5px;
-      }
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #F9F9F9;
-        min-width: 160px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
-      .dropdown-content a {
-        color: #333;
-        padding: 8px 12px;
-        display: block;
-      }
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
+
+ table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input[name="LOGIN"] {
+     background: linear-gradient(to bottom, #50dbaa, #50dbc8);
+    color: #FFFFFF;
+    border: none;
+    text-shadow: none;
+    font-size: 1em;
+    border-radius: 0.25em;
+    height: 40px;
+    width: 100px;
+    margin: 10px;
+  /* 他のスタイルプロパティも追加できます */
+}
+input[name="LOGIN"]:hover {
+    background: linear-gradient(to bottom, #0b9f50, #91cb0b);
+}
+input[type="reset"] {
+    background: linear-gradient(to bottom, #50dbaa, #50dbc8);
+    color: #FFFFFF;
+    border: none;
+    text-shadow: none;
+    font-size: 1em;
+    border-radius: 0.25em;
+    height: 40px;
+    width: 100px;
+    margin-top: 180px;
+    margin-left: 100px;
+  /* 他のスタイルプロパティも追加できます */
+}
+input[type="reset"]:hover {
+    background: linear-gradient(to bottom, #0b9f50, #91cb0b);
+}
+.regist{
+   margin-top:130px;
+
+}

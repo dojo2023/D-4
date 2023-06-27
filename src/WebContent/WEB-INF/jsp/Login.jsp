@@ -7,6 +7,7 @@
 <html lang = "ja">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
 <title>ログイン</title>
 <link rel="stylesheet" href="/amateur/css/common.css">
 <link rel="stylesheet" href="/amateur/css/login.css">
@@ -16,13 +17,14 @@
 <!-- ヘッダーここから -->
 <header class = header>
 <!-- <img src = ""> -->
-<h1>アプリ名</h1>
+<h1>あなただけの秘書</h1>
 </header>
 <!-- ヘッダーここまで -->
 <!-- メインここから -->
 <!-- <img src = ""> ロゴ画像-->
 <form method="POST" action="/amateur/LoginServlet" id = "formLogin">
     <table>
+    <div class="regist">
         <tr>
             <td>
             <label>ID<br>
@@ -34,9 +36,11 @@
             <td>
             <label>パスワード<br>
             <input type="password" name="PW" id="password">
+            <input type="checkbox" id="showPassword">
             </label>
+            <label for="showPassword">パスワードを表示する</label>
             </td>
-        </tr>
+        </tr></div>
         <tr>
             <td colspan="2">
             <input type="submit" name="LOGIN" value="ログイン">
@@ -53,6 +57,6 @@
 <!-- フッターここまで -->
 </div>
 <!--JavaScriptの記入欄-->
-<script src = "login.js"></script>
+<script src = "/amateur/js/login.js"></script>
 </body>
 </html>
