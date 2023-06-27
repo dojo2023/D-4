@@ -26,7 +26,7 @@
                     <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
                     <li><a href="/amateur/CalendarServlet">カレンダー</a></li>
                     <li class="dropdown">
-                    <a href="#">追加</a><!-- #で遷移なしの表示する？ -->
+                    <a href="#">追加▽</a><!-- #で遷移なしの表示する？ -->
                                     <div class="dropdown-content">
                                      <a href="/amateur/GoalRegistServlet">目標追加画面</a>
                                         <a href="/amateur/TaskRegistServlet">タスク追加画面</a>

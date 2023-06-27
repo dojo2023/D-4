@@ -30,8 +30,8 @@
 </span>
 <div class="popupContent">
 <!-- ここにユーザー名を表示させたい -->
-	<p id = "userName">○○さん</p>
-	<p id = "loginDays">ログイン日数○○日</p>
+	<p id = "userName">${number.name}さん</p>
+	<p id = "loginDays">ログイン日数${number.days}日</p>
     <p id="random-word"></p>
 </div>
 </div>
@@ -45,7 +45,7 @@
                             <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
                             <li><a href="/amateur/CalendarServlet">カレンダー</a></li>
                                 <li class="dropdown">
-                                <a href="#">追加</a>
+                                <a href="#">追加▽</a>
                                     <div class="dropdown-content">
                                         <a href="/amateur/GoalRegistServlet">目標追加画面</a>
                                         <a href="/amateur/TaskRegistServlet">タスク追加画面</a>

@@ -55,10 +55,10 @@
 </form>
 <!-- メインここまで -->
 <!-- フッターここから -->
-<div class="footer">
-        &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
 
-    </div>
+<footer>
+    <p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
+</footer>
 <!-- フッターここまで -->
 </div>
 </body>

@@ -47,6 +47,9 @@
 </form>
 <!-- メインここまで -->
 <!-- フッターここから -->
+<footer>
+    <p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
+</footer>
 <!-- フッターここまで -->
 </div>
 <!--JavaScriptの記入欄-->
