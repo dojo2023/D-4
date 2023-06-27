@@ -5,11 +5,13 @@ public class TodoA implements Serializable{
 	private int sgId;
 	private String todo;
 	private int tAchieve;
+/*
 	public TodoA() {
 		this.todoId = 0;
 		this.sgId = 0;
 		this.tAchieve = 0;
 	}
+*/
 	public TodoA(int todoId,int sgId,String todo,int tAchieve) {
 		this.todoId = todoId;
 		this.sgId = sgId;
