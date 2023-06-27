@@ -42,28 +42,26 @@ public class TaskNextDayServlet extends HttpServlet {
 		//一日ごと変更させるために年月日の情報を取得する
 		// monthCounterの値をセッションから取得
 		Integer dc = (Integer) session.getAttribute("dayCounter");
-		//monthCounterを初期値に戻す
-		if( dc == null ) { //mcが存在しなかったときの処理
-			dc = 0;
-		}else {
-			dc = 0;
-		}
 		//翌日なので+1
 		dc = dc + 1;
 		//セッションスコープに保存
-		session.setAttribute("monthCounter", dc);
+		session.setAttribute("dayCounter", dc);
 
 		//表示したい月の年月日を取得
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DATE, dc);
+		calendar.add(Calendar.DAY_OF_MONTH, dc);
 		int day = calendar.get(Calendar.DATE);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
 		//メモを取得するための引数を作る
-		String memoDate = year + "-" + month + "-" + day;
-		//taskを取得
+		String tmeDate;
+		if(month < 10) {
+			tmeDate = year + "-0" + month + "-" + day;
+		}else {
+			tmeDate = year + "-" + month + "-" + day;
+		}
 		TasktbDAO bDao=new TasktbDAO();
-		List<Task> task =bDao.task(number, memoDate);
+		List<Task> task =bDao.task(number, tmeDate);
 		//リクエストスコープに保存
 		request.setAttribute("task", task);
 		request.setAttribute("displayday", day);
@@ -82,8 +80,8 @@ public class TaskNextDayServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
-			response.sendRedirect("/bc/LoginServlet");
+		if (session.getAttribute("number") == null) {
+			response.sendRedirect("/amateur/LoginServlet");
 			return;
 		}
 		LoginUser user=(LoginUser)session.getAttribute("number");

@@ -49,7 +49,7 @@ public class TaskRegistServlet extends HttpServlet {
 			dc = 0;
 		}
 		//セッションスコープに保存
-		session.setAttribute("monthCounter", dc);
+		session.setAttribute("dayCounter", dc);
 
 		//表示したい月の年月日を取得
 		Calendar calendar = Calendar.getInstance();
@@ -86,8 +86,8 @@ public class TaskRegistServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 				HttpSession session = request.getSession();
-				if (session.getAttribute("id") == null) {
-					response.sendRedirect("/bc/LoginServlet");
+				if (session.getAttribute("number") == null) {
+					response.sendRedirect("/amateur/LoginServlet");
 					return;
 				}
 				LoginUser user=(LoginUser)session.getAttribute("number");
