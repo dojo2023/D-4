@@ -1,4 +1,8 @@
 @charset "UTF-8";
+img {
+  width: 200px; /* 幅を指定 */
+  height: 150px; /* 高さを指定 */
+}
 .button {
   text-align: left;
   background-color:red;

@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
+<img src="/amateur/img/logo.png">
 <title>ログイン</title>
 <link rel="stylesheet" href="/amateur/css/common.css">
 <link rel="stylesheet" href="/amateur/css/login.css">
