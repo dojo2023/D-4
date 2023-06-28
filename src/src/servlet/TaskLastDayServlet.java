@@ -19,9 +19,9 @@ import model.LoginUser;
 import model.Task;
 
 /**
- * Servlet implementation class TaskLastMonthServlet
+ * Servlet implementation class TaskLastDayServlet
  */
-@WebServlet("/TaskLastMonthServlet")
+@WebServlet("/TaskLastDayServlet")
 public class TaskLastDayServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
