@@ -57,9 +57,13 @@ public class TaskRegistServlet extends HttpServlet {
 		int year = calendar.get(Calendar.YEAR);
 		//メモを取得するための引数を作る
 		String tmeDate;
+		String date;
+
 		if(month < 10) {
+			date="2023-06-28T13:00";
 			tmeDate = year + "-0" + month + "-" + day;
 		}else {
+			date=year + "-" + month + "-" + day+" 00:00:00";
 			tmeDate = year + "-" + month + "-" + day;
 		}
 
@@ -72,6 +76,7 @@ public class TaskRegistServlet extends HttpServlet {
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
 		request.setAttribute("tmeDate", tmeDate);
+		request.setAttribute("Date", date);
 
 
 		//タスク追加画面にフォワード
@@ -95,6 +100,7 @@ public class TaskRegistServlet extends HttpServlet {
 				request.setCharacterEncoding("UTF-8");
 				//タスクの数を取得
 				int num=Integer.parseInt(request.getParameter("length"));
+				System.out.print(request.getParameter("times_1"));
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 

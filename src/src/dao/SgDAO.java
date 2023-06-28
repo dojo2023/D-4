@@ -123,13 +123,15 @@ public class SgDAO {
 							}
 						}else {//短期目標変更
 							// SQL文を準備する
-							String sql2 = "update SGOAL set SG=? where SGID= ?";
+							String sql2 = "update SGOAL set DAY_S=?,DAY_E=?,SG=?  where SGID= ?";
 							PreparedStatement pStmt2 = conn.prepareStatement(sql2);
 
 
 							// SQL文を完成させる
-								pStmt2.setString(1, sg.getSg());
-								pStmt2.setInt(2, sg.getSgid());
+								pStmt2.setString(1, sg.getDay_s());
+								pStmt2.setString(2, sg.getDay_e());
+								pStmt2.setString(3, sg.getSg());
+								pStmt2.setInt(4, sg.getSgid());
 
 
 							// SQL文を実行する

@@ -101,7 +101,7 @@ public class TasktbDAO {
 
 				if(task.getTask() == null || task.getTask().equals("")) {//未記入ならtask消去
 					// SQL文を準備する
-					String sql2 = "delete from TASK where NUMBER=? and HOUR_S=? and HOUR_E=?";
+					String sql2 = "delete from TASKTB where NUMBER=? and HOUR_S=? and HOUR_E=?";
 					PreparedStatement pStmt2 = conn.prepareStatement(sql2);
 
 

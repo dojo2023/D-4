@@ -68,7 +68,7 @@ List<Task> a = (List<Task>)request.getAttribute("task");
 				}
 				%>
 					<input type="text" class="taskBox" name="task0">
-					<input type="datetime-local"class="timesBox" name="times0"step="3600">
+					<input type="datetime-local"class="timesBox" name="times0"step="3600"value="${date}">
 					<input type="datetime-local"class="timeeBox" name="timee0"step="3600"><br>
 				<!-- ディスプレイ上の一個目 -->
 				<div id="container1" style="display: none;">
