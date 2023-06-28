@@ -1,3 +1,5 @@
+//2023-06-26 h13
+//2023-06-27 h11
 package dao;
 
 import java.sql.Connection;
@@ -23,7 +25,7 @@ public class TasktbDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 
 			// SQL文を準備する
-			String sql="SELECT * FROM TASKTB where NUMBER=? and HOUR_S LIKE ?";
+			String sql="SELECT * FROM TASKTB where NUMBER=? and HOUR_S LIKE ? ORDER BY HOUR_S";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -79,11 +81,12 @@ public class TasktbDAO {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 			// SQL文を準備する
-			String sql = "select COUNT(*) from TASKTB where NUMBER=? and HOUR_S= ?";
+			String sql = "select COUNT(*) from TASKTB where NUMBER=? and HOUR_S=? and HOUR_E=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 				pStmt.setInt(1, task.getNumber());
 				pStmt.setString(2, task.getHour_s());
+				pStmt.setString(3, task.getHour_e());
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
@@ -92,34 +95,20 @@ public class TasktbDAO {
 			if (rs.getInt("count(*)") == 1) {
 				result1 = true;
 			}
-			// SQL文を準備する
-			String sql3 = "select NUMBER,HOUR_S from TASKTB where NUMBER=? and HOUR_S= ?";
-			PreparedStatement pStmt3 = conn.prepareStatement(sql3);
-			// SQL文を完成させる
-				pStmt3.setInt(1, task.getNumber());
-				pStmt3.setString(2, task.getHour_s());
-			// SELECT文を実行し、結果表を取得する
-			ResultSet rs3 = pStmt3.executeQuery();
-
-			// Taskがあるかどうかチェックする
-			rs3.next();
-			int number=rs3.getInt("NUMBER");
-			String hour_s=rs3.getString("HOUR_S");
-
-
 
 			//Taskがある場合
 			if(result1) {
 
 				if(task.getTask() == null || task.getTask().equals("")) {//未記入ならtask消去
 					// SQL文を準備する
-					String sql2 = "delete from TASK where NUMBER=? and HOUR_S=?";
+					String sql2 = "delete from TASK where NUMBER=? and HOUR_S=? and HOUR_E=?";
 					PreparedStatement pStmt2 = conn.prepareStatement(sql2);
 
 
 					// SQL文を完成させる
-						pStmt2.setInt(1, number);
-						pStmt2.setString(2, hour_s);
+						pStmt2.setInt(1, task.getNumber());
+						pStmt2.setString(2, task.getHour_s());
+						pStmt2.setString(3, task.getHour_e());
 
 
 					// SQL文を実行する
@@ -128,14 +117,16 @@ public class TasktbDAO {
 					}
 				}else {//task変更
 					// SQL文を準備する
-					String sql2 = "update TASKTB set TASK=? where NUMBER=? and HOUR_S= ?";
+					String sql2 = "update TASKTB set TASK=? where NUMBER=? and HOUR_S= ? and HOUR_E=?";
 					PreparedStatement pStmt2 = conn.prepareStatement(sql2);
 
 
 					// SQL文を完成させる
 						pStmt2.setString(1, task.getTask());
-						pStmt2.setInt(2, number);
-						pStmt2.setString(3, hour_s);
+						pStmt2.setInt(2, task.getNumber());
+						pStmt2.setString(3, task.getHour_s());
+						pStmt2.setString(4, task.getHour_e());
+
 
 
 					// SQL文を実行する
