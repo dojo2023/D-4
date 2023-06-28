@@ -43,7 +43,7 @@
 <!-- 月を表示するためのボタン設定 -->
 <div class = "monthMove">
 <div class = "monthcontent">
-<a href = '/amatuer/TaskLastDayServlet' class = "prev"></a>
+<a href = '/amateur/TaskLastDayServlet' class = "prev"></a>
 </div>
 <div class = monthcontent><h3>
 	<span id = "year"><c:out value= "${displayYear}"/></span>年
@@ -51,7 +51,7 @@
 	<span id = "day"><c:out value= "${displayday}"/></span>日
 </h3></div>
 <div class = "monthcontent">
-<a href = '/amatuer/TaskNextDayServlet' class = "next"></a>
+<a href = '/amateur/TaskNextDayServlet' class = "next"></a>
 </div>
 </div>
 			<!-- form -->
