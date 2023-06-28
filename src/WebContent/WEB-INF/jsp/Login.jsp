@@ -18,12 +18,13 @@
 <!-- ヘッダーここから -->
 <header class = header>
 <!-- <img src = ""> -->
-<h1>あなただけの秘書</h1>
+<h2>あなただけの秘書</h2>
 </header>
 <!-- ヘッダーここまで -->
 <!-- メインここから -->
 <!-- <img src = ""> ロゴ画像-->
 <form method="POST" action="/amateur/LoginServlet" id = "formLogin">
+<div class="border">
     <table>
     <div class="regist">
         <tr>
@@ -52,6 +53,7 @@
 </form>
 <!-- メインここまで -->
 <!-- フッターここから -->
+</div>
 <footer>
     <p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
 </footer>

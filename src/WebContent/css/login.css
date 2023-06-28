@@ -1,7 +1,25 @@
 @charset "UTF-8";
 img {
-  width: 200px; /* 幅を指定 */
-  height: 150px; /* 高さを指定 */
+  width: 393px; /* 幅を指定 */
+  height: 259px; /* 高さを指定 */
+   position: absolute; /* 画像の位置を絶対位置指定に変更 */
+  top: 8px; /* 画像の上端の位置 */
+  left: 455px; /* 画像の左端の位置 */
+}
+h2{
+	  font-size: 1.3em;
+  color: rgb(255, 0, 0);
+}
+header.header h2 {
+  text-align: center;
+}
+.border {
+    border-top: 3px solid #aaa;
+  border-bottom: 3px solid #aaa;
+  background-color: #eee;
+  padding: 2em;
+  margin-right:50px;
+   margin-left:80px;
 }
  table {
   display: flex;
@@ -33,7 +51,7 @@ input[type="reset"] {
     border-radius: 0.25em;
     height: 40px;
     width: 100px;
-    margin-top: 180px;
+    margin-top: 80px;
     margin-left: 100px;
   /* 他のスタイルプロパティも追加できます */
 }
