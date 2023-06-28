@@ -35,7 +35,12 @@ public class GoalLastMonthServlet extends HttpServlet {
 
 
 		// セッションを取得
-        HttpSession session = request.getSession(true);
+		//ログインされていなかったときの処理
+		HttpSession session = request.getSession();
+		if (session.getAttribute("number") == null) {
+			response.sendRedirect("/amateur/LoginServlet");
+			return;
+		}
         // monthCounterの値をセッションから取得
         Integer mc = (Integer) session.getAttribute("monthCounter");
 		//先月なので-1
@@ -90,8 +95,9 @@ public class GoalLastMonthServlet extends HttpServlet {
 	  	String Date = year + "-" + month + "-01";
 
 		//スコープからNUMBERを取得
-		//int number = Integer.parseInt(request.getParameter("NUMBER"));
-		int number=1000;
+
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
 
 
 		// フォームデータの受け取り

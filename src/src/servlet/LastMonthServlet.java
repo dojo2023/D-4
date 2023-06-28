@@ -29,7 +29,11 @@ public class LastMonthServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// セッションを取得
-        HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
+		if (session.getAttribute("number") == null) {
+			response.sendRedirect("/amateur/LoginServlet");
+			return;
+		}
         // monthCounterの値をセッションから取得
         int mc = (Integer)session.getAttribute("monthCounter");
 		//先月なので-1

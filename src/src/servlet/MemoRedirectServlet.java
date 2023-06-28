@@ -18,6 +18,7 @@ import dao.MemotbDAO;
 import dao.TasktbDAO;
 import dao.TodotbDAO;
 import model.AllA;
+import model.LoginUser;
 import model.Task;
 
 /**
@@ -35,10 +36,10 @@ public class MemoRedirectServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 
 				// ログインしていなかった場合、ログインページへフォワード
-				/*if (session.getAttribute("number") == null) {
+				if (session.getAttribute("number") == null) {
 					response.sendRedirect("/amateur/LoginServlet");
 					return;
-				}*/
+				}
 
 				//一日ごと変更させるために年月日の情報を取得する
 		        // monthCounterの値をセッションから取得
@@ -93,21 +94,23 @@ public class MemoRedirectServlet extends HttpServlet {
 				session.setAttribute("tmeDate", tmeDate);
 
 				//セッションスコープからログインIDを取得
-				//int id = (Integer) session.getAttribute("id");
+
+				LoginUser user=(LoginUser)session.getAttribute("number");
+				int number=user.getNumber();
 
 				//長期・短期目標、Todoと達成度を取得
 				TodotbDAO tdao = new TodotbDAO();
-				AllA alla = tdao.achieve(1000, displayDate);
+				AllA alla = tdao.achieve(number, displayDate);
 				request.setAttribute("a",alla);
 
 				//タスクを取得
 				TasktbDAO tDao = new TasktbDAO();
-				List<Task> taskList = tDao.task(1000, tmeDate);
+				List<Task> taskList = tDao.task(number, tmeDate);
 				request.setAttribute("task",taskList);
 
 				//メモを取得
 				MemotbDAO mDao = new MemotbDAO();
-				String memo = mDao.memo(1000,tmeDate);
+				String memo = mDao.memo(number,tmeDate);
 				request.setAttribute("memo",memo);
 
 				//表示日だけに関わる短期目標とTodoを取り出すための処理

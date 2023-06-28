@@ -33,9 +33,16 @@ public class GoalRegistServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
+
 		//初めにページ遷移したときの処理
 		// セッションを取得
-		HttpSession session = request.getSession(true);
+
+		//ログインされていなかったときの処理
+		HttpSession session = request.getSession();
+		if (session.getAttribute("number") == null) {
+			response.sendRedirect("/amateur/LoginServlet");
+			return;
+		}
 
 		// monthCounterの値をセッションから取得
 		Integer mc = (Integer) session.getAttribute("monthCounter");
@@ -60,10 +67,11 @@ public class GoalRegistServlet extends HttpServlet {
 		//Integer id = (Integer) session.getAttribute("id");
 
 		//↓これ以降に表示するために取得したい情報を書いてください↓
-
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
 
 		TodotbDAO tdao = new TodotbDAO();
-		AllA alla = tdao.achieve(1000, displayDate);
+		AllA alla = tdao.achieve(number, displayDate);
 		request.setAttribute("a",alla);
 /*
 		//LGのデータを取得
