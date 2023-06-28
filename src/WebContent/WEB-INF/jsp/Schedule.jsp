@@ -39,7 +39,7 @@
 <!-- <img src = ""> -->
  <header class = "header">
 <img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
-<h1>あなただけの秘書</h1>
+
         <nav class="nav">
                         <ul>
                             <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
@@ -75,49 +75,50 @@
 <div class = "position">
 <div class = "goals">
 <div class="lg">
-<p class = "lg_goalContent">長期目標：
+<p class = "lg_goalContent">長期目標：<span  class = "gc">
 <%if (a.getLg() == null){
 	out.print("");
 }else{
 	out.print(a.getLg());
 }%>
+</span>
 </p>
-<p class = "achieve">達成度
+<p>達成度<span  class = "achieve">
 <%if (a.getLgA() != 1000){
 	out.print(a.getLgA());
 }else{
 	out.print("0");
 }%>
-％</p>
+</span>％</p>
 </div>
 
 <div class="sg">
 <p class = "goalContent">短期目標</p>
 <%for(int i = 0; i < sgId.length; i++){
 	if(sgId[i] > 0){
-		out.println("<p>" + a.getSgA().get(i).getSg() + "</p>" +
-		"<p class = \"achieve\">達成度：" + a.getSgA().get(i).getsAchieve() + "％</p>");
+		out.println("<p class = \"gc\">" + a.getSgA().get(i).getSg() + "</p>" +
+		"<p>達成度<span  class = \"achieve\">" + a.getSgA().get(i).getsAchieve() + "</span>％</p>");
 	}
 } %>
 </div>
 
 <div class="todo">
-<p class = "goalContent">Todoリスト</p>
+<p class = "todoContent">Todoリスト</p>
 <%for(int i = 0; i < sgId.length; i++){
 	if(sgId[i] > 0){
 		for(int j=0;j<a.getSgA().get(i).getTodoA().size();j++){
-				out.println("<p>" + a.getSgA().get(i).getTodoA().get(j).getTodo()+ "</p>" +
-				"<p class = \"achieve\">達成度" + a.getSgA().get(i).getTodoA().get(j).gettAchieve()  + "％</p>");
+				out.println("<p class = \"gc\">" + a.getSgA().get(i).getTodoA().get(j).getTodo()+ "</p>" +
+				"<p>達成度<span  class = \"achieve\">" + a.getSgA().get(i).getTodoA().get(j).gettAchieve()  + "</span>％</p>");
 		}
 	}
 } %>
 </div>
 
 <form method="POST" action="/amateur/ScheduleServlet" id = "formMemo" >
-<label>メモ</label><br>
+<p class = "memo">メモ</p>
 <div class="form-container">
   <textarea id="input-text" name = "MEMO">${memo}</textarea>
-  <input type="submit" name="REGIST_M" value="登録">
+  <input type="submit" name="REGIST_M" value="登録" class ="button">
 </div>
 </form>
 </div>
