@@ -1,18 +1,13 @@
 @charset "UTF-8";
 /*ロゴ*/
 .image {
-  width: 200px;  /* 幅を200ピクセルに設定 */
-  height: 150px; /* 高さを150ピクセルに設定 */
+  width: 400px;  /* 幅を200ピクセルに設定 */
+  height:100px; /* 高さを150ピクセルに設定 */
+  margin-left: 300px;
+  margin-bottom: 0px;
+  margin-top: 0px
 }
-h1{
-	position: absolute;
-    top: 43px;
-    left: 37%;
-    width: 50%;
-    width: 590px;
-    height: 47px;
 
-}
 /* jspのファイルで
   <div class = wrapper>
   <header class = header> を<h1>の上に配置してください*/

@@ -18,9 +18,7 @@
 <div class = wrapper>
 <!-- ヘッダーここから -->
 <header class = header>
-<!-- <img src = ""> -->
-
-<h1>あなただけの秘書</h1>
+<img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
 <nav class="nav">
                 <ul>
                     <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>
