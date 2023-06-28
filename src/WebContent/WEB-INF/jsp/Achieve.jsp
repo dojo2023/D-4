@@ -1,5 +1,6 @@
 <!-- 2023-06-27 16h -->
 <!-- 2023-06-28 10h -->
+<!-- 2023-06-28 14h -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.AllA"%>
@@ -10,8 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>達成度入力・表示</title>
-<link rel="stylesheet" href="/bc/css/common.css">
-<link rel="stylesheet" href="/bc/css/achieve.css">
+<link rel="stylesheet" href="/amateur/css/common.css">
+<link rel="stylesheet" href="/amateur/css/achieve.css">
 </head>
 <body>
 <div class = wrapper>
@@ -43,11 +44,11 @@
 <!-- 月を表示するためのボタン設定 -->
 <div class = "monthMove">
 <div class = "monthcontent">
-<a href = '/bc/AchieveLastMonthServlet' class = "prev"></a>
+<a href = '/amateur/AchieveLastMonthServlet' class = "prev"></a>
 </div>
 <div class = monthcontent><h3><c:out value= "${displayYear}"/>年<c:out value= "${displayMonth}"/>月</h3></div>
 <div class = "monthcontent">
-<a href = '/bc/AchieveNextMonthServlet' class = "next"></a>
+<a href = '/amateur/AchieveNextMonthServlet' class = "next"></a>
 </div>
 </div>
 
@@ -71,7 +72,8 @@ AllA a = (AllA)request.getAttribute("a");
 
 	for(int j=0;j<a.getSgA().get(i).getTodoA().size();j++) {
 		out.println("<p>todo"+(j+1)+":" + a.getSgA().get(i).getTodoA().get(j).getTodo()
-			 + "<input type=text name = ACHIEVE value = '" + a.getSgA().get(i).getTodoA().get(j).gettAchieve() + " 'size='1'>％</p>");
+			 + "<input type=text name = 'ACHIEVE" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).gettAchieve() +
+			 "'>％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></p>");
 		}
 } %>
 </div>
@@ -86,106 +88,55 @@ AllA a = (AllA)request.getAttribute("a");
 <!--JavaScriptの記入欄src = "/bc/js/achieve.js"-->
 <script>
 const lifeBar = document.getElementById('lg_gage');
+const pointBar = document.getElementById('life-mark');
 lifeBar.style.width = <%=a.getLgA()%> + "%";
 if(<%=a.getLgA()%><20){
 	lifeBar.style.backgroundColor="red";
+	pointBar.style.backgroundColor="red";
+	pointBar.style.boxShadow="0 0 5px 3px red,0 0 7px 7px red";
 }else if(20<=<%=a.getLgA()%>&&<%=a.getLgA()%><40){
 	lifeBar.style.backgroundColor="orange";
+	pointBar.style.backgroundColor="orange";
+	pointBar.style.boxShadow="0 0 5px 3px orange,0 0 7px 7px orange";
 }else if(40<=<%=a.getLgA()%>&&<%=a.getLgA()%><60){
 	lifeBar.style.backgroundColor="yellow";
+	pointBar.style.backgroundColor="yellow";
+	pointBar.style.boxShadow="0 0 5px 3px yellow,0 0 7px 7px yellow";
 }else if(60<=<%=a.getLgA()%>&&<%=a.getLgA()%><80){
 	lifeBar.style.backgroundColor="green";
+	pointBar.style.backgroundColor="green";
+	pointBar.style.boxShadow="0 0 5px 3px green,0 0 7px 7px green";
 }else if(80<=<%=a.getLgA()%>&&<%=a.getLgA()%><100){
 	lifeBar.style.backgroundColor="blue";
+	pointBar.style.backgroundColor="blue";
+	pointBar.style.boxShadow="0 0 5px 3px blue,0 0 7px 7px blue";
 }else{
 	lifeBar.style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
+	pointBar.style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
+	pointBar.style.boxShadow="0 0 5px 3px linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073),0 0 7px 7px linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
 }
+
 const ary=[];
-ary[0] = document.getElementById('sg_gage'+0);
-ary[0].style.width = <%if(a.getSgA().size()>0){out.print((a.getSgA()).get(0).getsAchieve());}%>+ "%";
 if(<%=a.getSgA().size()%>>0){
-	if(<%=(a.getSgA()).get(0).getsAchieve()%><20){
-		ary[0].style.backgroundColor="red";
-	}else if(20<=<%=(a.getSgA()).get(0).getsAchieve()%>&&<%=(a.getSgA()).get(0).getsAchieve()%><40){
-		ary[0].style.backgroundColor="orange";
-	}else if(40<=<%=(a.getSgA()).get(0).getsAchieve()%>&&<%=(a.getSgA()).get(0).getsAchieve()%><60){
-		ary[0].style.backgroundColor="yellow";
-	}else if(60<=<%=(a.getSgA()).get(0).getsAchieve()%>&&<%=(a.getSgA()).get(0).getsAchieve()%><80){
-		ary[0].style.backgroundColor="green";
-	}else if(80<=<%=(a.getSgA()).get(0).getsAchieve()%>&&<%=(a.getSgA()).get(0).getsAchieve()%><100){
-		ary[0].style.backgroundColor="blue";
-	}else{
-		ary[0].style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
-	}
-	}
-ary[1] = document.getElementById('sg_gage'+1);
-ary[1].style.width = <%if(a.getSgA().size()>1){out.print((a.getSgA()).get(1).getsAchieve());}%>+ "%";
+	ary[0] = document.getElementById('sg_gage'+0);
+	ary[0].style.width = <%if(a.getSgA().size()>0){out.print((a.getSgA()).get(0).getsAchieve());}%>+ "%";
+}
 if(<%=a.getSgA().size()%>>1){
-	if(<%=(a.getSgA()).get(1).getsAchieve()%><20){
-		ary[1].style.backgroundColor="red";
-	}else if(20<=<%=(a.getSgA()).get(1).getsAchieve()%>&&<%=(a.getSgA()).get(1).getsAchieve()%><40){
-		ary[1].style.backgroundColor="orange";
-	}else if(40<=<%=(a.getSgA()).get(1).getsAchieve()%>&&<%=(a.getSgA()).get(1).getsAchieve()%><60){
-		ary[1].style.backgroundColor="yellow";
-	}else if(60<=<%=(a.getSgA()).get(1).getsAchieve()%>&&<%=(a.getSgA()).get(1).getsAchieve()%><80){
-		ary[1].style.backgroundColor="green";
-	}else if(80<=<%=(a.getSgA()).get(1).getsAchieve()%>&&<%=(a.getSgA()).get(1).getsAchieve()%><100){
-		ary[1].style.backgroundColor="blue";
-	}else{
-		ary[1].style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
-	}
-	}
-ary[2] = document.getElementById('sg_gage'+2);
-ary[2].style.width = <%if(a.getSgA().size()>2){out.print((a.getSgA()).get(2).getsAchieve());}%>+ "%";
+	ary[1] = document.getElementById('sg_gage'+1);
+	ary[1].style.width = <%if(a.getSgA().size()>1){out.print((a.getSgA()).get(1).getsAchieve());}%>+ "%";
+}
 if(<%=a.getSgA().size()%>>2){
-	if(<%=(a.getSgA()).get(2).getsAchieve()%><20){
-		ary[2].style.backgroundColor="red";
-	}else if(20<=<%=(a.getSgA()).get(2).getsAchieve()%>&&<%=(a.getSgA()).get(2).getsAchieve()%><40){
-		ary[2].style.backgroundColor="orange";
-	}else if(40<=<%=(a.getSgA()).get(2).getsAchieve()%>&&<%=(a.getSgA()).get(2).getsAchieve()%><60){
-		ary[2].style.backgroundColor="yellow";
-	}else if(60<=<%=(a.getSgA()).get(2).getsAchieve()%>&&<%=(a.getSgA()).get(2).getsAchieve()%><80){
-		ary[2].style.backgroundColor="green";
-	}else if(80<=<%=(a.getSgA()).get(2).getsAchieve()%>&&<%=(a.getSgA()).get(2).getsAchieve()%><100){
-		ary[2].style.backgroundColor="blue";
-	}else{
-		ary[2].style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
-	}
-	}
-ary[3] = document.getElementById('sg_gage'+3);
-ary[3].style.width = <%if(a.getSgA().size()>3){out.print((a.getSgA()).get(3).getsAchieve());}%>+ "%";
+	ary[2] = document.getElementById('sg_gage'+2);
+	ary[2].style.width = <%if(a.getSgA().size()>2){out.print((a.getSgA()).get(2).getsAchieve());}%>+ "%";
+}
 if(<%=a.getSgA().size()%>>3){
-	if(<%=(a.getSgA()).get(3).getsAchieve()%><20){
-		ary[3].style.backgroundColor="red";
-	}else if(20<=<%=(a.getSgA()).get(3).getsAchieve()%>&&<%=(a.getSgA()).get(3).getsAchieve()%><40){
-		ary[3].style.backgroundColor="orange";
-	}else if(40<=<%=(a.getSgA()).get(3).getsAchieve()%>&&<%=(a.getSgA()).get(3).getsAchieve()%><60){
-		ary[3].style.backgroundColor="yellow";
-	}else if(60<=<%=(a.getSgA()).get(3).getsAchieve()%>&&<%=(a.getSgA()).get(3).getsAchieve()%><80){
-		ary[3].style.backgroundColor="green";
-	}else if(80<=<%=(a.getSgA()).get(3).getsAchieve()%>&&<%=(a.getSgA()).get(3).getsAchieve()%><100){
-		ary[3].style.backgroundColor="blue";
-	}else{
-		ary[3].style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
-	}
-	}
-ary[4] = document.getElementById('sg_gage'+4);
-ary[4].style.width = <%if(a.getSgA().size()>4){out.print((a.getSgA()).get(4).getsAchieve());}%>+ "%";
+	ary[3] = document.getElementById('sg_gage'+3);
+	ary[3].style.width = <%if(a.getSgA().size()>3){out.print((a.getSgA()).get(3).getsAchieve());}%>+ "%";
+}
 if(<%=a.getSgA().size()%>>4){
-	if(<%=(a.getSgA()).get(4).getsAchieve()%><20){
-		ary[4].style.backgroundColor="red";
-	}else if(20<=<%=(a.getSgA()).get(4).getsAchieve()%>&&<%=(a.getSgA()).get(4).getsAchieve()%><40){
-		ary[4].style.backgroundColor="orange";
-	}else if(40<=<%=(a.getSgA()).get(4).getsAchieve()%>&&<%=(a.getSgA()).get(4).getsAchieve()%><60){
-		ary[4].style.backgroundColor="yellow";
-	}else if(60<=<%=(a.getSgA()).get(4).getsAchieve()%>&&<%=(a.getSgA()).get(4).getsAchieve()%><80){
-		ary[4].style.backgroundColor="green";
-	}else if(80<=<%=(a.getSgA()).get(4).getsAchieve()%>&&<%=(a.getSgA()).get(4).getsAchieve()%><100){
-		ary[4].style.backgroundColor="blue";
-	}else{
-		ary[4].style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
-	}
-	}
+	ary[4] = document.getElementById('sg_gage'+4);
+	ary[4].style.width = <%if(a.getSgA().size()>4){out.print((a.getSgA()).get(4).getsAchieve());}%>+ "%";
+}
 </script>
 
 </body>
