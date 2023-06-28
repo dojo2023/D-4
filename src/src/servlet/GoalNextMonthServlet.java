@@ -16,6 +16,7 @@ import dao.SgDAO;
 import dao.TodotbDAO;
 import model.AllA;
 import model.Lg;
+import model.LoginUser;
 import model.Sg;
 import model.Todo;
 
@@ -52,12 +53,13 @@ public class GoalNextMonthServlet extends HttpServlet {
 	    session.setAttribute("monthCounter", mc);
 
 	    //ログインしている人の管理番号を取得
-	  	//Integer id = (Integer) session.getAttribute("id");
+	    LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
 
-	  	//↓これ以降に表示するために取得したい情報を書いてください↓
+		//↓これ以降に表示するために取得したい情報を書いてください↓
 
 		TodotbDAO tdao = new TodotbDAO();
-		AllA alla = tdao.achieve(1000, displayDate);
+		AllA alla = tdao.achieve(number, displayDate);
 		request.setAttribute("a",alla);
 
 
@@ -86,8 +88,9 @@ public class GoalNextMonthServlet extends HttpServlet {
 	  	//長期目標に送るための月日を作成
 	  	String Date = year + "-" + month + "-01";
 		//スコープからNUMBERを取得
-		//int number = Integer.parseInt(request.getParameter("NUMBER"));
-		int number=1000;
+	  	LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
+		
 
 
 		// フォームデータの受け取り

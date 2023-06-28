@@ -40,7 +40,6 @@ public class TaskRegistServlet extends HttpServlet {
 		LoginUser user=(LoginUser)session.getAttribute("number");
 		int number=user.getNumber();
 		//一日ごと変更させるために年月日の情報を取得する
-        // monthCounterの値をセッションから取得
         Integer dc = (Integer) session.getAttribute("dayCounter");
         //dayCounterを初期値に戻す
 		if( dc == null ) { //mcが存在しなかったときの処理

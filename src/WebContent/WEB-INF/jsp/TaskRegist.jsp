@@ -60,7 +60,7 @@
 List<Task> a = (List<Task>)request.getAttribute("task");
  %>
  		<div class = "taskContener">
-			<form id="dataForm" action="TaskRegistServlet" method="POST">
+			<form id="dataForm" action="/amateur/TaskRegistServlet" method="POST">
 				<%for(int i=0;i<a.size();i++){
 				out.print("<input type=\"text\" name=\"task_"+(i+1)+"\" value=\""+a.get(i).getTask()+"\" class = \"taskBox\">");
 				out.print("<input type=\"datetime-local\" step=\"3600\" name=\"times_"+(i+1)+"\" value=\""+a.get(i).getHour_s()+"\">");

@@ -16,6 +16,7 @@ import dao.SgDAO;
 import dao.TodotbDAO;
 import model.AllA;
 import model.Lg;
+import model.LoginUser;
 import model.Sg;
 import model.Todo;
 
@@ -99,21 +100,23 @@ public class GoalRegistServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		//送信したい月の年月を取得
 
-		int year = Integer.parseInt("year");
-		int month = Integer.parseInt("month");
+		int year = Integer.parseInt(request.getParameter("year"));
+		int month = Integer.parseInt(request.getParameter("month"));
 
 		//長期目標登録のために送る月日を作成
 
 		String Date;
 		if(month < 10) {
-			Date = year + "-0" + month + "-" + "-01";
+			Date = year + "-0" + month +  "-01";
 		}else {
-			Date = year + "-" + month + "-" + "-01";
+			Date = year + "-" + month + "-01";
 		}
 
 		//スコープからNUMBERを取得
-		//int number = Integer.parseInt(request.getParameter("NUMBER"));
-		int number=1000;
+		HttpSession session = request.getSession(true);
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
+
 		// フォームデータの受け取り
 
 		// 長期目標
@@ -704,7 +707,9 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//一日のスケジュールへ遷移
-		response.sendRedirect("/amateur/ScheduleServlet");
+		//response.sendRedirect("/amateur/ScheduleServlet");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Schedule.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
