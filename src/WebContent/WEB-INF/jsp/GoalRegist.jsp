@@ -77,7 +77,7 @@ AllA a = (AllA)request.getAttribute("a");
 					<div class="first">
 
 				<label>短期目標１</label><br><input id='sgInput1' class = 'sg' type='text' name='sg1' value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getSg());}%>'><br>
-				<input type='date' id='sgStart' name='day_s_1' placeholder='開始'value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getDay_s());}%>'>
+				<input type='date' id='sgStart' name='day_s_1' placeholder='開始'min= '${displayDate}' value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getDay_s());}%>'>
 				<input type='date' id='sgEnd' name='day_e_1' placeholder='終了'value='<%if(a.getSgA().size()>0){out.print(a.getSgA().get(0).getDay_e());}%>'><br>
 
 				<input type="hidden" name="sgId1" value='<%if(a.getSgA().get(0).getSgId()!=0){out.print(a.getSgA().get(0).getSgId());}%>'>

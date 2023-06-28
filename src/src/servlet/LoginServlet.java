@@ -56,7 +56,12 @@ public class LoginServlet extends HttpServlet {
 					int month = calendar.get(Calendar.MONTH) + 1;
 					int year = calendar.get(Calendar.YEAR);
 					//メモを取得するための引数を作る
-					String memoDate = year + "-" + month + "-" + day;
+					String memoDate;
+					if(month < 10) {
+						memoDate = year + "-0" + month +  "-01";
+					}else {
+						memoDate = year + "-" + month + "-01";
+					}
 					if(dDao.insert(number,memoDate)) {
 					int days=dDao.days(number);
 					// セッションスコープにIDを格納する

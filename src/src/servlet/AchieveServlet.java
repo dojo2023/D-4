@@ -47,7 +47,12 @@ public class AchieveServlet extends HttpServlet {
 		Calendar calendar = Calendar.getInstance();
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int year = calendar.get(Calendar.YEAR);
-		String displayDate = year + "-" + month + "-01";
+		String displayDate;
+		if(month < 10) {
+			displayDate = year + "-0" + month +  "-01";
+		}else {
+			displayDate = year + "-" + month + "-01";
+		}
 
 		session.setAttribute("displayDate", displayDate);
 		request.setAttribute("displayMonth", month);

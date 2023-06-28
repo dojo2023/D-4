@@ -55,7 +55,12 @@ public class GoalLastMonthServlet extends HttpServlet {
 	  	//リクエストスコープに保存
 	  	request.setAttribute("displayMonth", month);
 	  	request.setAttribute("displayYear", year);
-	  	String displayDate = year + "-" + month + "-01";
+	  	String displayDate;
+		if(month < 10) {
+			displayDate = year + "-0" + month +  "-01";
+		}else {
+			displayDate = year + "-" + month + "-01";
+		}
 		// セッションスコープに保存
 	    session.setAttribute("monthCounter", mc);
 
@@ -92,7 +97,12 @@ public class GoalLastMonthServlet extends HttpServlet {
 	  	int month = calendar.get(Calendar.MONTH) + 1;
 	  	int year = calendar.get(Calendar.YEAR);
 	  	//長期目標に送るための月日を作成
-	  	String Date = year + "-" + month + "-01";
+	  	String Date;
+		if(month < 10) {
+			Date = year + "-0" + month +  "-01";
+		}else {
+			Date = year + "-" + month + "-01";
+		}
 
 		//スコープからNUMBERを取得
 

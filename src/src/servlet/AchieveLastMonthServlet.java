@@ -46,8 +46,12 @@ public class AchieveLastMonthServlet extends HttpServlet {
 		//セッションスコープに保存
 		session.setAttribute("monthCounter", mc);
 
-		String displayDate = year + "-" + month + "-01";
-
+		String displayDate;
+		if(month < 10) {
+			displayDate = year + "-0" + month +  "-01";
+		}else {
+			displayDate = year + "-" + month + "-01";
+		}
 		session.setAttribute("displayDate", displayDate);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
