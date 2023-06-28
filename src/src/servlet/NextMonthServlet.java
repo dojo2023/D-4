@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.TodotbDAO;
 import model.AllA;
@@ -27,7 +28,7 @@ public class NextMonthServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// セッションを取得
-        HHttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(true);
 		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;

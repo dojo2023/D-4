@@ -150,7 +150,7 @@
         </table>
 
         <!-- 隠しフォームを作る -->
-        <form  method="GET" action="/simpleBC/ScheduleServlet" id = "scheMove">
+        <form  method="GET" action="/amateur/ScheduleServlet" id = "scheMove">
         <input type = hidden name = "YEAR" value = "">
         <input type = hidden name = "MONTH" value = "">
         <input type = hidden name = "DAY" value = "">
