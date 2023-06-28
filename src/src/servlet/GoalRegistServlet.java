@@ -234,7 +234,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			LgDAO lgDao = new LgDAO();
 			if(lgDao.updateLg(new Lg(number, Date, lg))) {
-				System.out.println("成功");
+				System.out.println("長期目標成功");
 			}
 
 		}
@@ -246,12 +246,12 @@ public class GoalRegistServlet extends HttpServlet {
 
 			SgDAO sgDao = new SgDAO();
 			if(sgDao.updateSg(new Sg(number, Date, day_s_1, day_e_1, sg1))) {
-				System.out.println("成功");
+				System.out.println("短期目標１新規登録成功");
 			}
 		}else {
 			SgDAO sgDao = new SgDAO();
 			if(sgDao.updateSg(new Sg(Integer.parseInt(sgId1), day_s_1, day_e_1, sg1))) {
-				System.out.println("成功");
+				System.out.println("短期目標１変更成功");
 			}
 		}
 		//短期目標１のToDo
@@ -261,13 +261,13 @@ public class GoalRegistServlet extends HttpServlet {
 
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(number, Date, day_s_1, day_e_1, td1_1))) {
-				System.out.println("成功");
+				System.out.println("ToDo１新規登録成功");
 			}
 			}
 		}else {
 			TodotbDAO todotbDao = new TodotbDAO();
 			if(todotbDao.updateTodo(new Todo(Integer.parseInt(tdId1_1), Integer.parseInt(sgId1), td1_1))) {
-
+				System.out.println("ToDo１変更成功");
 			}
 		}
 
