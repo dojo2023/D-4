@@ -79,7 +79,7 @@ public class TasktbDAO {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/amateur", "sa", "");
 			// SQL文を準備する
-			String sql = "select COUNT(*),NUMBER,HOUR_S from TASKTB where NUMBER=? and HOUR_S= ?";
+			String sql = "select COUNT(*) from TASKTB where NUMBER=? and HOUR_S= ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 				pStmt.setInt(1, task.getNumber());
@@ -92,8 +92,21 @@ public class TasktbDAO {
 			if (rs.getInt("count(*)") == 1) {
 				result1 = true;
 			}
-			int number=rs.getInt("NUMBER");
-			String hour_s=rs.getString("HOUR_S");
+			// SQL文を準備する
+			String sql3 = "select NUMBER,HOUR_S from TASKTB where NUMBER=? and HOUR_S= ?";
+			PreparedStatement pStmt3 = conn.prepareStatement(sql3);
+			// SQL文を完成させる
+				pStmt3.setInt(1, task.getNumber());
+				pStmt3.setString(2, task.getHour_s());
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs3 = pStmt3.executeQuery();
+
+			// Taskがあるかどうかチェックする
+			rs3.next();
+			int number=rs3.getInt("NUMBER");
+			String hour_s=rs3.getString("HOUR_S");
+
+
 
 			//Taskがある場合
 			if(result1) {

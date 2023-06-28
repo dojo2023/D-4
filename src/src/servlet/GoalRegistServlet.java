@@ -225,7 +225,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 		}
 		//短期目標１
-		if (sgId1.equals("") || sgId1 == null) {
+		if (sgId1 == null || sgId1.equals("")) {
 			System.out.println("短期目標１: " + sg1);
 			System.out.println(day_s_1);
 			System.out.println(day_e_1);
@@ -241,7 +241,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//短期目標１のToDo
-		if (tdId1_1.equals("") || tdId1_1 == null) {
+		if (tdId1_1 == null || tdId1_1.equals("")) {
 			if(!td1_1.equals("")) {
 			System.out.println("短期目標１のToDo１: " + td1_1);
 
@@ -257,7 +257,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId1_2.equals("") || tdId1_2 == null) {
+		if (tdId1_2 == null || tdId1_2.equals("")) {
 			if(!td1_2.equals("")) {
 			System.out.println("短期目標１のToDo２: " + td1_2);
 
@@ -273,7 +273,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId1_3.equals("") || tdId1_3 == null) {
+		if (tdId1_3 == null || tdId1_3.equals("")) {
 			if(!td1_3.equals("")) {
 			System.out.println("短期目標１のToDo３: " + td1_3);
 
@@ -288,7 +288,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId1_4.equals("") || tdId1_4 == null) {
+		if (tdId1_4 == null || tdId1_4.equals("")) {
 			if(!td1_4.equals("")) {
 			System.out.println("短期目標１のToDo４: " + td1_4);
 
@@ -303,7 +303,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId1_5.equals("") || tdId1_5 == null) {
+		if (tdId1_5 == null || tdId1_5.equals("")) {
 			if(!td1_5.equals("")) {
 			System.out.println("短期目標１のToDo５: " + td1_5);
 
@@ -320,7 +320,7 @@ public class GoalRegistServlet extends HttpServlet {
 		}
 
 		//短期目標２
-		if (sgId2.equals("") || sgId2 == null) {
+		if (sgId2 == null || sgId2.equals("")) {
 			if(!sg2.equals("")) {
 			System.out.println("短期目標２: " + sg2);
 			System.out.println(day_s_2);
@@ -338,7 +338,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//短期目標２のToDo
-		if (tdId2_1.equals("") || tdId2_1 == null) {
+		if (tdId2_1 == null || tdId2_1.equals("")) {
 			if(!td2_1.equals("")) {
 			System.out.println("短期目標２のToDo１: " + td2_1);
 
@@ -354,7 +354,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId2_2.equals("") || tdId2_2 == null) {
+		if (tdId2_2 == null || tdId2_2.equals("")) {
 			if(!td2_2.equals("")) {
 			System.out.println("短期目標２のToDo２: " + td2_2);
 
@@ -370,7 +370,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId2_3.equals("") || tdId2_3 == null) {
+		if (tdId2_3 == null || tdId2_3.equals("")) {
 			if(!td2_3.equals("")) {
 			System.out.println("短期目標２のToDo３: " + td2_3);
 
@@ -385,7 +385,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId2_4.equals("") || tdId2_4 == null) {
+		if (tdId2_4 == null || tdId2_4.equals("")) {
 			if(!td2_4.equals("")) {
 			System.out.println("短期目標２のToDo４: " + td2_4);
 
@@ -400,7 +400,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId2_5.equals("") || tdId2_5 == null) {
+		if (tdId2_5 == null || tdId2_5.equals("")) {
 			if(!td2_5.equals("")) {
 			System.out.println("短期目標２のToDo５: " + td2_5);
 
@@ -416,7 +416,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//短期目標３
-		if (sgId3.equals("") || sgId3 == null) {
+		if (sgId3 == null || sgId3.equals("")) {
 			if(!sg3.equals("")) {
 			System.out.println("短期目標３: " + sg3);
 			System.out.println(day_s_3);
@@ -434,7 +434,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//短期目標３のToDo
-		if (tdId3_1.equals("") || tdId3_1 == null) {
+		if (tdId3_1 == null || tdId3_1.equals("")) {
 			if(!td3_1.equals("")) {
 			System.out.println("短期目標３のToDo１: " + td3_1);
 
@@ -450,7 +450,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId3_2.equals("") || tdId3_2 == null) {
+		if (tdId3_2 == null || tdId3_2.equals("")) {
 			if(!td3_2.equals("")) {
 			System.out.println("短期目標３のToDo２: " + td3_2);
 
@@ -466,7 +466,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId3_3.equals("") || tdId3_3 == null) {
+		if (tdId3_3 == null || tdId3_3.equals("")) {
 			if(!td3_3.equals("")) {
 			System.out.println("短期目標３のToDo３: " + td3_3);
 
@@ -481,7 +481,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId3_4.equals("") || tdId3_4 == null) {
+		if (tdId3_4 == null || tdId3_4.equals("")) {
 			if(!td3_4.equals("")) {
 			System.out.println("短期目標３のToDo４: " + td3_4);
 
@@ -496,7 +496,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId3_5.equals("") || tdId3_5 == null) {
+		if (tdId3_5 == null || tdId3_5.equals("")) {
 			if(!td3_5.equals("")) {
 			System.out.println("短期目標３のToDo５: " + td3_5);
 
@@ -513,7 +513,7 @@ public class GoalRegistServlet extends HttpServlet {
 		}
 
 		//短期目標４
-		if (sgId4.equals("") || sgId4 == null) {
+		if (sgId4 == null || sgId4.equals("")) {
 			if(!sg4.equals("")) {
 			System.out.println("短期目標４: " + sg4);
 			System.out.println(day_s_4);
@@ -531,7 +531,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//短期目標４のToDo
-		if (tdId4_1.equals("") || tdId4_1 == null) {
+		if (tdId4_1 == null || tdId4_1.equals("")) {
 			if(!td4_1.equals("")) {
 			System.out.println("短期目標４のToDo１: " + td4_1);
 
@@ -547,7 +547,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId4_2.equals("") || tdId4_2 == null) {
+		if (tdId4_2 == null || tdId4_2.equals("")) {
 			if(!td4_2.equals("")) {
 			System.out.println("短期目標４のToDo２: " + td4_2);
 
@@ -563,7 +563,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId4_3.equals("") || tdId4_3 == null) {
+		if (tdId4_3 == null || tdId4_3.equals("")) {
 			if(!td4_3.equals("")) {
 			System.out.println("短期目標４のToDo３: " + td4_3);
 
@@ -578,7 +578,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId4_4.equals("") || tdId4_4 == null) {
+		if (tdId4_4 == null || tdId4_4.equals("")) {
 			if(!td4_4.equals("")) {
 			System.out.println("短期目標４のToDo４: " + td4_4);
 
@@ -593,7 +593,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId4_5.equals("") || tdId4_5 == null) {
+		if (tdId4_5 == null || tdId4_5.equals("")) {
 			if(!td4_5.equals("")) {
 			System.out.println("短期目標４のToDo５: " + td4_5);
 
@@ -611,7 +611,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 
 		//短期目標５
-		if (sgId5.equals("") || sgId5 == null) {
+		if (sgId5 == null || sgId5.equals("")) {
 			if(!sg5.equals("")) {
 			System.out.println("短期目標５: " + sg5);
 			System.out.println(day_s_5);
@@ -629,7 +629,8 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//短期目標５のToDo
-		if (tdId5_1.equals("") || tdId5_1 == null) {
+
+		if (tdId5_1 == null || tdId5_1.equals("")) {
 			if(!td5_1.equals("")) {
 			System.out.println("短期目標５のToDo１: " + td5_1);
 
@@ -645,7 +646,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId5_2.equals("") || tdId5_2 == null) {
+		if (tdId5_2 == null || tdId5_2.equals("")) {
 			if(!td5_2.equals("")) {
 			System.out.println("短期目標５のToDo２: " + td5_2);
 
@@ -661,7 +662,7 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 
-		if (tdId5_3.equals("") || tdId5_3 == null) {
+		if (tdId5_3 == null || tdId5_3.equals("")) {
 			if(!td5_3.equals("")) {
 			System.out.println("短期目標５のToDo３: " + td5_3);
 
@@ -676,7 +677,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId5_5.equals("") || tdId5_4 == null) {
+		if (tdId5_5 == null || tdId5_4.equals("")) {
 			if(!td5_4.equals("")) {
 			System.out.println("短期目標５のToDo４: " + td5_4);
 
@@ -691,7 +692,7 @@ public class GoalRegistServlet extends HttpServlet {
 
 			}
 		}
-		if (tdId5_5.equals("") || tdId5_5 == null) {
+		if (tdId5_5 == null || tdId5_5.equals("")) {
 			if(!td5_5.equals("")) {
 			System.out.println("短期目標５のToDo５: " + td5_5);
 
@@ -707,9 +708,8 @@ public class GoalRegistServlet extends HttpServlet {
 			}
 		}
 		//一日のスケジュールへ遷移
-		//response.sendRedirect("/amateur/ScheduleServlet");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Schedule.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("/amateur/ScheduleServlet");
+
 	}
 
 }
