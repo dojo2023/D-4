@@ -29,8 +29,8 @@ public class TaskLastDayServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//セッションスコープの呼び出し
-				HttpSession session = request.getSession();
+			//セッションスコープの呼び出し
+			HttpSession session = request.getSession(true);
 
 				// ログインしていなかった場合、ログインページへフォワード
 				if (session.getAttribute("number") == null) {

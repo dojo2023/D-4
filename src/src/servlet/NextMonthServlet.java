@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.TodotbDAO;
 import model.AllA;
@@ -28,7 +27,11 @@ public class NextMonthServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// セッションを取得
-        HttpSession session = request.getSession(true);
+        HHttpSession session = request.getSession(true);
+		if (session.getAttribute("number") == null) {
+			response.sendRedirect("/amateur/LoginServlet");
+			return;
+		}
         // monthCounterの値をセッションから取得
         Integer mc = (Integer) session.getAttribute("monthCounter");
 		//翌月なので+1

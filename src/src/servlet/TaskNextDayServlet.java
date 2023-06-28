@@ -30,7 +30,7 @@ public class TaskNextDayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//セッションスコープの呼び出し
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 
 		// ログインしていなかった場合、ログインページへフォワード
 		if (session.getAttribute("number") == null) {
@@ -79,7 +79,7 @@ public class TaskNextDayServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;

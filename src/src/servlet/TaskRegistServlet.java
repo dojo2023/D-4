@@ -30,7 +30,7 @@ public class TaskRegistServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//セッションスコープの呼び出し
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 
 		// ログインしていなかった場合、ログインページへフォワード
 		if (session.getAttribute("number") == null) {
