@@ -57,7 +57,7 @@ public class AchieveLastMonthServlet extends HttpServlet {
 		int number=user.getNumber();
 		//TodoDAOを呼び出してすべての達成度を取得する
 		TodotbDAO tdao = new TodotbDAO();
-		AllA alla = tdao.achieve(1000, displayDate);
+		AllA alla = tdao.achieve(number, displayDate);
 		request.setAttribute("a",alla);
 
 		//達成度入力ページへフォワード
@@ -82,9 +82,12 @@ public class AchieveLastMonthServlet extends HttpServlet {
 				//Integer id = (Integer)session.getAttribute("id");
 				String displayDate = (String)session.getAttribute("displayDate");
 
+				//ログインしている人の管理番号を取得
+				LoginUser user=(LoginUser)session.getAttribute("number");
+				int number=user.getNumber();
 				//TodoIDをどうにかして取得する
 				TodotbDAO tdao = new TodotbDAO();
-				AllA alla = tdao.achieve(1000, displayDate);
+				AllA alla = tdao.achieve(number, displayDate);
 				int a = alla.getSgA().size();
 
 				//Todoの達成度を更新
