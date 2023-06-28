@@ -98,16 +98,24 @@ public class GoalRegistServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		//送信したい月の年月を取得
-		Calendar calendar = Calendar.getInstance();
-		String month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
-		String year = String.valueOf(calendar.get(Calendar.YEAR));
+
+		int year = Integer.parseInt("year");
+		int month = Integer.parseInt("month");
+
 		//長期目標登録のために送る月日を作成
-		String Date = year + "-" + month + "-01";
+
+		String Date;
+		if(month < 10) {
+			Date = year + "-0" + month + "-" + "-01";
+		}else {
+			Date = year + "-" + month + "-" + "-01";
+		}
 
 		//スコープからNUMBERを取得
 		//int number = Integer.parseInt(request.getParameter("NUMBER"));
 		int number=1000;
 		// フォームデータの受け取り
+
 		// 長期目標
 		String lg = request.getParameter("lg");
 

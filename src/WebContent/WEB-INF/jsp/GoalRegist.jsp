@@ -48,10 +48,12 @@
 					</div>
 					<div class=monthcontent>
 						<h3>
-							<c:out value="${displayYear}" />
+							<c:out  value="${displayYear}" />
 							年
-							<c:out value="${displayMonth}" />
+							<input type="hidden" name="year" value="${displayYear}">
+							<c:out  value="${displayMonth}" />
 							月
+							<input type="hidden" name="month" value="${displayMonth}">
 						</h3>
 					</div>
 					<div class="monthcontent">
