@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.TodotbDAO;
 import model.AllA;
+import model.LoginUser;
 
 /**
  * Servlet implementation class AchieveServlet
@@ -26,13 +27,11 @@ public class AchieveServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//ログインされていなかったときの処理
-		/*HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
-		}*/
-		// セッションを取得
-        HttpSession session = request.getSession(true);
+		}
         // monthCounterの値をセッションから取得
         Integer mc = (Integer) session.getAttribute("monthCounter");
         //monthCounterを初期値に戻す
@@ -55,10 +54,12 @@ public class AchieveServlet extends HttpServlet {
 		request.setAttribute("displayYear", year);
 
 		//ログインしている人の管理番号を取得
-		//Integer number = (Integer) session.getAttribute("管理番号の入った情報の名前");
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
+
 		//TodoDAOを呼び出してすべての達成度を取得する
 		TodotbDAO tdao = new TodotbDAO();
-		AllA alla = tdao.achieve(1000, displayDate);
+		AllA alla = tdao.achieve(number, displayDate);
 		request.setAttribute("a",alla);
 
 		//達成度入力ページへフォワード
@@ -71,21 +72,22 @@ public class AchieveServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//ログインされていなかったときの処理
-		/*HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
-		}*/
+		}
 
 		//達成度データをDAOに送る
 		//セッションスコープからTodothDAO呼び出しに必要な情報を取得
-		HttpSession session = request.getSession(true);
-		//Integer id = (Integer)session.getAttribute("id");
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
+
 		String displayDate = (String)session.getAttribute("displayDate");
 
 		//TodoIDをどうにかして取得する
 		TodotbDAO tdao = new TodotbDAO();
-		AllA alla = tdao.achieve(1000, displayDate);
+		AllA alla = tdao.achieve(number, displayDate);
 		int a = alla.getSgA().size();
 
 		//Todoの達成度を更新

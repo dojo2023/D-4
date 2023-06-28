@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.TodotbDAO;
 import model.AllA;
+import model.LoginUser;
 
 /**
  * Servlet implementation class NextMonthServlet
@@ -52,10 +53,12 @@ public class NextMonthServlet extends HttpServlet {
 	    session.setAttribute("monthCounter", mc);
 
 	  	//ログインしている人の管理番号を取得
-	  	//Integer number = (Integer) session.getAttribute("管理番号の入った情報の名前");
-	    //長期・短期目標、Todoと達成度を取得
+	    LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
+
+		//長期・短期目標、Todoと達成度を取得
 	    TodotbDAO tdao = new TodotbDAO();
-	    AllA alla = tdao.achieve(1000, displayDate);
+	    AllA alla = tdao.achieve(number, displayDate);
 	    request.setAttribute("a",alla);
 
 		// カレンダーサーブレットへフォワード

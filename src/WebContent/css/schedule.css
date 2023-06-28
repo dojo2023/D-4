@@ -205,11 +205,26 @@ h1{
   width: 200px;  /* 幅を200ピクセルに設定 */
   height: 150px; /* 高さを150ピクセルに設定 */
 }
-
-/*table {
-	border-collapse: collapse;
+.goalContent {
+  border-bottom: solid 3px #00bfff;
+  position: relative;
+  width: 100px;
 }
-th,td {
-	border: 1px solid black;
-	padding: 5px;
-}*/
+.goalContent:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px white;
+  width: 80px;
+}
+.lg_goalContent {
+  border-bottom: solid 3px #ffc778;
+  position: relative;
+}
+.lg_goalContent:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px white;
+  width: 80%;
+}

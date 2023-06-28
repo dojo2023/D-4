@@ -75,7 +75,7 @@
 <div class = "position">
 <div class = "goals">
 <div class="lg">
-<p>長期目標：
+<p class = "lg_goalContent">長期目標：
 <%if (a.getLg() == null){
 	out.print("");
 }else{
@@ -92,7 +92,7 @@
 </div>
 
 <div class="sg">
-<p>短期目標</p>
+<p class = "goalContent">短期目標</p>
 <%for(int i = 0; i < sgId.length; i++){
 	if(sgId[i] > 0){
 		out.println("<p>" + a.getSgA().get(i).getSg() + "</p>" +
@@ -102,7 +102,7 @@
 </div>
 
 <div class="todo">
-<p>Todoリスト</p>
+<p class = "goalContent">Todoリスト</p>
 <%for(int i = 0; i < sgId.length; i++){
 	if(sgId[i] > 0){
 		for(int j=0;j<a.getSgA().get(i).getTodoA().size();j++){

@@ -50,12 +50,12 @@
     height: 0;
 }
 /*短期目標を隠す*/
-/*.sgContent{
+.sgContent{
 	display: none;
 }
 .calculation{
 	display: none;
-}*/
+}
 /*カレンダー本体*/
 .calendar {
 	border-collapse: collapse;

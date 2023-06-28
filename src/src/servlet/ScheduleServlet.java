@@ -18,6 +18,7 @@ import dao.MemotbDAO;
 import dao.TasktbDAO;
 import dao.TodotbDAO;
 import model.AllA;
+import model.LoginUser;
 import model.Memo;
 import model.Task;
 
@@ -36,10 +37,10 @@ public class ScheduleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// ログインしていなかった場合、ログインページへフォワード
-		/*if (session.getAttribute("number") == null) {
+		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
-		}*/
+		}
 
 		//一日ごと変更させるために年月日の情報を取得する
         // monthCounterの値をセッションから取得
@@ -94,21 +95,22 @@ public class ScheduleServlet extends HttpServlet {
 		session.setAttribute("tmeDate", tmeDate);
 
 		//セッションスコープからログインIDを取得
-		//int id = (Integer) session.getAttribute("id");
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
 
 		//長期・短期目標、Todoと達成度を取得
 		TodotbDAO tdao = new TodotbDAO();
-		AllA alla = tdao.achieve(1000, displayDate);
+		AllA alla = tdao.achieve(number, displayDate);
 		request.setAttribute("a",alla);
 
 		//タスクを取得
 		TasktbDAO tDao = new TasktbDAO();
-		List<Task> taskList = tDao.task(1000, tmeDate);
+		List<Task> taskList = tDao.task(number, tmeDate);
 		request.setAttribute("task",taskList);
 
 		//メモを取得
 		MemotbDAO mDao = new MemotbDAO();
-		String memo = mDao.memo(1000,tmeDate);
+		String memo = mDao.memo(number,tmeDate);
 		request.setAttribute("memo",memo);
 
 		//表示日だけに関わる短期目標とTodoを取り出すための処理
@@ -151,12 +153,14 @@ public class ScheduleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		/*if (session.getAttribute("number") == null) {
+		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
-		}*/
-		//int number=(Integer)session.getAttribute("number");
-		//int id = number.getNumber;
+		}
+
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
+
 		String day = (String)session.getAttribute("tmeDate");
 
 		// リクエストパラメータを取得する
@@ -165,7 +169,7 @@ public class ScheduleServlet extends HttpServlet {
 
 		// メモの入力・更新を行う
 		MemotbDAO bDao = new MemotbDAO();
-		bDao.updateMemo(new Memo(1000,day,memo));
+		bDao.updateMemo(new Memo(number,day,memo));
 
 		// 結果ページにフォワードする
 		response.sendRedirect("/amateur/MemoRedirectServlet");

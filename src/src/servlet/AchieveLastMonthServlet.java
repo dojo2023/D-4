@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.TodotbDAO;
 import model.AllA;
+import model.LoginUser;
 
 /**
  * Servlet implementation class AchieveLastMonthServlet
@@ -26,13 +27,11 @@ public class AchieveLastMonthServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//ログインされていなかったときの処理
-		/*HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("number") == null) {
 			response.sendRedirect("/amateur/LoginServlet");
 			return;
-			}*/
-		// セッションを取得
-		HttpSession session = request.getSession(true);
+			}
 		// monthCounterの値をセッションから取得
 		 Integer mc = (Integer) session.getAttribute("monthCounter");
 
@@ -54,7 +53,8 @@ public class AchieveLastMonthServlet extends HttpServlet {
 		request.setAttribute("displayYear", year);
 
 		//ログインしている人の管理番号を取得
-		//Integer number = (Integer) session.getAttribute("管理番号の入った情報の名前");
+		LoginUser user=(LoginUser)session.getAttribute("number");
+		int number=user.getNumber();
 		//TodoDAOを呼び出してすべての達成度を取得する
 		TodotbDAO tdao = new TodotbDAO();
 		AllA alla = tdao.achieve(1000, displayDate);
@@ -72,7 +72,7 @@ public class AchieveLastMonthServlet extends HttpServlet {
 			protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				//ログインされていなかったときの処理
 				HttpSession session = request.getSession();
-				if (session.getAttribute("id") == null) {
+				if (session.getAttribute("number") == null) {
 					response.sendRedirect("/amateur/LoginServlet");
 					return;
 				}
