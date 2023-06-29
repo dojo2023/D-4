@@ -110,8 +110,8 @@ if(<%=a.getLgA()%><20){
 	pointBar.style.backgroundColor="blue";
 	pointBar.style.boxShadow="0 0 5px 3px blue,0 0 7px 7px blue";
 }else{
-	lifeBar.style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
-	pointBar.style.backgroundColor="linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
+	lifeBar.style.background="linear-gradient(to right,#e60000,#f39800,#fff100,#009944,#0068b7,#1d2088,#920783,#e60000) 0 / 200%";
+	pointBar.style.backgroundColor="yellow";
 	pointBar.style.boxShadow="0 0 5px 3px linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073),0 0 7px 7px linear-gradient(to right,#C70000,#D28300,#DFD000,#00873C,#005AA0,#181878,#800073)";
 }
 

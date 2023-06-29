@@ -193,6 +193,7 @@
 #lg_gage {
     height: 3px;
     background-color: rgb(0, 255, 255);
+    animation: 5s lg_gage linear infinite;
 }
 #sg_gage0{
 	height: 3px;
