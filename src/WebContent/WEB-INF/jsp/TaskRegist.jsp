@@ -61,35 +61,38 @@ List<Task> a = (List<Task>)request.getAttribute("task");
  %>
  		<div class = "taskContener">
 			<form id="dataForm" action="/amateur/TaskRegistServlet" method="POST">
+			<input type="hidden"name="year"value="${displayYear}">
+			<input type="hidden"name="month"value="${displayMonth}">
+			<input type="hidden"name="day"value="${displayday}">
 				<%for(int i=0;i<a.size();i++){
 				out.print("<input type=\"text\" name=\"task_"+(i+1)+"\" value=\""+a.get(i).getTask()+"\" class = \"taskBox\">");
-				out.print("<input type=\"datetime-local\" step=\"3600\" name=\"times_"+(i+1)+"\" value=\""+a.get(i).getHour_s()+"\">");
-				out.print("<input type=\"datetime-local\" step=\"3600\" name=\"timee_"+(i+1)+"\" value=\""+a.get(i).getHour_e()+"\"><br>");
+				out.print("<input type=\"time\" step=\"3600\" name=\"times_"+(i+1)+"\" value=\""+a.get(i).getHour_s()+"\">");
+				out.print("<input type=\"time\" step=\"3600\" name=\"timee_"+(i+1)+"\" value=\""+a.get(i).getHour_e()+"\"><br>");
 				}
 				%>
 					<input type="text" class="taskBox" name="task0">
-					<input type="datetime-local"class="timesBox" name="times0"step="3600"value="${date}">
-					<input type="datetime-local"class="timeeBox" name="timee0"step="3600"><br>
+					<input type="time"class="timesBox" name="times0"step="3600">
+					<input type="time"class="timeeBox" name="timee0"step="3600"><br>
 				<!-- ディスプレイ上の一個目 -->
 				<div id="container1" style="display: none;">
 					<input type="text" class="taskBox" name="task1">
-					<input type="datetime-local"class="timesBox" name="times1" step="3600">
-					<input type="datetime-local"class="timeeBox" name="timee1" step="3600"><br>
+					<input type="time"class="timesBox" name="times1" step="3600">
+					<input type="time"class="timeeBox" name="timee1" step="3600"><br>
 				</div>
 				<div id="container2" style="display: none;">
 					<input type="text" class="taskBox" name="task2">
-					<input type="datetime-local"class="timesBox" name="times2"step="3600">
-					<input type="datetime-local"class="timeeBox" name="timee2"step="3600"><br>
+					<input type="time"class="timesBox" name="times2"step="3600">
+					<input type="time"class="timeeBox" name="timee2"step="3600"><br>
 				</div>
 				<div id="container3" style="display: none;">
 					<input type="text" class="taskBox" name="task3">
-					<input type="datetime-local"class="timesBox" name="times3"step="3600">
-					<input type="datetime-local"class="timeeBox" name="timee3"step="3600"><br>
+					<input type="time"class="timesBox" name="times3"step="3600">
+					<input type="time"class="timeeBox" name="timee3"step="3600"><br>
 				</div>
 				<div id="container4" style="display: none;">
 					<input type="text" class="taskBox" name="task4">
-					<input type="datetime-local"class="timesBox" name="times4"step="3600">
-					<input type="datetime-local"class="timeeBox" name="timee4"step="3600"><br>
+					<input type="time"class="timesBox" name="times4"step="3600">
+					<input type="time"class="timeeBox" name="timee4"step="3600"><br>
 				</div>
 				<!-- taskを追加するためのボタン -->
 				<div class = "buttonContainer">

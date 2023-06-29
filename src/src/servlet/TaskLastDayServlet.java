@@ -64,6 +64,9 @@ public class TaskLastDayServlet extends HttpServlet {
 				//taskを取得
 				TasktbDAO bDao=new TasktbDAO();
 				List<Task> task =bDao.task(number, tmeDate);
+				for(int i=0;i<task.size();i++) {
+					task.set(i,new Task(number,task.get(i).getHour_s().substring(11,16),task.get(i).getHour_e().substring(11,16),task.get(i).getTask()));
+				}
 				//リクエストスコープに保存
 				request.setAttribute("task", task);
 				request.setAttribute("displayday", day);

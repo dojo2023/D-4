@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -57,26 +55,26 @@ public class TaskRegistServlet extends HttpServlet {
 		int year = calendar.get(Calendar.YEAR);
 		//メモを取得するための引数を作る
 		String tmeDate;
-		String date;
 
 		if(month < 10) {
-			date="2023-06-28T13:00";
 			tmeDate = year + "-0" + month + "-" + day;
 		}else {
-			date=year + "-" + month + "-" + day+" 00:00:00";
 			tmeDate = year + "-" + month + "-" + day;
 		}
 
 		//taskを取得
 		TasktbDAO bDao=new TasktbDAO();
 		List<Task> task =bDao.task(number, tmeDate);
+		for(int i=0;i<task.size();i++) {
+			task.set(i,new Task(number,task.get(i).getHour_s().substring(11,16),task.get(i).getHour_e().substring(11,16),task.get(i).getTask()));
+		}
 		//リクエストスコープに保存
 		request.setAttribute("task", task);
 		request.setAttribute("displayday", day);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);
 		request.setAttribute("tmeDate", tmeDate);
-		request.setAttribute("Date", date);
+
 
 
 		//タスク追加画面にフォワード
@@ -100,28 +98,37 @@ public class TaskRegistServlet extends HttpServlet {
 				request.setCharacterEncoding("UTF-8");
 				//タスクの数を取得
 				int num=Integer.parseInt(request.getParameter("length"));
-				System.out.print(request.getParameter("times_1"));
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+				String year=request.getParameter("year");
+				String month=request.getParameter("month");
+				String day=request.getParameter("day");
+				int j=Integer.parseInt(month);
+				String tmeDate;
+
+				if(j < 10) {
+					tmeDate = year + "-0" + month + "-" + day+" ";
+				}else {
+					tmeDate = year + "-" + month + "-" + day+" ";
+				}
 
 
 				TasktbDAO bDao=new TasktbDAO();
 				for(int i=0;i<num;i++) {
-					bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times_"+(i+1))).format(formatter),LocalDateTime.parse(request.getParameter("timee_"+(i+1))).format(formatter),request.getParameter("task_"+(i+1))));
+					bDao.updateTask(new Task(number,tmeDate+request.getParameter("times_"+(i+1)),tmeDate+request.getParameter("timee_"+(i+1)),request.getParameter("task_"+(i+1))));
 				}
 				if(!(request.getParameter("task0").equals(""))) {
-				bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times0")).format(formatter),LocalDateTime.parse(request.getParameter("timee0")).format(formatter),request.getParameter("task0")));
+				bDao.updateTask(new Task(number,tmeDate+request.getParameter("times0"),tmeDate+request.getParameter("timee0"),request.getParameter("task0")));
 				}
 				if(!(request.getParameter("task1").equals(""))) {
-					bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times1")).format(formatter),LocalDateTime.parse(request.getParameter("timee1")).format(formatter),request.getParameter("task1")));
+					bDao.updateTask(new Task(number,tmeDate+request.getParameter("times1"),tmeDate+request.getParameter("timee1"),request.getParameter("task1")));
 					}
 				if(!(request.getParameter("task2").equals(""))) {
-					bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times2")).format(formatter),LocalDateTime.parse(request.getParameter("timee2")).format(formatter),request.getParameter("task2")));
+					bDao.updateTask(new Task(number,tmeDate+request.getParameter("times2"),tmeDate+request.getParameter("timee2"),request.getParameter("task2")));
 					}
 				if(!(request.getParameter("task3").equals(""))) {
-					bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times3")).format(formatter),LocalDateTime.parse(request.getParameter("timee3")).format(formatter),request.getParameter("task3")));
+					bDao.updateTask(new Task(number,tmeDate+request.getParameter("times3"),tmeDate+request.getParameter("timee3"),request.getParameter("task3")));
 					}
 				if(!(request.getParameter("task4").equals(""))) {
-					bDao.updateTask(new Task(number,LocalDateTime.parse(request.getParameter("times4")).format(formatter),LocalDateTime.parse(request.getParameter("timee4")).format(formatter),request.getParameter("task4")));
+					bDao.updateTask(new Task(number,tmeDate+request.getParameter("times4"),tmeDate+request.getParameter("timee4"),request.getParameter("task4")));
 					}
 				// 結果ページにフォワードする
 				response.sendRedirect("/amateur/ScheduleServlet");
