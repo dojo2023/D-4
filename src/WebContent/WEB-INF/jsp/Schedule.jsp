@@ -75,7 +75,7 @@
 <div class = "position">
 <div class = "goals">
 <div class="lg">
-<p class = "lg_goalContent">長期目標：<span  class = "gc">
+<p class = "lg_goalContent">長期目標：<span>
 <%if (a.getLg() == null){
 	out.print("");
 }else{

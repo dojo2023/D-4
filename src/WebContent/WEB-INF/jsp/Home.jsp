@@ -33,11 +33,11 @@
         </div>
         <!-- 画像3枚予定、宣伝の横に配置 -->
 
-        <div class="sampleimages">
-            <img src="" alt="内容画像1" class="img_01"> <!--width="300" height="200"-->
-            <img src="" alt="内容画像2" class="img_02">
-            <img src="" alt="内容画像3" class="img_03">
-        </div>
+        <!--<div class="sampleimages">-->
+            <!--<img src="" alt="内容画像1" class="img_01"> <!--width="300" height="200"-->
+            <!--<img src="" alt="内容画像2" class="img_02">
+            v<img src="" alt="内容画像3" class="img_03">
+        </div>-->
     </div>
     <div class="second">
         <h3>仕様説明</h3>
@@ -64,8 +64,9 @@
 </main>
 
 <div class="footer">
+<footer>
         &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
-
+</footer>
     </div>
 </body>
 

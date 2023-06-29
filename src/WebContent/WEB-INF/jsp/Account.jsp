@@ -40,8 +40,8 @@
             <td><div class="password">
             <label>パスワード<br>
             <input type="password" name="PW1" id="password">
+            </label>
             <input type="checkbox" id="showPassword">
-            </label></div>
             <label for="showPassword">パスワードを表示する</label>
             </td>
         </tr></div>
@@ -50,11 +50,11 @@
             <td><div class="password_con">
             <label>パスワード確認用<br>
             <input type="password" name="PW2" id="password_con">
+            </label>
             <input type="checkbox" id="showPasswordCon">
-
-            <label for="showPasswordCon">パスワードを表示する</label>
-            </td></div>
-        </tr>
+            <label for="password_con">パスワードを表示する</label>
+            </td>
+        </tr></div>
         <tr>
             <td colspan="2">
             <input type="submit" name="LOGIN" value="新規登録">

@@ -33,10 +33,10 @@ public class AchieveLastMonthServlet extends HttpServlet {
 			return;
 			}
 		// monthCounterの値をセッションから取得
-		 Integer mc = (Integer) session.getAttribute("monthCounter");
+		 Integer mc = (Integer)session.getAttribute("monthCounter");
 
 		//先月なので-1
-		mc = mc - 1;
+		mc -= 1;
 
 		//表示したい月の年月を取得
 		Calendar calendar = Calendar.getInstance();

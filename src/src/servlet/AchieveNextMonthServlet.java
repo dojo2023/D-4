@@ -33,9 +33,9 @@ public class AchieveNextMonthServlet extends HttpServlet {
 			return;
 		}
         // monthCounterの値をセッションから取得
-        Integer mc = (Integer) session.getAttribute("monthCounter");
+        Integer mc = (Integer)session.getAttribute("monthCounter");
         //翌月なので+1
-        mc = mc + 1;
+        mc += 1;
 
       	//表示したい月の年月を取得
       	Calendar calendar = Calendar.getInstance();
@@ -49,6 +49,8 @@ public class AchieveNextMonthServlet extends HttpServlet {
 			displayDate = year + "-" + month + "-01";
 		}
 
+		// セッションスコープに保存
+	    session.setAttribute("monthCounter", mc);
 		session.setAttribute("displayDate", displayDate);
 		request.setAttribute("displayMonth", month);
 		request.setAttribute("displayYear", year);

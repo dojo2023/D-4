@@ -66,15 +66,15 @@ AllA a = (AllA)request.getAttribute("a");
 
 <div class="content">
 <%for (int i=0;i<(a.getSgA()).size();i++){
-	out.println("<p class=\"sg\">短期目標"+(i+1)+"：" + (a.getSgA()).get(i).getSg() +
-	"達成度：" + (a.getSgA()).get(i).getsAchieve()+ "％<div id=\"life-frame\"><div id=\"sg_gage"+i+"\"></div><div id=\"life-mark\"></div></div></p>");
-
+	out.println("<p class=\"sg\">短期目標"+(i+1)+"：" + (a.getSgA()).get(i).getSg() + "　達成度：" + (a.getSgA()).get(i).getsAchieve()+ "％<div id=\"life-frame\"><div id=\"sg_gage"+i+"\"></div><div id=\"life-mark\"></div></div></p>");
+	out.println("<ul>");
 	for(int j=0;j<a.getSgA().get(i).getTodoA().size();j++) {
-		out.println("<ul><li class=\"todo\">todo"+(j+1)+":" + a.getSgA().get(i).getTodoA().get(j).getTodo()
+		out.println("<li class=\"todo\">Todo：" + a.getSgA().get(i).getTodoA().get(j).getTodo()
 			 + "<input type=text name = 'ACHIEVE" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).gettAchieve() +
-			 "' class = \"achieve\">％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></li></ul>");
+			 "' class = \"achieve\">％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></li>");
 		}
-} %>
+	out.println("</ul>");
+	} %>
 </div>
 <input type="submit" name="REGIST_A" value="確定">
 </form>
