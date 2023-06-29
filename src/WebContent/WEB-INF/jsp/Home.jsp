@@ -6,8 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ホームページ</title>
-
-    <!-- リンクスペース -->
+    <link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
     <link rel="stylesheet" href="/amateur/css/home.css">
     <link rel="stylesheet" href="/amateur/css/commmon.css">
 
@@ -15,7 +14,7 @@
 
 <body>
 <main>
-    <h1 class="logo"><img src="" alt="【ロゴ】">あなただけの秘書</h1>
+    <img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
     <!-- ロゴ画像とアプリ名 -->
     <nav><!-- アプリ名の横にボタン配置 -->
         <ul>

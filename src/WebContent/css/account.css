@@ -1,19 +1,13 @@
 @charset "UTF-8";
 img {
   width: 393px; /* 幅を指定 */
-  height: 259px; /* 高さを指定 */
+  height: 100px; /* 高さを指定 */
    position: absolute; /* 画像の位置を絶対位置指定に変更 */
-  top: -9px; /* 画像の上端の位置 */
+  top: 30px; /* 画像の上端の位置 */
   left: 440px; /* 画像の左端の位置 */
 
 }
-h2{
-	  font-size: 1.3em;
-  color: rgb(255, 0, 0);
-}
-header.header h2 {
-  text-align: center;
-}
+
 .border {
     border-top: 3px solid #aaa;
   border-bottom: 3px solid #aaa;

@@ -5,15 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>使い方説明</title>
-
+<link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
 <link rel="stylesheet" href="/amateur/css/common.css">
 <link rel="stylesheet" href="/amateur/css/explanation.css">
 </head>
 <body>
-    <main>
     <div class = wrapper>
         <header class = header>
-    <h1 class="logo"><img src="" alt="【ロゴ】">アプリ名アプリ名アプリ名</h1>
+    <img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
 
         <nav class="nav">
                         <ul>
@@ -34,9 +33,6 @@
                         </ul>
                     </nav>
         </header>
-    </div>
-
-
         <div class="container">
             <h2>アプリの使い方</h2>
 
@@ -70,66 +66,10 @@
                 行う時間を設定してください。 </p><br>
           </div>
 
-          <footer>
-            <p>&copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.</p>
-
-
         <script src="/amateur/js/explanation.js"></script>
-    <!--<script>
-    //ボタンの表示を横向きから下向きに変える
-    //後でJavaScriptに書き換える
-    //試しに三つサンプルを書いてある。コピペで（^-^）
-    //疲れてきたね、頑張ろbyかいせい
-    function changeButton1() {
-     var button = document.getElementById('myButton1');
-     const description1 = document.getElementById('description1');
-
-    if (button.innerHTML === '▷') {
-        button.innerHTML = '▽';
-    } else {
-        button.innerHTML = '▷';
-    }
-    if (description1.style.display === 'none') {
-        description1.style.display = 'block';
-     } else {
-        description1.style.display = 'none';
-    }
-    }
-    function changeButton2() {
-     var button = document.getElementById('myButton2');
-     const description2 = document.getElementById('description2');
-
-    if (button.innerHTML === '▷') {
-        button.innerHTML = '▽';
-    } else {
-        button.innerHTML = '▷';
-    }
-    if (description2.style.display === 'none') {
-        description2.style.display = 'block';
-     } else {
-        description2.style.display = 'none';
-    }
-    }
-    function changeButton3() {
-     var button = document.getElementById('myButton3');
-     const description3 = document.getElementById('description3');
-
-    if (button.innerHTML === '▷') {
-        button.innerHTML = '▽';
-    } else {
-        button.innerHTML = '▷';
-    }
-    if (description3.style.display === 'none') {
-        description3.style.display = 'block';
-     } else {
-        description3.style.display = 'none';
-    }
-}
-
-
-
-  </script>-->
-</footer>
-  </main>
+	<footer class="footer">
+		 &copy;Copyright plusDOJO(SE plus) amateur programmer. All rights reserved.
+		</footer>
+</div>
 </body>
 </html>

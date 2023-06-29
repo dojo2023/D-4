@@ -1,14 +1,10 @@
 @charset "UTF-8";
 img {
   width: 393px; /* 幅を指定 */
-  height: 259px; /* 高さを指定 */
+  height: 100px; /* 高さを指定 */
    position: absolute; /* 画像の位置を絶対位置指定に変更 */
-  top: 8px; /* 画像の上端の位置 */
+  top: 40px; /* 画像の上端の位置 */
   left: 455px; /* 画像の左端の位置 */
-}
-h2{
-	  font-size: 1.3em;
-  color: rgb(255, 0, 0);
 }
 header.header h2 {
   text-align: center;
@@ -20,6 +16,7 @@ header.header h2 {
   padding: 2em;
   margin-right:50px;
    margin-left:80px;
+   margin-top: 30px;
 }
  table {
   display: flex;
@@ -60,5 +57,7 @@ input[type="reset"]:hover {
 }
 .regist{
    margin-top:130px;
-
+}
+footer{
+	margin-top: 30px;
 }

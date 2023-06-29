@@ -9,6 +9,7 @@
 	margin-left: 190px;
 	margin-right:170px;
 	height: 40px;
+	margin-top: 10px;
 }
 .monthcontent {
 	margin: 10px;
@@ -19,7 +20,7 @@
 .prev {
     border-style: solid;
     border-width: 15px 15px 15px 0;
-    border-color: transparent #f4a460 transparent transparent;
+    border-color: transparent #20b2aa transparent transparent;
     display: inline-block;
     width: 0;
     height: 0;
@@ -27,7 +28,7 @@
 .next {
 	border-style: solid;
     border-width: 15px 0 15px 15px;
-    border-color: transparent transparent transparent #f4a460;
+    border-color: transparent transparent transparent #20b2aa;
     display: inline-block;
     width: 0;
     height: 0;
@@ -229,4 +230,15 @@
     filter: saturate(500%);
     box-shadow: 0 0 5px 3px rgb(200, 255, 255),
                 0 0 7px 7px rgb(100, 255, 255);
+}
+/*達成度のフォーム*/
+.achieve{
+	width: 20px;
+	height: 20px;
+}
+/*各短期目標とtodo*/
+.sg{
+	margin-top: 25px;
+	padding: 8px;
+	border-top: dashed 1.5px #00fa9a;
 }

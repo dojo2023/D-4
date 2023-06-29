@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
-<img src="/amateur/img/logo.png">
 <title>新規登録</title>
 <link rel="stylesheet" href="/amateur/css/common.css">
 <link rel="stylesheet" href="/amateur/css/account.css">
@@ -18,8 +17,7 @@
 <div class = wrapper>
 <!-- ヘッダーここから -->
 <header class = header>
-<!-- <img src = ""> -->
-<h2>あなただけの秘書</h2>
+<img src="/amateur/img/logo.png">
 </header>
 <!-- ヘッダーここまで -->
 <!-- メインここから -->

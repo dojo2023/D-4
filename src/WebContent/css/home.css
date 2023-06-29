@@ -153,3 +153,7 @@ h4 {
     width: 80%;
     margin-left: 10%;
 }
+.image{
+	width: 400px;  /* 幅を200ピクセルに設定 */
+  	height:100px; /* 高さを150ピクセルに設定 */
+}

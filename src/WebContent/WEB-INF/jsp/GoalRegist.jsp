@@ -18,7 +18,6 @@
 		<!-- ヘッダー -->
 		<header class="header">
 			<img src="/amateur/img/logo.png" alt="Image" class="image"id="moving-image">
-			<h1>あなただけの秘書</h1>
 			<nav class="nav">
 				 <ul>
                             <li><a href="/amateur/ScheduleServlet">1日のスケジュール</a></li>

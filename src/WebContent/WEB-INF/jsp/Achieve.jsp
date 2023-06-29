@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>達成度入力・表示</title>
+<link rel="icon" type="image/png" href="/amateur/img/fabicon.png">
 <link rel="stylesheet" href="/amateur/css/common.css">
 <link rel="stylesheet" href="/amateur/css/achieve.css">
 </head>
@@ -62,16 +63,16 @@ AllA a = (AllA)request.getAttribute("a");
     <div id="lg_gage"></div>
     <div id="life-mark"></div>
 </div>
-<hr>
-<div class="sg">
+
+<div class="content">
 <%for (int i=0;i<(a.getSgA()).size();i++){
-	out.println("<p>短期目標"+(i+1)+"：" + (a.getSgA()).get(i).getSg() +
+	out.println("<p class=\"sg\">短期目標"+(i+1)+"：" + (a.getSgA()).get(i).getSg() +
 	"達成度：" + (a.getSgA()).get(i).getsAchieve()+ "％<div id=\"life-frame\"><div id=\"sg_gage"+i+"\"></div><div id=\"life-mark\"></div></div></p>");
 
 	for(int j=0;j<a.getSgA().get(i).getTodoA().size();j++) {
-		out.println("<p>todo"+(j+1)+":" + a.getSgA().get(i).getTodoA().get(j).getTodo()
+		out.println("<p class=\"todo\">todo"+(j+1)+":" + a.getSgA().get(i).getTodoA().get(j).getTodo()
 			 + "<input type=text name = 'ACHIEVE" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).gettAchieve() +
-			 "'>％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></p>");
+			 "' class = \"achieve\">％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></p>");
 		}
 } %>
 </div>
