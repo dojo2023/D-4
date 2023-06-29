@@ -102,8 +102,8 @@ if(<%=a.getLgA()%><20){
 	pointBar.style.backgroundColor="yellow";
 	pointBar.style.boxShadow="0 0 5px 3px yellow,0 0 7px 7px yellow";
 }else if(60<=<%=a.getLgA()%>&&<%=a.getLgA()%><80){
-	lifeBar.style.backgroundColor="green";
-	pointBar.style.backgroundColor="green";
+	lifeBar.style.backgroundColor="#00fa9a";
+	pointBar.style.backgroundColor="#00fa9a";
 	pointBar.style.boxShadow="0 0 5px 3px green,0 0 7px 7px green";
 }else if(80<=<%=a.getLgA()%>&&<%=a.getLgA()%><100){
 	lifeBar.style.backgroundColor="blue";
