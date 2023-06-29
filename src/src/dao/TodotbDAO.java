@@ -351,11 +351,11 @@ public class TodotbDAO {
 								rs3.getString("SG"),
 								rs3.getString("DAY_S"),
 								rs3.getString("DAY_E"),
-								1000,
+								100,
 								todoList
 								);
 								sgList.add(card);
-						achieve=1000;
+						achieve=100;
 						todonum++;
 					}
 
@@ -386,7 +386,7 @@ public class TodotbDAO {
 					todoList
 					);
 					sgList.add(card);
-					LgA=1000;
+					LgA=100;
 				}
 				}else {
 					//長期目標がない場合
