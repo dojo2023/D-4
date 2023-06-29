@@ -70,9 +70,9 @@ AllA a = (AllA)request.getAttribute("a");
 	"達成度：" + (a.getSgA()).get(i).getsAchieve()+ "％<div id=\"life-frame\"><div id=\"sg_gage"+i+"\"></div><div id=\"life-mark\"></div></div></p>");
 
 	for(int j=0;j<a.getSgA().get(i).getTodoA().size();j++) {
-		out.println("<p class=\"todo\">todo"+(j+1)+":" + a.getSgA().get(i).getTodoA().get(j).getTodo()
+		out.println("<ul><li class=\"todo\">todo"+(j+1)+":" + a.getSgA().get(i).getTodoA().get(j).getTodo()
 			 + "<input type=text name = 'ACHIEVE" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).gettAchieve() +
-			 "' class = \"achieve\">％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></p>");
+			 "' class = \"achieve\">％<input type=hidden name = 'TODOID" + i + "-" + j + "'  value = '" + a.getSgA().get(i).getTodoA().get(j).getTodoId() + "'></li></ul>");
 		}
 } %>
 </div>
